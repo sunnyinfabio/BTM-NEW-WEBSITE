@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { HeroSection } from './components/hero/HeroSection';
 import { SolutionFinderSection } from './components/solution-finder/SolutionFinderSection';
 import { TechUniverseSection } from './components/tech-universe/TechUniverseSection';
@@ -6,18 +7,17 @@ import { CaseStudiesSection } from './components/case-studies/CaseStudiesSection
 import { type CaseStudyData } from './components/case-studies/CaseStudyModal';
 import { WhyBtmSection } from './components/why-btm/WhyBtmSection';
 import { LeadershipTrustSection } from './components/leadership/LeadershipTrustSection';
-import { TeamBuilderSection, type RoleType, type TeamSize, type Timeline } from './components/team-builder/TeamBuilderSection';
-import { ProductFinderSection, type ProductType, type ProductStage } from './components/product-finder/ProductFinderSection';
-import { AiOpportunityFinderSection, type AiDomain, type AiTechType } from './components/ai-finder/AiOpportunityFinderSection';
 import { ProgressiveLeadGenDrawer, type LeadGenContextData } from './components/lead-gen/ProgressiveLeadGenDrawer';
 import { ProgressiveLeadGenSection } from './components/lead-gen/ProgressiveLeadGenSection';
 import { SolutionFinderProvider, useSolutionFinder, type GoalId } from './context/SolutionFinderContext';
 import { Button, GradientText, Badge } from './components/ui';
-import { ArrowRight, ShieldCheck } from 'lucide-react';
+import { FloatingAdvisorTrigger } from './components/ui/FloatingAdvisorTrigger';
+import { ArrowRight, ShieldCheck, Menu, X, Phone, Mail } from 'lucide-react';
 
 function AppContent() {
   const [isLeadDrawerOpen, setIsLeadDrawerOpen] = useState(false);
   const [drawerContext, setDrawerContext] = useState<LeadGenContextData | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const { selectedGoal, setSelectedGoal, recommendation } = useSolutionFinder();
 
@@ -88,6 +88,7 @@ function AppContent() {
   };
 
   const handleNavigateSection = (sectionId: string) => {
+    setIsMobileMenuOpen(false);
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -95,7 +96,7 @@ function AppContent() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: 'var(--background)', color: 'var(--text-primary)' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--background)', color: 'var(--text-primary)', position: 'relative' }}>
       {/* ──────────────────────────────────────────────────────────
           1. Clean Primary Navigation Header
           ────────────────────────────────────────────────────────── */}
@@ -108,80 +109,197 @@ function AppContent() {
           backdropFilter: 'blur(16px)',
           WebkitBackdropFilter: 'blur(16px)',
           borderBottom: '1px solid var(--border)',
-          padding: '1rem clamp(1rem, 4vw, 2.5rem)',
+          padding: '0.875rem clamp(1rem, 4vw, 2.5rem)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
         }}
       >
+        {/* Brand Logo & Tag */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+          <a
+            href="#"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              background: 'rgba(255, 255, 255, 0.05)',
+              padding: '4px 10px',
+              borderRadius: '8px',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+            }}
+          >
             <img
               src="https://btmoutsourcing.com/assets/images/logo/logo-dark.png"
               alt="BTM Outsourcing Logo"
-              style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
+              style={{ height: '32px', width: 'auto', objectFit: 'contain' }}
               onError={(e) => {
-                // Fallback if image blocked
                 (e.target as HTMLElement).style.display = 'none';
               }}
             />
           </a>
-          <Badge variant="cyan" dot className="hidden sm:inline-flex">
+          <Badge variant="cyan" dot className="hidden lg:inline-flex">
             Interactive Technology Advisor
           </Badge>
         </div>
 
+        {/* Desktop Navigation Links */}
         <nav
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '2rem',
+            gap: '2.25rem',
             fontSize: 'var(--fs-body-sm)',
-            fontWeight: 500,
+            fontWeight: 600,
           }}
           className="hidden md:flex"
         >
           <span
-            style={{ color: 'var(--text-secondary)', cursor: 'pointer' }}
+            style={{ color: 'var(--text-secondary)', cursor: 'pointer', transition: 'color 0.2s ease' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = '#FFFFFF')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
             onClick={() => handleNavigateSection('solution-finder')}
           >
             Solutions
           </span>
           <span
-            style={{ color: 'var(--text-secondary)', cursor: 'pointer' }}
+            style={{ color: 'var(--text-secondary)', cursor: 'pointer', transition: 'color 0.2s ease' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = '#FFFFFF')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
             onClick={() => handleNavigateSection('tech-universe')}
           >
             Technology
           </span>
           <span
-            style={{ color: 'var(--text-secondary)', cursor: 'pointer' }}
+            style={{ color: 'var(--text-secondary)', cursor: 'pointer', transition: 'color 0.2s ease' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = '#FFFFFF')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
             onClick={() => handleNavigateSection('work-showcase')}
           >
             Work
           </span>
           <span
-            style={{ color: 'var(--text-secondary)', cursor: 'pointer' }}
+            style={{ color: 'var(--text-secondary)', cursor: 'pointer', transition: 'color 0.2s ease' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = '#FFFFFF')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
             onClick={() => handleNavigateSection('why-btm')}
           >
             About
           </span>
         </nav>
 
-        <Button
-          variant="primary"
-          size="sm"
-          onClick={() =>
-            handleOpenDrawerWithContext({
-              title: 'Find My Custom Solution',
-              category: 'General Consultation',
-              details: 'Connect with a senior technology advisor to scope your engineering roadmap.',
-            })
-          }
-          icon={<ArrowRight size={15} />}
-        >
-          Find My Solution →
-        </Button>
+        {/* Header Right Actions */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <Button
+            variant="primary"
+            size="sm"
+            className="hidden sm:inline-flex"
+            onClick={() =>
+              handleOpenDrawerWithContext({
+                title: 'Find My Custom Solution',
+                category: 'General Consultation',
+                details: 'Connect with a senior technology advisor to scope your engineering roadmap.',
+              })
+            }
+            icon={<ArrowRight size={15} />}
+          >
+            Find My Solution →
+          </Button>
+
+          {/* Mobile Hamburger Toggle Button */}
+          <button
+            type="button"
+            className="md:hidden"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            style={{
+              color: '#FFFFFF',
+              background: 'rgba(255, 255, 255, 0.08)',
+              border: '1px solid var(--border)',
+              borderRadius: '8px',
+              padding: '6px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            aria-label="Toggle Navigation Menu"
+          >
+            {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </header>
+
+      {/* ──────────────────────────────────────────────────────────
+          Mobile Drawer Menu Overlay
+          ────────────────────────────────────────────────────────── */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            style={{
+              position: 'fixed',
+              top: '64px',
+              left: 0,
+              right: 0,
+              zIndex: 99,
+              background: 'rgba(13, 18, 26, 0.98)',
+              backdropFilter: 'blur(24px)',
+              borderBottom: '1px solid var(--border)',
+              padding: '1.5rem',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1.25rem',
+            }}
+          >
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '1.1rem', fontWeight: 700 }}>
+              <span
+                style={{ color: '#FFFFFF', cursor: 'pointer', padding: '0.5rem 0' }}
+                onClick={() => handleNavigateSection('solution-finder')}
+              >
+                1. Solutions & Goals
+              </span>
+              <span
+                style={{ color: '#FFFFFF', cursor: 'pointer', padding: '0.5rem 0' }}
+                onClick={() => handleNavigateSection('tech-universe')}
+              >
+                2. Technology Constellation
+              </span>
+              <span
+                style={{ color: '#FFFFFF', cursor: 'pointer', padding: '0.5rem 0' }}
+                onClick={() => handleNavigateSection('work-showcase')}
+              >
+                3. Enterprise Work (8 Case Studies)
+              </span>
+              <span
+                style={{ color: '#FFFFFF', cursor: 'pointer', padding: '0.5rem 0' }}
+                onClick={() => handleNavigateSection('why-btm')}
+              >
+                4. Why Choose BTM (Proof & Process)
+              </span>
+            </div>
+
+            <div style={{ paddingTop: '1rem', borderTop: '1px solid var(--border)' }}>
+              <Button
+                variant="primary"
+                size="lg"
+                className="w-full"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  handleOpenDrawerWithContext({
+                    title: 'Find My Custom Solution',
+                    category: 'Mobile Quick Diagnostic',
+                    details: 'Connect with a senior technology advisor to scope your engineering roadmap.',
+                  });
+                }}
+                icon={<ArrowRight size={18} />}
+              >
+                Find My Solution →
+              </Button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ──────────────────────────────────────────────────────────
           The Final Pure Flow (Detailed info lives behind interactions)
@@ -226,6 +344,17 @@ function AppContent() {
         />
       </main>
 
+      {/* Floating Action Trigger on Scroll */}
+      <FloatingAdvisorTrigger
+        onClick={() =>
+          handleOpenDrawerWithContext({
+            title: '48-Hour Engineering Pod Assembly',
+            category: 'Express Diagnostic',
+            details: 'Get top 1% vetted talent matched in 48 hours for your technology roadmap.',
+          })
+        }
+      />
+
       {/* ──────────────────────────────────────────────────────────
           Interactive Deep-Dive Drawer (Lives Behind Interactions)
           ────────────────────────────────────────────────────────── */}
@@ -249,11 +378,11 @@ function AppContent() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '2.5rem', marginBottom: '3rem' }}>
             {/* Col 1: BTM Overview */}
             <div>
-              <div style={{ marginBottom: '1rem' }}>
+              <div style={{ marginBottom: '1rem', display: 'inline-block', background: 'rgba(255, 255, 255, 0.05)', padding: '4px 10px', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
                 <img
                   src="https://btmoutsourcing.com/assets/images/logo/logo-dark.png"
                   alt="BTM Outsourcing Logo"
-                  style={{ height: '38px', width: 'auto', objectFit: 'contain' }}
+                  style={{ height: '34px', width: 'auto', objectFit: 'contain' }}
                   onError={(e) => {
                     (e.target as HTMLElement).style.display = 'none';
                   }}

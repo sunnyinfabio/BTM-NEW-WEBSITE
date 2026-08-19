@@ -387,7 +387,7 @@ export const ProgressiveLeadGenDrawer: React.FC<ProgressiveLeadGenDrawerProps> =
                   {/* Direct Contact Links */}
                   <div className="btm-success-direct-call">
                     <p className="text-xs text-slate-400 mb-2">Need an immediate technical consultation?</p>
-                    <div className="flex flex-wrap gap-2 justify-center">
+                    <div className="flex flex-wrap gap-2 justify-center mb-3">
                       <a href="tel:+18624371138" className="btm-phone-bubble">
                         📞 US: +1-862-437-1138
                       </a>
@@ -395,6 +395,13 @@ export const ProgressiveLeadGenDrawer: React.FC<ProgressiveLeadGenDrawerProps> =
                         📞 India: +91-124-410-4312
                       </a>
                     </div>
+                    <a
+                      href={`mailto:cs@btm-financial.com?subject=${encodeURIComponent(`BTM Engineering Consultation: ${activeTitle}`)}&body=${encodeURIComponent(`Hello BTM Leadership,\n\nI submitted an advisory request on your website:\n- Name: ${fullName || 'N/A'}\n- Company: ${company || 'N/A'}\n- Role: ${role}\n- Timeline: ${timeline}\n- Details: ${projectDetails || 'Custom Roadmap Inquiry'}\n\nPlease get in touch with me at ${email}.\n\nBest regards,\n${fullName || 'Engineering Lead'}`)}`}
+                      className="inline-flex items-center gap-1.5 text-xs text-sky-400 font-semibold hover:underline"
+                    >
+                      <Mail size={13} />
+                      <span>Send Direct Email to Executive Team (cs@btm-financial.com) →</span>
+                    </a>
                   </div>
 
                   <Button
