@@ -5,7 +5,7 @@
 .btm-techuniverse-root {
   position: relative;
   background-color: var(--background);
-  padding: clamp(4rem, 7vw, 7rem) 1.5rem;
+  padding: clamp(4rem, 7vw, 6.5rem) 1.5rem;
   border-top: 1px solid var(--border);
   overflow: hidden;
 }
@@ -16,10 +16,11 @@
   width: 100%;
 }
 
+/* Header */
 .btm-techuniverse-header {
   text-align: center;
   max-width: 780px;
-  margin: 0 auto 3.5rem auto;
+  margin: 0 auto 3rem auto;
 }
 
 .btm-techuniverse-title {
@@ -35,6 +36,7 @@
   font-size: var(--fs-body-lg);
   color: var(--text-secondary);
   margin-bottom: 2rem;
+  line-height: var(--lh-normal);
 }
 
 /* Universe Chips Selector */
@@ -42,19 +44,19 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.625rem;
+  gap: 0.65rem;
 }
 
 .btm-universe-chip {
   background: #FFFFFF;
-  border: 1px solid var(--border);
+  border: 1.5px solid var(--border);
   border-radius: var(--radius-full);
-  padding: 0.5rem 1.125rem;
+  padding: 0.55rem 1.25rem;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   font-size: var(--fs-body-sm);
-  font-weight: 600;
+  font-weight: 700;
   color: var(--brand-navy);
   cursor: pointer;
   transition: all var(--transition-fast);
@@ -63,41 +65,41 @@
 
 .btm-universe-chip:hover {
   border-color: var(--brand-navy);
-  color: var(--brand-navy);
-  background: var(--surface);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .btm-universe-chip.active {
   background: var(--brand-navy);
   border-color: var(--brand-navy);
   color: #FFFFFF;
-  box-shadow: 0 4px 14px rgba(11, 38, 83, 0.3);
+  box-shadow: var(--shadow-md);
 }
 
 .btm-chip-indicator {
   font-size: 0.55rem;
-  color: var(--brand-green);
+  color: #00C881;
 }
 
 /* ==========================================================================
-   2-Column Main Grid
+   2-Column Main Grid (Left Diagram, Right Detail Panel)
    ========================================================================== */
 .btm-universe-main-grid {
   display: grid;
   grid-template-columns: 1fr 1.25fr;
-  gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: stretch;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  align-items: start;
 }
 
 /* Left Column: Visual Node Constellation Box */
 .btm-universe-constellation-box {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: #FFFFFF;
+  border: 1.5px solid var(--border);
   border-radius: var(--radius-xl);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
   position: relative;
   min-height: 480px;
 }
@@ -108,6 +110,7 @@
   align-items: center;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--border);
+  margin-bottom: 1rem;
 }
 
 .btm-constellation-status {
@@ -123,8 +126,8 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: var(--brand-green);
-  box-shadow: 0 0 8px var(--brand-green);
+  background-color: #00C881;
+  box-shadow: 0 0 8px #00C881;
   animation: pulse-node 2s infinite;
 }
 
@@ -133,171 +136,185 @@
   color: var(--text-tertiary);
 }
 
-.btm-svg-graph-container {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem 0;
-}
-
-.btm-constellation-svg {
+/* Constellation Diagram Container */
+.btm-constellation-diagram {
+  position: relative;
   width: 100%;
-  height: 100%;
-  max-height: 380px;
+  height: 400px;
+  flex: 1;
+  background: radial-gradient(circle at center, rgba(11, 38, 83, 0.02) 0%, transparent 70%);
+  border-radius: var(--radius-lg);
   overflow: visible;
 }
 
-/* SVG Line & Node Styles */
-.btm-constellation-line {
-  stroke: rgba(11, 38, 83, 0.15);
-  stroke-width: 2;
-  transition: all var(--transition-fast);
-}
-
-.btm-constellation-line.connected-active {
-  stroke: var(--brand-navy);
-  stroke-width: 2.5;
-  stroke-dasharray: 4 2;
-}
-
-.btm-node-group {
-  cursor: pointer;
-  transition: transform var(--transition-fast);
-  outline: none;
-}
-
-.btm-node-group:hover,
-.btm-node-group.active {
-  transform: scale(1.1);
-}
-
-.btm-node-glow-ring {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1;
-  opacity: 0.3;
-}
-
-.btm-node-circle {
-  fill: #FFFFFF;
-  stroke: currentColor;
-  stroke-width: 3;
-  transition: all var(--transition-fast);
-  filter: drop-shadow(0 2px 8px rgba(11, 38, 83, 0.15));
-}
-
-.btm-node-group.active .btm-node-circle {
-  fill: currentColor;
-}
-
-.btm-node-text-svg {
-  font-family: var(--font-primary);
-  font-size: 11px;
-  font-weight: 800;
-  fill: var(--brand-navy);
-  letter-spacing: 0.05em;
+.btm-constellation-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
 }
 
-.btm-node-group.active .btm-node-text-svg {
-  fill: #FFFFFF;
+.btm-constellation-line {
+  stroke: rgba(11, 38, 83, 0.2);
+  stroke-width: 2;
+  stroke-dasharray: 4 4;
 }
 
-/* Right Column: Dynamic Detail Panel */
-.btm-universe-detail-box {
-  background: #FFFFFF;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  padding: clamp(1.75rem, 3.5vw, 2.5rem);
+/* Node Button on Coordinate Anchor */
+.btm-constellation-node-btn {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-md);
-  position: relative;
-  overflow: hidden;
-}
-
-.btm-detail-top-row {
-  display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  z-index: 10;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  outline: none;
 }
 
-.btm-detail-icon-bubble {
-  width: 54px;
-  height: 54px;
-  border-radius: var(--radius-md);
-  background: var(--surface);
-  border: 1px solid var(--border);
+.btm-constellation-node-btn:hover,
+.btm-constellation-node-btn.selected {
+  transform: translate(-50%, -50%) scale(1.12);
+  z-index: 20;
+}
+
+.btm-node-icon-circle {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 2px solid;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 12px rgba(11, 38, 83, 0.1);
+  transition: all 0.2s ease;
 }
 
-.btm-detail-category-badge {
+.btm-constellation-node-btn.selected .btm-node-icon-circle {
+  background: #FFFFFF;
+  border-width: 2.5px;
+}
+
+.btm-node-floating-label {
+  margin-top: 5px;
+  background: #FFFFFF;
+  color: var(--brand-navy);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(11, 38, 83, 0.08);
+  transition: all 0.2s ease;
+}
+
+.btm-constellation-node-btn.selected .btm-node-floating-label {
+  background: var(--brand-navy);
+  color: #FFFFFF;
+  border-color: var(--brand-navy);
+}
+
+/* ==========================================================================
+   Right Column: Dynamic Detail Panel
+   ========================================================================== */
+.btm-universe-detail-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.btm-detail-panel-card {
+  background: #FFFFFF;
+  border: 1.5px solid var(--brand-navy);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+}
+
+.btm-detail-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.btm-detail-cat {
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  display: block;
-  margin-bottom: 0.25rem;
 }
 
 .btm-detail-title {
   font-size: clamp(1.35rem, 2.5vw, 1.85rem);
   font-weight: 800;
   color: var(--brand-navy);
+  margin-top: 0.25rem;
+  margin-bottom: 0.35rem;
   font-family: var(--font-primary);
 }
 
-.btm-detail-desc {
-  font-size: var(--fs-body);
+.btm-detail-tagline {
+  font-size: var(--fs-body-sm);
   color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 1.75rem;
+  line-height: 1.45;
+}
+
+/* Core Stack Section */
+.btm-detail-stack-section {
+  margin-bottom: 1.5rem;
 }
 
 .btm-detail-section-heading {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--brand-navy);
+  font-size: 0.75rem;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-bottom: 1rem;
+  color: var(--brand-navy);
+  margin-bottom: 0.75rem;
 }
 
-/* Stacks 2-Col Grid */
-.btm-detail-stacks-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.875rem;
-  margin-bottom: 2rem;
+.btm-detail-stack-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.btm-stack-card {
+.btm-stack-item-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  padding: 0.875rem 1.125rem;
+  padding: 0.65rem 0.85rem;
+  transition: border-color var(--transition-fast);
+}
+
+.btm-stack-item-card:hover {
+  border-color: var(--brand-navy);
 }
 
 .btm-stack-name-row {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: 0.25rem;
 }
 
 .btm-stack-desc {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text-secondary);
+  margin: 0.2rem 0 0 1.4rem;
   line-height: 1.4;
 }
 
-/* Standards Checklist */
+/* Quality & Security Standards */
 .btm-detail-standards-section {
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
 }
 
 .btm-standards-checklist {
@@ -305,20 +322,22 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  padding: 0;
+  margin: 0;
 }
 
 .btm-standard-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-  color: var(--text-primary);
+  gap: 0.6rem;
+  font-size: var(--fs-body-sm);
+  font-weight: 600;
+  color: var(--brand-navy);
 }
 
+/* Footer Action */
 .btm-detail-footer-action {
   margin-top: auto;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--border);
 }
 
 @keyframes pulse-node {
@@ -326,8 +345,10 @@
   50% { opacity: 0.4; transform: scale(0.85); }
 }
 
-/* Responsive (< 1024px) */
-@media (max-width: 1023px) {
+/* ──────────────────────────────────────────────────────────
+   Responsive Queries
+   ────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
   .btm-universe-main-grid {
     grid-template-columns: 1fr;
   }
@@ -338,26 +359,7 @@
     padding: 3rem 1rem;
   }
 
-  .btm-universe-constellation-box {
-    min-height: 340px;
-    padding: 1rem;
-  }
-
-  .btm-universe-detail-box {
-    padding: 1.25rem;
-  }
-
-  .btm-detail-stacks-grid {
-    grid-template-columns: 1fr;
-    gap: 0.65rem;
-  }
-
-  .btm-universe-chips-row {
-    gap: 0.35rem;
-  }
-
-  .btm-universe-chip {
-    padding: 0.4rem 0.85rem;
-    font-size: 0.75rem;
+  .btm-constellation-diagram {
+    height: 340px;
   }
 }
