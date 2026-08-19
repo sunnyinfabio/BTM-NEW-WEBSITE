@@ -225,9 +225,11 @@ input, textarea, select {
 }
 
 .creditLogo img {
-  height: 13px;
+  height: 14px;
   width: auto;
+  max-width: 54px;
   display: block;
+  object-fit: contain;
 }
 
 .poweredBy .divider {
