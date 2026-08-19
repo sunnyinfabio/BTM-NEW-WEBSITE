@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HeroSection } from './components/hero/HeroSection';
 import { SolutionFinderSection } from './components/solution-finder/SolutionFinderSection';
@@ -10,16 +10,36 @@ import { LeadershipTrustSection } from './components/leadership/LeadershipTrustS
 import { ProgressiveLeadGenDrawer, type LeadGenContextData } from './components/lead-gen/ProgressiveLeadGenDrawer';
 import { ProgressiveLeadGenSection } from './components/lead-gen/ProgressiveLeadGenSection';
 import { SolutionFinderProvider, useSolutionFinder, type GoalId } from './context/SolutionFinderContext';
-import { Button, GradientText, Badge } from './components/ui';
+import { Button, Badge } from './components/ui';
 import { FloatingAdvisorTrigger } from './components/ui/FloatingAdvisorTrigger';
 import { ArrowRight, ShieldCheck, Menu, X } from 'lucide-react';
 
 import { IndustryExplorer } from './components/industry-explorer/IndustryExplorer';
+import { IndustryDetailPage } from './components/industry-detail/IndustryDetailPage';
 
 function AppContent() {
   const [isLeadDrawerOpen, setIsLeadDrawerOpen] = useState(false);
   const [drawerContext, setDrawerContext] = useState<LeadGenContextData | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Dedicated Browser URL Routing
+  const [currentPath, setCurrentPath] = useState<string>(() => {
+    return typeof window !== 'undefined' ? window.location.pathname : '/';
+  });
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPath(window.location.pathname);
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const navigateTo = (path: string) => {
+    window.history.pushState({}, '', path);
+    setCurrentPath(path);
+    setIsMobileMenuOpen(false);
+  };
 
   const { selectedGoal, setSelectedGoal, recommendation } = useSolutionFinder();
 
@@ -91,11 +111,21 @@ function AppContent() {
 
   const handleNavigateSection = (sectionId: string) => {
     setIsMobileMenuOpen(false);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (currentPath !== '/') {
+      navigateTo('/');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) element.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  // Route matching for /industries/:slug
+  const isIndustryRoute = currentPath.startsWith('/industries/');
+  const industrySlug = isIndustryRoute ? currentPath.replace('/industries/', '').replace(/\/$/, '') : null;
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: 'var(--background)', color: 'var(--text-primary)', position: 'relative' }}>
@@ -121,7 +151,11 @@ function AppContent() {
         {/* Brand Logo & Tag */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <a
-            href="#"
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              navigateTo('/');
+            }}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -315,57 +349,71 @@ function AppContent() {
       </AnimatePresence>
 
       {/* ──────────────────────────────────────────────────────────
-          The Final Pure Flow
+          MAIN CONTENT AREA (Router: Home Flow vs Dedicated Industry View)
           ────────────────────────────────────────────────────────── */}
       <main>
-        {/* 1. HERO SECTION: "WHAT ARE YOU BUILDING NEXT?" + 3D TECH WORLD */}
-        <HeroSection
-          onPrimaryCtaClick={() => handleNavigateSection('solution-finder')}
-          onSecondaryCtaClick={() => handleNavigateSection('work-showcase')}
-        />
+        {isIndustryRoute && industrySlug ? (
+          /* Dedicated Interactive Industry Detail Experience */
+          <IndustryDetailPage
+            slug={industrySlug}
+            onNavigateHome={() => navigateTo('/')}
+            onSelectIndustry={(newSlug) => navigateTo(`/industries/${newSlug}`)}
+            onOpenAdvisorDrawer={handleOpenDrawerWithContext}
+          />
+        ) : (
+          /* Pure Home Customer Journey */
+          <>
+            {/* 1. HERO SECTION: "WHAT ARE YOU BUILDING NEXT?" + 3D TECH WORLD */}
+            <HeroSection
+              onPrimaryCtaClick={() => handleNavigateSection('solution-finder')}
+              onSecondaryCtaClick={() => handleNavigateSection('work-showcase')}
+            />
 
-        {/* 2. SOLUTION FINDER: "WHAT ARE YOU TRYING TO ACHIEVE?" (7 Goals) */}
-        <SolutionFinderSection
-          onActionTrigger={(goalId) => handleSolutionFinderAction(goalId)}
-        />
+            {/* 2. SOLUTION FINDER: "WHAT ARE YOU TRYING TO ACHIEVE?" (7 Goals) */}
+            <SolutionFinderSection
+              onActionTrigger={(goalId) => handleSolutionFinderAction(goalId)}
+            />
 
-        {/* 2B. INDUSTRY EXPLORER: "INDUSTRIES WE EMPOWER" (6 Industries) */}
-        <IndustryExplorer
-          onConsultIndustryAdvisor={(industryData) =>
-            handleOpenDrawerWithContext({
-              title: industryData.name,
-              category: industryData.category,
-              details: industryData.details,
-            })
-          }
-        />
+            {/* 2B. INDUSTRY EXPLORER: "INDUSTRIES WE EMPOWER" (6 Industries) */}
+            <IndustryExplorer
+              onNavigateToIndustry={(slug) => navigateTo(`/industries/${slug}`)}
+              onConsultIndustryAdvisor={(industryData) =>
+                handleOpenDrawerWithContext({
+                  title: industryData.name,
+                  category: industryData.category,
+                  details: industryData.details,
+                })
+              }
+            />
 
-        {/* 3. EXPLORE BTM CAPABILITIES: Connected Node Constellation Graph */}
-        <TechUniverseSection
-          onTechExploreClick={(techData) => handleTechExplore(techData)}
-        />
+            {/* 3. EXPLORE BTM CAPABILITIES: Connected Node Constellation Graph */}
+            <TechUniverseSection
+              onTechExploreClick={(techData) => handleTechExplore(techData)}
+            />
 
-        {/* 4. OUR WORK: Real BTM Case Studies (Click -> Full-Screen Modal) */}
-        <CaseStudiesSection
-          onDiscussCaseClick={(caseData) => handleDiscussCase(caseData)}
-        />
+            {/* 4. OUR WORK: Real BTM Case Studies (Click -> Full-Screen Modal) */}
+            <CaseStudiesSection
+              onDiscussCaseClick={(caseData) => handleDiscussCase(caseData)}
+            />
 
-        {/* 5. WHY COMPANIES CHOOSE BTM: Proof • Process • People */}
-        <WhyBtmSection
-          onLearnMoreClick={(pillarId) => handlePillarInspect(pillarId)}
-        />
+            {/* 5. WHY COMPANIES CHOOSE BTM: Proof • Process • People */}
+            <WhyBtmSection
+              onLearnMoreClick={(pillarId) => handlePillarInspect(pillarId)}
+            />
 
-        {/* 5B. REAL BTM LEADERSHIP: The Technology Advisor Difference */}
-        <LeadershipTrustSection
-          onConsultLeaderClick={(leader) => handleLeaderConsult(leader)}
-        />
+            {/* 5B. REAL BTM LEADERSHIP: The Technology Advisor Difference */}
+            <LeadershipTrustSection
+              onConsultLeaderClick={(leader) => handleLeaderConsult(leader)}
+            />
 
-        {/* 6. NOT SURE WHERE TO START?: Progressive Lead Generation Engine */}
-        <ProgressiveLeadGenSection
-          onLeadSubmit={(lead) => {
-            console.log('Lead submitted:', lead);
-          }}
-        />
+            {/* 6. NOT SURE WHERE TO START?: Progressive Lead Generation Engine */}
+            <ProgressiveLeadGenSection
+              onLeadSubmit={(lead) => {
+                console.log('Lead submitted:', lead);
+              }}
+            />
+          </>
+        )}
       </main>
 
       {/* Floating Action Trigger on Scroll */}
@@ -460,17 +508,84 @@ function AppContent() {
               </p>
             </div>
 
-            {/* Col 4: Solutions & Leadership */}
+            {/* Col 4: Industries & Solutions */}
             <div>
               <h4 style={{ color: '#FFFFFF', fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1rem' }}>
-                Core Capabilities
+                Industries We Empower
               </h4>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.8rem', color: '#CAD7E8' }}>
-                <li>• Top 1% IT Staff Augmentation</li>
-                <li>• Dedicated Agile Engineering Pods</li>
-                <li>• Custom SaaS & Web Application Build</li>
-                <li>• Enterprise AI, IDR & RAG Architectures</li>
-                <li>• Fixed Income & Financial Analytics</li>
+                <li>
+                  <a
+                    href="/industries/capital-market"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigateTo('/industries/capital-market');
+                    }}
+                    style={{ color: '#CAD7E8', textDecoration: 'none' }}
+                  >
+                    • Capital Market
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/industries/retail"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigateTo('/industries/retail');
+                    }}
+                    style={{ color: '#CAD7E8', textDecoration: 'none' }}
+                  >
+                    • Retail & POS
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/industries/pharma"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigateTo('/industries/pharma');
+                    }}
+                    style={{ color: '#CAD7E8', textDecoration: 'none' }}
+                  >
+                    • Pharma & Clinical Data
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/industries/healthcare"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigateTo('/industries/healthcare');
+                    }}
+                    style={{ color: '#CAD7E8', textDecoration: 'none' }}
+                  >
+                    • Healthcare & Telehealth
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/industries/fmcg"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigateTo('/industries/fmcg');
+                    }}
+                    style={{ color: '#CAD7E8', textDecoration: 'none' }}
+                  >
+                    • FMCG & Supply Chain
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/industries/oil-and-gas"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigateTo('/industries/oil-and-gas');
+                    }}
+                    style={{ color: '#CAD7E8', textDecoration: 'none' }}
+                  >
+                    • Oil & Gas Telemetry
+                  </a>
+                </li>
               </ul>
             </div>
           </div>

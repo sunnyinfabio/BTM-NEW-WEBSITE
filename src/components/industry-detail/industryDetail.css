@@ -1,0 +1,545 @@
+/* ==========================================================================
+   BTM Interactive Industry Detail Experience CSS
+   ========================================================================== */
+
+.btm-industry-page-root {
+  min-height: 100vh;
+  background-color: var(--background);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ──────────────────────────────────────────────────────────
+   1. Breadcrumbs Bar
+   ────────────────────────────────────────────────────────── */
+.btm-industry-nav-bar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem clamp(1rem, 4vw, 2.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 64px;
+  z-index: 40;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.btm-industry-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--fs-body-sm);
+  font-weight: 700;
+  color: var(--brand-navy);
+  cursor: pointer;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.btm-industry-back-link:hover {
+  color: var(--brand-red);
+  transform: translateX(-3px);
+}
+
+.btm-industry-switcher-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btm-industry-switch-pill {
+  font-size: var(--fs-caption);
+  font-weight: 700;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: #FFFFFF;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btm-industry-switch-pill:hover {
+  border-color: var(--brand-navy);
+  color: var(--brand-navy);
+}
+
+.btm-industry-switch-pill.active {
+  background: var(--brand-navy);
+  color: #FFFFFF;
+  border-color: var(--brand-navy);
+}
+
+/* ──────────────────────────────────────────────────────────
+   2. Industry Hero Section
+   ────────────────────────────────────────────────────────── */
+.btm-industry-hero-section {
+  position: relative;
+  padding: clamp(3.5rem, 6vw, 6rem) clamp(1.5rem, 4vw, 2.5rem);
+  overflow: hidden;
+  background: #0B2653;
+  color: #FFFFFF;
+}
+
+.btm-industry-hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.45);
+  transform: scale(1.02);
+}
+
+.btm-industry-hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(11, 38, 83, 0.98) 0%,
+    rgba(11, 38, 83, 0.85) 50%,
+    rgba(11, 38, 83, 0.5) 100%
+  );
+  z-index: 2;
+}
+
+.btm-industry-hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.btm-industry-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--fs-caption);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #00C881;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.btm-industry-hero-h1 {
+  font-size: clamp(2.2rem, 4.8vw, 3.5rem);
+  font-weight: 800;
+  font-family: var(--font-primary);
+  line-height: var(--lh-tight);
+  color: #FFFFFF;
+  max-width: 860px;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.025em;
+}
+
+.btm-industry-hero-p {
+  font-size: var(--fs-body-lg);
+  color: #CAD7E8;
+  max-width: 720px;
+  line-height: var(--lh-normal);
+  margin-bottom: 2.25rem;
+}
+
+.btm-industry-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* ──────────────────────────────────────────────────────────
+   3. Interactive Challenges: "WHAT ARE YOU TRYING TO SOLVE?"
+   ────────────────────────────────────────────────────────── */
+.btm-challenges-section {
+  padding: clamp(4rem, 6vw, 6rem) 1.5rem;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.btm-challenges-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.btm-challenges-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 3rem auto;
+}
+
+.btm-challenges-title {
+  font-size: var(--fs-h2);
+  font-weight: 800;
+  color: var(--brand-navy);
+  font-family: var(--font-primary);
+  margin-bottom: 0.5rem;
+}
+
+.btm-challenges-subtitle {
+  font-size: var(--fs-body);
+  color: var(--text-secondary);
+}
+
+.btm-challenges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* Interactive Expandable Challenge Card */
+.btm-challenge-card {
+  background: #FFFFFF;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+  outline: none;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.btm-challenge-card:hover {
+  border-color: var(--brand-navy);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.btm-challenge-card.expanded {
+  border-color: var(--brand-navy);
+  box-shadow: var(--shadow-lg);
+  background: #FFFFFF;
+}
+
+.btm-challenge-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.btm-challenge-number {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--brand-navy);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+}
+
+.btm-challenge-toggle-icon {
+  color: var(--brand-navy);
+  transition: transform var(--transition-fast);
+}
+
+.btm-challenge-card.expanded .btm-challenge-toggle-icon {
+  transform: rotate(180deg);
+}
+
+.btm-challenge-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--brand-navy);
+  font-family: var(--font-primary);
+  margin-bottom: 0.4rem;
+}
+
+.btm-challenge-oneliner {
+  font-size: var(--fs-body-sm);
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+/* Expanded Card Content (Problem -> Capability -> Tech -> CTA) */
+.btm-challenge-expanded-body {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.btm-challenge-step-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.btm-challenge-step-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--brand-red);
+}
+
+.btm-challenge-step-label.capability {
+  color: #00875A;
+}
+
+.btm-challenge-step-label.tech {
+  color: var(--brand-navy);
+}
+
+.btm-challenge-step-val {
+  font-size: var(--fs-body-sm);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.btm-challenge-tech-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+}
+
+.btm-challenge-tech-pill {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--brand-navy);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+}
+
+.btm-challenge-action-wrap {
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* ──────────────────────────────────────────────────────────
+   4. Verified Technologies Interactive Section
+   ────────────────────────────────────────────────────────── */
+.btm-industry-tech-section {
+  padding: clamp(3.5rem, 5vw, 5.5rem) 1.5rem;
+  background-color: var(--background);
+  border-bottom: 1px solid var(--border);
+}
+
+.btm-industry-tech-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.btm-industry-tech-title {
+  font-size: var(--fs-h3);
+  font-weight: 800;
+  color: var(--brand-navy);
+  font-family: var(--font-primary);
+  margin-bottom: 0.5rem;
+}
+
+.btm-industry-tech-subtitle {
+  font-size: var(--fs-body-sm);
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.btm-industry-tech-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.btm-tech-chip-item {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 0.5rem 1.25rem;
+  font-size: var(--fs-body-sm);
+  font-weight: 700;
+  color: var(--brand-navy);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.btm-tech-chip-item:hover {
+  border-color: var(--brand-navy);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ──────────────────────────────────────────────────────────
+   5. Work & Verified Proof Section
+   ────────────────────────────────────────────────────────── */
+.btm-industry-proof-section {
+  padding: clamp(4rem, 6vw, 6rem) 1.5rem;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.btm-industry-proof-container {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.btm-industry-proof-card {
+  background: #FFFFFF;
+  border: 1.5px solid var(--brand-navy);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.75rem, 4vw, 3rem);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.btm-industry-proof-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-navy) 0%, var(--brand-red) 50%, #00C881 100%);
+}
+
+.btm-proof-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.btm-proof-case-title {
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-weight: 800;
+  color: var(--brand-navy);
+  font-family: var(--font-primary);
+  margin-bottom: 0.5rem;
+}
+
+.btm-proof-case-tagline {
+  font-size: var(--fs-body);
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 1.75rem;
+}
+
+.btm-proof-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  margin-bottom: 1.75rem;
+}
+
+.btm-proof-metric-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.btm-proof-metric-val {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--brand-navy);
+  font-family: var(--font-primary);
+}
+
+/* ──────────────────────────────────────────────────────────
+   6. Industry Final CTA Section
+   ────────────────────────────────────────────────────────── */
+.btm-industry-cta-section {
+  padding: clamp(4.5rem, 7vw, 7.5rem) 1.5rem;
+  background-color: var(--background);
+  text-align: center;
+}
+
+.btm-industry-cta-card {
+  max-width: 880px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border: 1.5px solid var(--brand-navy);
+  border-radius: var(--radius-xl);
+  padding: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 4vw, 3rem);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+.btm-industry-cta-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-navy) 0%, var(--brand-red) 50%, #00C881 100%);
+}
+
+.btm-industry-cta-title {
+  font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+  font-weight: 800;
+  color: var(--brand-navy);
+  font-family: var(--font-primary);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.btm-industry-cta-desc {
+  font-size: var(--fs-body-lg);
+  color: var(--text-secondary);
+  max-width: 620px;
+  margin: 0 auto 2.25rem auto;
+  line-height: 1.55;
+}
+
+.btm-industry-cta-btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* ──────────────────────────────────────────────────────────
+   Responsive Media Queries
+   ────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .btm-industry-nav-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .btm-industry-switcher-wrap {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+  }
+
+  .btm-challenges-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btm-industry-cta-btns {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btm-industry-cta-btns button {
+    width: 100%;
+  }
+}

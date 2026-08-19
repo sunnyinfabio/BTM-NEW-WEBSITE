@@ -160,18 +160,24 @@ const INDUSTRIES: IndustryData[] = [
 ];
 
 export interface IndustryExplorerProps {
+  onNavigateToIndustry?: (industrySlug: string) => void;
   onConsultIndustryAdvisor?: (industryData: { name: string; category: string; details: string }) => void;
 }
 
 export const IndustryExplorer: React.FC<IndustryExplorerProps> = ({
+  onNavigateToIndustry,
   onConsultIndustryAdvisor,
 }) => {
   const [selectedIndustry, setSelectedIndustry] = useState<IndustryData | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCardClick = (industry: IndustryData) => {
-    setSelectedIndustry(industry);
-    setIsModalOpen(true);
+    if (onNavigateToIndustry) {
+      onNavigateToIndustry(industry.id);
+    } else {
+      setSelectedIndustry(industry);
+      setIsModalOpen(true);
+    }
   };
 
   const handleConsultSectorAdvisor = (industry: IndustryData) => {
