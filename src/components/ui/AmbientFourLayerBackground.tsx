@@ -39,8 +39,14 @@ export const AmbientFourLayerBackground: React.FC<{ className?: string }> = ({ c
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
+    let isTabVisible = true;
+    const handleVisibilityChange = () => {
+      isTabVisible = !document.hidden;
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
     const handleResize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       const width = window.innerWidth;
       const height = window.innerHeight;
       canvas.width = width * dpr;
@@ -51,8 +57,9 @@ export const AmbientFourLayerBackground: React.FC<{ className?: string }> = ({ c
     handleResize();
     window.addEventListener('resize', handleResize);
 
-    // Dynamic Pool of Nodes
-    const maxNodes = window.innerWidth < 768 ? 26 : 46;
+    // Optimized Dynamic Pool of Nodes for 60fps performance
+    const isMobile = window.innerWidth < 768;
+    const maxNodes = isMobile ? 18 : 42;
     const nodes = Array.from({ length: maxNodes }, (_, i) => {
       const cols = 6;
       const row = Math.floor(i / cols);
@@ -84,6 +91,10 @@ export const AmbientFourLayerBackground: React.FC<{ className?: string }> = ({ c
     }));
 
     const render = () => {
+      if (!isTabVisible) {
+        animId = requestAnimationFrame(render);
+        return;
+      }
       time += 0.015;
       smoothScrollProgress += (targetScrollProgress - smoothScrollProgress) * 0.07;
       const p = smoothScrollProgress;
@@ -338,6 +349,7 @@ export const AmbientFourLayerBackground: React.FC<{ className?: string }> = ({ c
 
     return () => {
       cancelAnimationFrame(animId);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
