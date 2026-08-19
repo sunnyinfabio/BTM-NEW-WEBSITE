@@ -1,0 +1,363 @@
+/* ==========================================================================
+   BTM Team Builder (Turing/BairesDev Competitive Configurator) CSS
+   ========================================================================== */
+
+.btm-teambuilder-root {
+  position: relative;
+  background-color: var(--surface);
+  padding: clamp(4rem, 7vw, 7rem) 1.5rem;
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.btm-teambuilder-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.btm-teambuilder-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 3.5rem auto;
+}
+
+.btm-teambuilder-title {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-hero);
+  color: #FFFFFF;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.025em;
+}
+
+.btm-teambuilder-subtitle {
+  font-size: var(--fs-body-lg);
+  color: var(--text-secondary);
+}
+
+/* 2-Column Grid Layout */
+.btm-teambuilder-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.95fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: flex-start;
+}
+
+/* Left Configurator Container */
+.btm-configurator-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.btm-step-block {
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 2rem;
+}
+
+.btm-step-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  margin-bottom: 1.25rem;
+}
+
+.btm-step-number {
+  background: var(--primary-subtle);
+  color: var(--accent-electric);
+  border: 1px solid var(--primary-border);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.btm-step-heading {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  font-family: var(--font-primary);
+  margin-bottom: 0.15rem;
+}
+
+.btm-step-desc {
+  font-size: var(--fs-body-sm);
+  color: var(--text-secondary);
+}
+
+/* Roles Grid (Step 1) */
+.btm-roles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+
+.btm-role-pill-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.875rem 1rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+  outline: none;
+}
+
+.btm-role-pill-card:hover {
+  border-color: var(--border-hover);
+  background: var(--surface-elevated);
+}
+
+.btm-role-pill-card:focus-visible {
+  outline: 2px solid var(--border-focus);
+}
+
+.btm-role-pill-card.selected {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.16) 0%, var(--surface-elevated) 100%);
+  border-color: var(--primary-glow);
+  box-shadow: 0 0 16px rgba(37, 99, 235, 0.25);
+}
+
+.btm-checkbox-indicator {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.btm-checkbox-indicator.active {
+  background: var(--primary);
+  color: #FFFFFF;
+  border-color: var(--primary-glow);
+}
+
+/* Choice Pills (Step 2 & 3) */
+.btm-size-selector-wrap,
+.btm-timeline-selector-wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+
+.btm-choice-pill {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.875rem 1rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: all var(--transition-fast);
+  text-align: left;
+}
+
+.btm-choice-pill:hover {
+  border-color: var(--border-hover);
+  background: var(--surface-elevated);
+}
+
+.btm-choice-pill.active {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.2) 0%, var(--surface-elevated) 100%);
+  border-color: var(--primary-glow);
+  box-shadow: 0 0 16px rgba(37, 99, 235, 0.3);
+}
+
+.btm-choice-bold {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  font-family: var(--font-primary);
+}
+
+.btm-choice-sub {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 0.15rem;
+}
+
+/* ==========================================================================
+   Right Column: Result Card Panel
+   ========================================================================== */
+.btm-result-panel {
+  position: sticky;
+  top: 6rem;
+  width: 100%;
+}
+
+.btm-result-card {
+  background: var(--surface-elevated);
+  border: 1px solid var(--primary-border);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.75rem, 3.5vw, 2.5rem);
+  box-shadow: var(--shadow-lg), 0 0 45px rgba(37, 99, 235, 0.16);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.btm-result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.btm-result-eyebrow {
+  font-size: var(--fs-caption);
+  font-weight: 700;
+  color: var(--accent-electric);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.btm-result-title {
+  font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  font-family: var(--font-primary);
+  letter-spacing: -0.02em;
+}
+
+.btm-result-timeline-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-electric);
+  white-space: nowrap;
+}
+
+/* Role Breakdown List */
+.btm-result-composition-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.btm-composition-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+}
+
+.btm-role-bullet-check {
+  color: #10B981;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+.btm-role-label {
+  font-size: var(--fs-body-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.btm-role-qty-badge {
+  background: var(--primary);
+  color: #FFFFFF;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+}
+
+/* Governance Notice */
+.btm-governance-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Standards Checklist */
+.btm-result-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.btm-check-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* Action block */
+.btm-result-action-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.btm-talk-btn {
+  padding: 1rem 2rem;
+  font-size: 1.05rem;
+}
+
+.btm-result-phone-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+.btm-phone-link {
+  color: var(--accent-electric);
+  font-weight: 600;
+  transition: color var(--transition-fast);
+}
+
+.btm-phone-link:hover {
+  color: #FFFFFF;
+}
+
+/* Responsive (< 1024px) */
+@media (max-width: 1023px) {
+  .btm-teambuilder-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btm-result-panel {
+    position: static;
+  }
+}

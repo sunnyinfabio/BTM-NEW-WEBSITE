@@ -1,0 +1,455 @@
+/* ==========================================================================
+   BTM Why Companies Choose BTM (Proof • Process • People) Interactive CSS
+   ========================================================================== */
+
+.btm-why-root {
+  position: relative;
+  background-color: var(--surface);
+  padding: clamp(4rem, 7vw, 7rem) 1.5rem;
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.btm-why-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.btm-why-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 3rem auto;
+}
+
+.btm-why-title {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-hero);
+  color: #FFFFFF;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.025em;
+}
+
+.btm-why-subtitle {
+  font-size: var(--fs-body-lg);
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+/* Mode Switcher Navigation */
+.btm-why-mode-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.btm-why-mode-btn {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 0.6rem 1.35rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--fs-body-sm);
+  font-weight: 700;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btm-why-mode-btn:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+  background: var(--surface-elevated);
+}
+
+.btm-why-mode-btn.active {
+  background: var(--primary);
+  border-color: var(--primary-glow);
+  color: #FFFFFF;
+  box-shadow: 0 0 18px rgba(37, 99, 235, 0.4);
+}
+
+/* Dynamic Interactive Stage */
+.btm-why-interactive-canvas {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-hover);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+  box-shadow: var(--shadow-lg), 0 0 50px rgba(0, 0, 0, 0.6);
+  min-height: 480px;
+}
+
+/* ==========================================================================
+   TAB 1: 48-Hour Sprint Simulator
+   ========================================================================== */
+.btm-simulator-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Scrubber Timeline Bar */
+.btm-timeline-scrubber {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+.btm-scrubber-node {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+}
+
+.btm-scrubber-node:hover {
+  border-color: var(--border-hover);
+  background: var(--surface-card);
+}
+
+.btm-scrubber-node.active {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.22) 0%, var(--surface-card) 100%);
+  border-color: var(--primary-glow);
+  box-shadow: 0 0 18px rgba(37, 99, 235, 0.3);
+}
+
+.btm-scrubber-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.btm-scrubber-hour {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--accent-electric);
+  font-family: var(--font-primary);
+}
+
+.btm-scrubber-badge {
+  font-size: 0.65rem;
+  color: var(--text-tertiary);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.btm-scrubber-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+/* Deep-Dive Grid */
+.btm-step-deepdive-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.btm-step-details-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.btm-step-pill-accent {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--accent-cyan);
+  background: rgba(6, 182, 212, 0.12);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+}
+
+.btm-deliverables-checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.btm-deliverable-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: var(--fs-body-sm);
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+/* Terminal Artifact Box */
+.btm-step-terminal-box {
+  background: #05080D;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.btm-terminal-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.btm-terminal-filename {
+  font-size: 0.75rem;
+  font-family: monospace;
+  color: var(--text-secondary);
+}
+
+.btm-terminal-code-body {
+  padding: 1.25rem;
+  margin: 0;
+  flex: 1;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.8rem;
+  color: #38BDF8;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+/* ==========================================================================
+   TAB 2: Live Enterprise Proof Telemetry
+   ========================================================================== */
+.btm-proof-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.btm-industry-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btm-filter-pill-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: var(--fs-body-sm);
+  font-weight: 600;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btm-filter-pill-btn:hover {
+  color: #FFFFFF;
+  border-color: var(--border-hover);
+}
+
+.btm-filter-pill-btn.active {
+  background: var(--primary);
+  border-color: var(--primary-glow);
+  color: #FFFFFF;
+  box-shadow: 0 0 14px rgba(37, 99, 235, 0.4);
+}
+
+.btm-proof-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.btm-proof-telemetry-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-fast);
+}
+
+.btm-proof-telemetry-card:hover {
+  border-color: var(--border-hover);
+  background: var(--surface-card);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.btm-proof-icon-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btm-proof-sla-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  padding: 0.25rem 0.55rem;
+  border-radius: var(--radius-full);
+}
+
+.btm-proof-big-num {
+  font-size: clamp(2rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  font-family: var(--font-primary);
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
+}
+
+.btm-proof-card-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  font-family: var(--font-primary);
+}
+
+.btm-proof-sub-value {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  margin-bottom: 0.875rem;
+}
+
+.btm-proof-desc {
+  font-size: var(--fs-body-sm);
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin-top: auto;
+}
+
+.btm-proof-trust-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* ==========================================================================
+   TAB 3: Advisor vs Agency Matrix
+   ========================================================================== */
+.btm-comparison-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.btm-diff-matrix-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 1.5rem;
+}
+
+.btm-matrix-col {
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.btm-matrix-col.traditional {
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.btm-matrix-col.advisor {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.16) 0%, var(--surface-card) 100%);
+  border: 1px solid var(--primary-border);
+  box-shadow: 0 0 35px rgba(37, 99, 235, 0.18);
+}
+
+.btm-matrix-col-header {
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 1.5rem;
+}
+
+.btm-matrix-badge-bad {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #EF4444;
+  background: rgba(239, 68, 68, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-full);
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.btm-matrix-badge-good {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent-electric);
+  background: var(--primary-subtle);
+  border: 1px solid var(--primary-border);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-full);
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.btm-matrix-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+
+.btm-matrix-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.btm-bad-x {
+  color: #EF4444;
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+.btm-good-check {
+  color: #38BDF8;
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+/* Responsive (< 1024px) */
+@media (max-width: 1023px) {
+  .btm-timeline-scrubber {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .btm-step-deepdive-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btm-diff-matrix-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,315 @@
+/* ==========================================================================
+   BTM UI Component System CSS
+   ========================================================================== */
+
+/* 1. Buttons */
+.btm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-ui);
+  font-weight: var(--fw-button);
+  font-size: var(--fs-body-sm);
+  line-height: 1;
+  border-radius: var(--radius-full);
+  padding: 0.75rem 1.5rem;
+  transition: all var(--transition-normal);
+  white-space: nowrap;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btm-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Primary Electric Blue */
+.btm-btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 18px rgba(37, 99, 235, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btm-btn-primary:hover {
+  background: linear-gradient(135deg, #3B82F6 0%, var(--primary) 100%);
+  box-shadow: 0 6px 25px rgba(37, 99, 235, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.btm-btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.4);
+}
+
+/* Secondary Outlined Glass */
+.btm-btn-secondary {
+  background: var(--glass-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.btm-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--border-hover);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+/* Ghost Button */
+.btm-btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+}
+
+.btm-btn-ghost:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Button Sizes */
+.btm-btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: var(--fs-caption);
+}
+
+.btm-btn-lg {
+  padding: 1rem 2rem;
+  font-size: var(--fs-body);
+}
+
+/* 2. Badges & Pills */
+.btm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-family: var(--font-ui);
+  font-weight: var(--fw-label);
+  font-size: var(--fs-caption);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  line-height: 1.3;
+}
+
+.btm-badge-primary {
+  background: var(--primary-subtle);
+  color: var(--accent-electric);
+  border: 1px solid var(--primary-border);
+}
+
+.btm-badge-cyan {
+  background: var(--accent-cyan-subtle);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+}
+
+.btm-badge-violet {
+  background: var(--accent-violet-subtle);
+  color: #C084FC;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.btm-badge-neutral {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.btm-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+/* 3. Cards */
+.btm-card {
+  background-color: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+.btm-card-interactive:hover {
+  border-color: var(--border-hover);
+  background-color: var(--surface-elevated);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.btm-card-elevated {
+  background-color: var(--surface-elevated);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
+}
+
+/* 4. Section Header */
+.btm-section-header {
+  margin-bottom: var(--space-8);
+}
+
+.btm-section-header.align-center {
+  text-align: center;
+}
+
+.btm-section-header.align-left {
+  text-align: left;
+}
+
+.btm-section-tag {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+}
+
+.btm-section-title {
+  margin-bottom: var(--space-3);
+  color: var(--text-primary);
+}
+
+.btm-section-desc {
+  font-size: var(--fs-body-lg);
+  color: var(--text-secondary);
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.btm-section-header.align-left .btm-section-desc {
+  margin: 0;
+}
+
+/* 5. Gradient Text */
+.btm-gradient-text {
+  background: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 40%, var(--accent-electric) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.btm-gradient-accent {
+  background: linear-gradient(135deg, var(--accent-electric) 0%, var(--primary-glow) 50%, var(--accent-violet) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* 6. Form Inputs */
+.btm-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  width: 100%;
+}
+
+.btm-input-label {
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-label);
+  color: var(--text-secondary);
+}
+
+.btm-input-field {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.875rem 1.125rem;
+  color: var(--text-primary);
+  font-size: var(--fs-body);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btm-input-field:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+  background: var(--surface-elevated);
+}
+
+.btm-input-field::placeholder {
+  color: var(--text-muted);
+}
+
+/* 7. Tabs */
+.btm-tabs-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--surface);
+  padding: 0.375rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  width: fit-content;
+  overflow-x: auto;
+}
+
+.btm-tab-item {
+  padding: 0.5rem 1.25rem;
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-label);
+  color: var(--text-secondary);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+.btm-tab-item:hover {
+  color: var(--text-primary);
+}
+
+.btm-tab-item.active {
+  background: var(--primary);
+  color: #FFFFFF;
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.4);
+}
+
+/* 8. Modals & Drawers */
+.btm-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 10, 15, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+}
+
+.btm-modal-content {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-hover);
+  border-radius: var(--radius-xl);
+  max-width: 650px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: var(--space-8);
+  position: relative;
+  box-shadow: var(--shadow-lg);
+}
+
+.btm-drawer-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 520px;
+  background: var(--surface-elevated);
+  border-left: 1px solid var(--border-hover);
+  z-index: 1050;
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-8);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}

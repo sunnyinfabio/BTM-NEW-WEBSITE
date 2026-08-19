@@ -1,0 +1,298 @@
+/* ==========================================================================
+   BTM Hero Section Styles (Responsive & Performance Optimized)
+   ========================================================================== */
+
+.btm-hero-root {
+  position: relative;
+  min-height: 90vh;
+  width: 100%;
+  background-color: var(--background);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: clamp(3rem, 6vw, 6rem) 1.5rem;
+}
+
+/* Ambient Radial Glows & Grid Layer */
+.btm-hero-ambient-glow {
+  position: absolute;
+  top: -15%;
+  right: 10%;
+  width: clamp(350px, 50vw, 750px);
+  height: clamp(350px, 50vw, 750px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.28) 0%, rgba(6, 182, 212, 0.12) 40%, rgba(7, 10, 15, 0) 70%);
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.btm-hero-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse 80% 65% at 50% 35%, #000 50%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 65% at 50% 35%, #000 50%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.btm-hero-noise-layer {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+  background-size: 20px 20px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Layout Container */
+.btm-hero-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+/* Left Column: Content & Messaging */
+.btm-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.btm-hero-eyebrow-wrapper {
+  margin-bottom: 1.25rem;
+}
+
+.btm-hero-eyebrow-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(37, 99, 235, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  border-radius: var(--radius-full);
+  padding: 0.375rem 1rem;
+  font-family: var(--font-ui);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-label);
+  letter-spacing: 0.12em;
+  color: var(--accent-electric);
+  text-transform: uppercase;
+}
+
+.btm-hero-headline {
+  font-size: var(--fs-hero);
+  font-weight: var(--fw-hero);
+  line-height: var(--lh-tight);
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+  margin-bottom: 1.5rem;
+}
+
+.btm-hero-description {
+  font-size: var(--fs-body-lg);
+  color: var(--text-secondary);
+  line-height: var(--lh-relaxed);
+  max-width: 540px;
+  margin-bottom: 2.25rem;
+}
+
+/* CTAs */
+.btm-hero-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.75rem;
+}
+
+.btm-hero-primary-btn {
+  padding: 0.9rem 2rem;
+  font-size: 1rem;
+}
+
+.btm-hero-secondary-btn {
+  padding: 0.9rem 1.75rem;
+  font-size: 1rem;
+}
+
+/* Trust Ribbon */
+.btm-hero-trust-ribbon {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btm-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--fs-body-sm);
+  color: var(--text-secondary);
+}
+
+.btm-trust-icon {
+  color: var(--accent-electric);
+}
+
+.btm-trust-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent-cyan);
+}
+
+/* Right Column: Visual Frame */
+.btm-hero-visual {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.btm-hero-visual-card {
+  width: 100%;
+  max-width: 580px;
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 1.25rem;
+  position: relative;
+  box-shadow: var(--shadow-lg), 0 0 40px rgba(37, 99, 235, 0.12);
+  display: flex;
+  flex-direction: column;
+}
+
+.btm-visual-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.btm-visual-status-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.btm-live-indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #10B981;
+  box-shadow: 0 0 10px #10B981;
+  animation: pulse-dot 2s infinite;
+}
+
+.btm-visual-hint {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+.btm-visual-canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: radial-gradient(circle at center, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+}
+
+.btm-visual-tags-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* ==========================================================================
+   Mobile Responsive Ordering & Scaling (< 1024px)
+   ========================================================================== */
+@media (max-width: 1023px) {
+  .btm-hero-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 3rem;
+  }
+
+  .btm-hero-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .btm-hero-eyebrow-wrapper {
+    margin: 0 auto 1rem auto;
+  }
+
+  .btm-hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btm-hero-cta-group {
+    justify-content: center;
+  }
+
+  .btm-hero-trust-ribbon {
+    justify-content: center;
+  }
+
+  .btm-visual-canvas-wrapper {
+    height: 360px;
+  }
+}
+
+@media (max-width: 640px) {
+  .btm-hero-root {
+    padding: 2.5rem 1rem;
+  }
+
+  .btm-hero-cta-group {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .btm-hero-primary-btn,
+  .btm-hero-secondary-btn {
+    width: 100%;
+  }
+
+  .btm-hero-trust-ribbon {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .btm-visual-canvas-wrapper {
+    height: 300px;
+  }
+}

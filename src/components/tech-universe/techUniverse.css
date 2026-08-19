@@ -1,0 +1,325 @@
+/* ==========================================================================
+   BTM Technology Universe Component CSS
+   ========================================================================== */
+
+.btm-techuniverse-root {
+  position: relative;
+  background-color: var(--surface);
+  padding: clamp(4rem, 7vw, 7rem) 1.5rem;
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.btm-techuniverse-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.btm-techuniverse-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 3.5rem auto;
+}
+
+.btm-techuniverse-title {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-hero);
+  color: #FFFFFF;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.025em;
+}
+
+.btm-techuniverse-subtitle {
+  font-size: var(--fs-body-lg);
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+/* Universe Chips Selector */
+.btm-universe-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.625rem;
+}
+
+.btm-universe-chip {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 0.5rem 1.125rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--fs-body-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btm-universe-chip:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+  background: var(--surface-elevated);
+}
+
+.btm-universe-chip.active {
+  background: var(--primary);
+  border-color: var(--primary-glow);
+  color: #FFFFFF;
+  box-shadow: 0 0 16px rgba(37, 99, 235, 0.4);
+}
+
+.btm-chip-indicator {
+  font-size: 0.55rem;
+  color: #38BDF8;
+}
+
+/* ==========================================================================
+   2-Column Main Grid
+   ========================================================================== */
+.btm-universe-main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: stretch;
+}
+
+/* Left Column: Visual Node Constellation Box */
+.btm-universe-constellation-box {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  min-height: 480px;
+}
+
+.btm-constellation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.btm-constellation-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--fs-caption);
+  color: var(--text-secondary);
+}
+
+.btm-live-node-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-cyan);
+  box-shadow: 0 0 10px var(--accent-cyan);
+  animation: pulse-node 2s infinite;
+}
+
+.btm-constellation-hint {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+/* SVG Constellation Area */
+.btm-constellation-diagram {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+}
+
+.btm-constellation-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.btm-constellation-line {
+  stroke: rgba(59, 130, 246, 0.28);
+  stroke-width: 0.75;
+  stroke-dasharray: 2 1;
+}
+
+.btm-constellation-node-btn {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  z-index: 10;
+  outline: none;
+  background: none;
+  border: none;
+}
+
+.btm-node-icon-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--surface-elevated);
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.btm-constellation-node-btn:hover .btm-node-icon-circle {
+  transform: scale(1.18);
+  border-color: var(--accent-electric);
+}
+
+.btm-constellation-node-btn.selected .btm-node-icon-circle {
+  transform: scale(1.22);
+  background: var(--surface-highlight);
+}
+
+.btm-node-floating-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: rgba(7, 10, 15, 0.85);
+  backdrop-filter: blur(6px);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Right Column: Progressive Detail Panel
+   ========================================================================== */
+.btm-universe-detail-panel {
+  width: 100%;
+}
+
+.btm-detail-panel-card {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-hover);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  box-shadow: var(--shadow-lg), 0 0 50px rgba(37, 99, 235, 0.12);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.btm-detail-header {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.75rem;
+}
+
+.btm-detail-cat {
+  font-size: var(--fs-caption);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.btm-detail-title {
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  font-family: var(--font-primary);
+  margin-bottom: 0.4rem;
+}
+
+.btm-detail-tagline {
+  font-size: var(--fs-body);
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.btm-detail-section-heading {
+  font-size: var(--fs-caption);
+  font-weight: 700;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+/* Stack List */
+.btm-detail-stack-section {
+  margin-bottom: 1.75rem;
+}
+
+.btm-detail-stack-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.btm-stack-item-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.875rem 1.125rem;
+}
+
+.btm-stack-name-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.btm-stack-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Standards Checklist */
+.btm-detail-standards-section {
+  margin-bottom: 2rem;
+}
+
+.btm-standards-checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.btm-standard-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.btm-detail-footer-action {
+  margin-top: auto;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+@keyframes pulse-node {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Responsive (< 1024px) */
+@media (max-width: 1023px) {
+  .btm-universe-main-grid {
+    grid-template-columns: 1fr;
+  }
+}

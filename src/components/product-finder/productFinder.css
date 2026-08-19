@@ -1,0 +1,338 @@
+/* ==========================================================================
+   BTM Product Finder Component CSS (Startup & Product Roadmap)
+   ========================================================================== */
+
+.btm-productfinder-root {
+  position: relative;
+  background-color: var(--background);
+  padding: clamp(4rem, 7vw, 7rem) 1.5rem;
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.btm-productfinder-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.btm-productfinder-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 3.5rem auto;
+}
+
+.btm-productfinder-title {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-hero);
+  color: #FFFFFF;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.025em;
+}
+
+.btm-productfinder-subtitle {
+  font-size: var(--fs-body-lg);
+  color: var(--text-secondary);
+}
+
+/* Question Blocks */
+.btm-pf-block {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.btm-pf-question-header {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  margin-bottom: 1.5rem;
+}
+
+.btm-pf-step-badge {
+  background: var(--accent-violet-subtle);
+  color: #C084FC;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.btm-pf-question-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  font-family: var(--font-primary);
+}
+
+/* Question 1: Product Types Grid */
+.btm-pf-types-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.875rem;
+}
+
+.btm-pf-type-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.125rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: all var(--transition-fast);
+  text-align: left;
+  outline: none;
+}
+
+.btm-pf-type-card:hover {
+  border-color: var(--border-hover);
+  background: var(--surface-elevated);
+  transform: translateY(-2px);
+}
+
+.btm-pf-type-card:focus-visible {
+  outline: 2px solid var(--border-focus);
+}
+
+.btm-pf-type-card.active {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.18) 0%, var(--surface-elevated) 100%);
+  border-color: var(--primary-glow);
+  box-shadow: 0 0 18px rgba(37, 99, 235, 0.3);
+}
+
+.btm-pf-checked-bullet {
+  background: var(--primary);
+  color: #FFFFFF;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* Question 2: Stages Grid */
+.btm-pf-stages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.875rem;
+}
+
+.btm-pf-stage-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.125rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: all var(--transition-fast);
+  text-align: left;
+  outline: none;
+}
+
+.btm-pf-stage-card:hover {
+  border-color: var(--border-hover);
+  background: var(--surface-elevated);
+  transform: translateY(-2px);
+}
+
+.btm-pf-stage-card:focus-visible {
+  outline: 2px solid var(--border-focus);
+}
+
+.btm-pf-stage-card.active {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, var(--surface-elevated) 100%);
+  border-color: #A855F7;
+  box-shadow: 0 0 18px rgba(139, 92, 246, 0.35);
+}
+
+/* ==========================================================================
+   Recommended Journey Roadmap Result Panel
+   ========================================================================== */
+.btm-pf-journey-result-panel {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-hover);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.75rem, 4vw, 3rem);
+  box-shadow: var(--shadow-lg), 0 0 50px rgba(37, 99, 235, 0.12);
+}
+
+.btm-pf-journey-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2.5rem;
+}
+
+.btm-pf-journey-eyebrow {
+  font-size: var(--fs-caption);
+  font-weight: 700;
+  color: var(--accent-electric);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.btm-pf-journey-title {
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  font-family: var(--font-primary);
+  letter-spacing: -0.02em;
+}
+
+.btm-pf-timeline-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(37, 99, 235, 0.12);
+  border: 1px solid var(--primary-border);
+  padding: 0.5rem 1.125rem;
+  border-radius: var(--radius-full);
+  font-size: var(--fs-body-sm);
+  font-weight: 600;
+  color: var(--accent-electric);
+}
+
+/* Horizontal Timeline Stepper */
+.btm-pf-timeline-container {
+  overflow-x: auto;
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.btm-pf-timeline-track {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(135px, 1fr));
+  gap: 0.5rem;
+  min-width: 900px;
+}
+
+.btm-pf-timeline-node {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.btm-node-dot-wrap {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.btm-node-dot {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary);
+  z-index: 2;
+  transition: all var(--transition-normal);
+}
+
+.btm-pf-timeline-node.active .btm-node-dot {
+  background: var(--primary);
+  border-color: var(--accent-electric);
+  color: #FFFFFF;
+  box-shadow: 0 0 16px rgba(37, 99, 235, 0.5);
+}
+
+.btm-pf-timeline-node.pre-stage .btm-node-dot {
+  opacity: 0.4;
+}
+
+.btm-dot-dim {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-tertiary);
+}
+
+.btm-node-connector {
+  position: absolute;
+  left: 38px;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background: var(--border);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.btm-node-connector.active {
+  background: linear-gradient(90deg, var(--primary) 0%, var(--accent-electric) 100%);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+}
+
+.btm-node-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.btm-node-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.btm-node-desc {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
+
+/* Bottom Summary & CTA */
+.btm-pf-roadmap-cta-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 2rem;
+}
+
+.btm-pf-roadmap-summary {
+  max-width: 600px;
+}
+
+.btm-roadmap-btn {
+  padding: 0.9rem 2.25rem;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+/* Responsive (< 768px) */
+@media (max-width: 767px) {
+  .btm-pf-roadmap-cta-wrap {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btm-roadmap-btn {
+    width: 100%;
+  }
+}

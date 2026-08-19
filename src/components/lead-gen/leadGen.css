@@ -1,0 +1,418 @@
+/* ==========================================================================
+   BTM Progressive Lead Generation (Drawer & Section) CSS
+   ========================================================================== */
+
+/* Drawer Backdrop & Panel */
+.btm-leadgen-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 10, 15, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 1200;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btm-leadgen-panel {
+  background: var(--surface-elevated);
+  border-left: 1px solid var(--border-hover);
+  width: 100%;
+  max-width: 540px;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 50px rgba(0, 0, 0, 0.8);
+  position: relative;
+}
+
+.btm-leadgen-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.btm-leadgen-step-tag {
+  font-size: var(--fs-caption);
+  font-weight: 700;
+  color: var(--accent-electric);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--primary-subtle);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--primary-border);
+}
+
+.btm-leadgen-back-btn,
+.btm-leadgen-close-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btm-leadgen-back-btn:hover,
+.btm-leadgen-close-btn:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.btm-leadgen-body {
+  padding: clamp(1.5rem, 3.5vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+/* Context Capsule */
+.btm-leadgen-context-capsule {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.btm-capsule-items-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.btm-capsule-pill {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-subtle);
+}
+
+/* Typography in Form */
+.btm-leadgen-prompt-title {
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  font-family: var(--font-primary);
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
+}
+
+.btm-leadgen-prompt-desc {
+  font-size: var(--fs-body-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+/* Form Elements */
+.btm-leadgen-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.btm-input-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.875rem;
+}
+
+.btm-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.btm-lead-label {
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.btm-lead-input,
+.btm-lead-select,
+.btm-lead-textarea {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  font-size: var(--fs-body-sm);
+  color: #FFFFFF;
+  font-family: var(--font-secondary);
+  transition: all var(--transition-fast);
+  outline: none;
+}
+
+.btm-lead-input:focus,
+.btm-lead-select:focus,
+.btm-lead-textarea:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+  background: var(--surface-highlight);
+}
+
+.btm-lead-select option {
+  background: var(--surface-elevated);
+  color: #FFFFFF;
+}
+
+.btm-error-msg {
+  font-size: 0.75rem;
+  color: var(--status-error);
+  margin-top: 0.25rem;
+}
+
+.btm-leadgen-trust-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+/* Success Card */
+.btm-leadgen-success-card {
+  text-align: center;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btm-success-icon-bubble {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.btm-success-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  font-family: var(--font-primary);
+  margin-bottom: 0.5rem;
+}
+
+.btm-success-desc {
+  font-size: var(--fs-body-sm);
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+}
+
+.btm-success-next-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.btm-success-steps-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.btm-success-steps-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.btm-success-bullet {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #FFFFFF;
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  shrink: 0;
+}
+
+.btm-success-direct-call {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1rem;
+  width: 100%;
+}
+
+.btm-phone-bubble {
+  font-size: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+}
+
+.btm-phone-bubble:hover {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: var(--accent-electric);
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   Progressive Lead Gen Section (In-Page Bottom Conversion Funnel)
+   ========================================================================== */
+.btm-leadgen-section-root {
+  position: relative;
+  background-color: var(--background);
+  padding: clamp(5rem, 8vw, 8rem) 1.5rem;
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.btm-leadgen-section-container {
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.btm-leadgen-section-box {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.12) 0%, var(--surface-card) 60%, var(--surface-elevated) 100%);
+  border: 1px solid var(--primary-border);
+  border-radius: var(--radius-2xl);
+  padding: clamp(2rem, 5vw, 4rem);
+  box-shadow: var(--shadow-lg), 0 0 60px rgba(37, 99, 235, 0.18);
+  text-align: center;
+}
+
+.btm-leadgen-section-header {
+  max-width: 680px;
+  margin: 0 auto 2.5rem auto;
+}
+
+.btm-leadgen-section-title {
+  font-size: clamp(1.65rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  font-family: var(--font-primary);
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.btm-leadgen-section-subtitle {
+  font-size: var(--fs-body-lg);
+  color: var(--text-secondary);
+}
+
+/* Single Email Row (Step 1) */
+.btm-section-single-email-form {
+  max-width: 620px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.btm-section-email-row {
+  display: flex;
+  gap: 0.625rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 0.45rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.btm-section-email-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 0.75rem 1rem;
+  font-size: var(--fs-body);
+  color: #FFFFFF;
+  outline: none;
+  font-family: var(--font-secondary);
+}
+
+.btm-section-email-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.btm-section-submit-btn {
+  padding: 0.75rem 1.75rem;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.btm-section-trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  margin-top: 0.5rem;
+}
+
+/* Expanded Form (Step 2) */
+.btm-section-expanded-form {
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* Confirmed Card (Step 3) */
+.btm-section-confirmed-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 0;
+}
+
+/* Responsive (< 640px) */
+@media (max-width: 639px) {
+  .btm-section-email-row {
+    flex-direction: column;
+    padding: 0.75rem;
+  }
+
+  .btm-section-submit-btn {
+    width: 100%;
+  }
+
+  .btm-input-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
