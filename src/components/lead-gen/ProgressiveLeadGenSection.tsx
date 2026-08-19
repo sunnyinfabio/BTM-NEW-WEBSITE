@@ -49,7 +49,7 @@ export const ProgressiveLeadGenSection: React.FC<ProgressiveLeadGenSectionProps>
               Actionable Technology Plan
             </Badge>
             <h2 className="btm-leadgen-section-title">
-              Want us to turn this into a <GradientText variant="accent">real plan?</GradientText>
+              Want us to turn this into a <span style={{ color: '#EC1C24' }}>real plan?</span>
             </h2>
             <p className="btm-leadgen-section-subtitle">
               Get an architectural roadmap, vetted engineering pod structure, and delivery timeline tailored to your exact tech stack.

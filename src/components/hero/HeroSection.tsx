@@ -52,7 +52,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           {/* Eyebrow Badge */}
           <motion.div variants={itemVariants} className="btm-hero-eyebrow-wrapper">
             <div className="btm-hero-eyebrow-badge">
-              <Sparkles size={14} className="text-sky-400" />
+              <Sparkles size={14} className="text-[#00C881]" />
               <span>TECHNOLOGY • ENGINEERING • AI</span>
             </div>
           </motion.div>
@@ -60,7 +60,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           {/* Main Headline */}
           <motion.h1 variants={itemVariants} className="btm-hero-headline">
             WHAT ARE YOU <br />
-            <GradientText variant="accent">BUILDING NEXT?</GradientText>
+            <span style={{ color: '#EC1C24' }}>BUILDING NEXT?</span>
           </motion.h1>
 
           {/* Supporting Copy */}

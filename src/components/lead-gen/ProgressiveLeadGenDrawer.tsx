@@ -173,7 +173,7 @@ export const ProgressiveLeadGenDrawer: React.FC<ProgressiveLeadGenDrawerProps> =
                   transition={{ duration: 0.25 }}
                 >
                   <h3 className="btm-leadgen-prompt-title">
-                    Want us to turn this into a <GradientText variant="accent">real plan?</GradientText>
+                    Want us to turn this into a <span style={{ color: '#EC1C24' }}>real plan?</span>
                   </h3>
                   <p className="btm-leadgen-prompt-desc">
                     Enter your work email. We'll generate an architectural breakdown, team allocation model, and timeline estimate.
@@ -236,7 +236,7 @@ export const ProgressiveLeadGenDrawer: React.FC<ProgressiveLeadGenDrawerProps> =
                   transition={{ duration: 0.25 }}
                 >
                   <h3 className="btm-leadgen-prompt-title">
-                    Almost there! <GradientText>Tailor Your Blueprint</GradientText>
+                    Almost there! <span style={{ color: '#EC1C24' }}>Tailor Your Blueprint</span>
                   </h3>
                   <p className="btm-leadgen-prompt-desc">
                     A few quick details so our technology leadership can configure your exact pod size and architecture.

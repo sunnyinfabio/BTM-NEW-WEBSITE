@@ -185,7 +185,7 @@ export const WhyBtmSection: React.FC<WhyBtmSectionProps> = ({ onLearnMoreClick }
             The Interactive Technology Advisor Difference
           </Badge>
           <h2 className="btm-why-title">
-            Why Companies <GradientText>Choose BTM</GradientText>
+            Why Companies <span style={{ color: '#EC1C24' }}>Choose BTM</span>
           </h2>
           <p className="btm-why-subtitle">
             Explore our verified enterprise proof, interactive 48-hour deployment simulator, and outcome-first technology advisory model.

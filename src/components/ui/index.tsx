@@ -213,15 +213,26 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
 };
 
 /* ==========================================================================
-   5. GradientText Component
+   5. GradientText Component (Clean Solid Brand Colors - No Artifacts)
    ========================================================================== */
 export const GradientText: React.FC<{
   children: React.ReactNode;
-  variant?: 'light' | 'accent';
+  variant?: 'light' | 'accent' | 'primary';
   className?: string;
-}> = ({ children, variant = 'light', className = '' }) => {
-  const c = variant === 'accent' ? 'btm-gradient-accent' : 'btm-gradient-text';
-  return <span className={`${c} ${className}`}>{children}</span>;
+}> = ({ children, variant = 'accent', className = '' }) => {
+  const color = variant === 'accent' ? '#EC1C24' : '#0B2653';
+  return (
+    <span
+      className={className}
+      style={{
+        color: color,
+        display: 'inline',
+        fontWeight: 'inherit',
+      }}
+    >
+      {children}
+    </span>
+  );
 };
 
 /* ==========================================================================

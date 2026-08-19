@@ -74,7 +74,7 @@ export const LeadershipTrustSection: React.FC<LeadershipTrustSectionProps> = ({
             Real Leadership • Proven Pedigree
           </Badge>
           <h2 className="btm-leadership-title">
-            The Interactive Technology Advisor <GradientText variant="accent">Difference</GradientText>
+            The Interactive Technology Advisor <span style={{ color: '#EC1C24' }}>Difference</span>
           </h2>
           <p className="btm-leadership-subtitle">
             Most platforms just search developer resumes. BTM analyzes your objective, designs the architectural roadmap, and deploys seasoned engineering pods governed by Wall Street technology veterans.

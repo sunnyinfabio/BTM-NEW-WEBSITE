@@ -199,7 +199,7 @@ export const TechUniverseSection: React.FC<TechUniverseSectionProps> = ({ onTech
             Connected Technical Capabilities
           </Badge>
           <h2 className="btm-techuniverse-title">
-            Explore our <GradientText>Technology Universe</GradientText>
+            Explore our <span style={{ color: '#EC1C24' }}>Technology Universe</span>
           </h2>
           <p className="btm-techuniverse-subtitle">
             Select any domain node in our connected ecosystem to progressively inspect our frameworks, toolchains, and delivery standards.

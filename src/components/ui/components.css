@@ -164,24 +164,29 @@
   border: 1px solid var(--glass-border);
 }
 
-/* 4. Gradient Text Utilities */
+/* 4. Text Highlight Utilities (Solid High-Contrast Colors) */
 .btm-gradient-text {
-  display: inline-block;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #0B2653;
+  display: inline;
+  font-weight: inherit;
 }
 
 .btm-gradient-primary {
-  background-image: linear-gradient(135deg, #0B2653 0%, #00C881 100%);
+  color: #00C881;
+  display: inline;
+  font-weight: inherit;
 }
 
 .btm-gradient-accent {
-  background-image: linear-gradient(135deg, #0B2653 0%, #EC1C24 100%);
+  color: #EC1C24;
+  display: inline;
+  font-weight: inherit;
 }
 
 .btm-gradient-subtle {
-  background-image: linear-gradient(135deg, #0B2653 0%, #51668A 100%);
+  color: #51668A;
+  display: inline;
+  font-weight: inherit;
 }
 
 /* 5. Inputs & Form Controls */

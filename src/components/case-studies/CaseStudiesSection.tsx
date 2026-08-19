@@ -292,7 +292,7 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onDiscus
             Selected Engineering Proof
           </Badge>
           <h2 className="btm-work-title">
-            Engineered for <GradientText>Enterprise Scale & Impact</GradientText>
+            Engineered for <span style={{ color: '#EC1C24' }}>Enterprise Scale & Impact</span>
           </h2>
           <p className="btm-work-subtitle">
             Explore 8 production architectures built by BTM across healthcare, fintech, AI, logistics, and cloud platforms.

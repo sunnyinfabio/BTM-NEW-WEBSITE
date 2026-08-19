@@ -128,7 +128,7 @@ export const SolutionFinderSection: React.FC<SolutionFinderSectionProps> = ({ on
             Interactive Pathway Advisor
           </Badge>
           <h2 className="btm-finder-title">
-            What are you trying to <GradientText>achieve?</GradientText>
+            What are you trying to <span style={{ color: '#EC1C24' }}>achieve?</span>
           </h2>
           <p className="btm-finder-subtitle">
             Choose a goal. We'll show you the BTM path that fits.
