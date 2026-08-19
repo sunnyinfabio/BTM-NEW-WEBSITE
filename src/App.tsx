@@ -41,7 +41,7 @@ function AppContent() {
     setIsMobileMenuOpen(false);
   };
 
-  const { selectedGoal, setSelectedGoal, recommendation } = useSolutionFinder();
+  const { selectedGoal, setSelectedGoal, selectedIndustry, setSelectedIndustry, matrixRecommendation } = useSolutionFinder();
 
   // Handlers for interactive sections
   const handleOpenDrawerWithContext = (context: LeadGenContextData) => {
@@ -49,25 +49,20 @@ function AppContent() {
     setIsLeadDrawerOpen(true);
   };
 
-  const handleSolutionFinderAction = (goalId: GoalId) => {
-    setSelectedGoal(goalId);
-    if (recommendation) {
-      handleOpenDrawerWithContext({
-        title: recommendation.title,
-        category: 'Solution Pathway',
-        details: recommendation.recommendedNextStep,
-        summaryItems: [
-          { label: 'Delivery Model', value: recommendation.engagementModels[0] || 'Dedicated Pod' },
-          { label: 'Timeline', value: recommendation.timelineEstimate },
-        ],
-      });
-    } else {
-      handleOpenDrawerWithContext({
-        title: 'Custom Engineering Diagnostic',
-        category: 'Solution Finder',
-        details: 'Unbiased technical roadmap and talent recommendation.',
-      });
-    }
+  const handleSolutionFinderAction = (payload: {
+    goalId: GoalId;
+    industryId: any;
+    title: string;
+    category: string;
+    details: string;
+    summaryItems: { label: string; value: string }[];
+  }) => {
+    handleOpenDrawerWithContext({
+      title: payload.title,
+      category: payload.category,
+      details: payload.details,
+      summaryItems: payload.summaryItems,
+    });
   };
 
   const handleTechExplore = (techData: { name: string; category: string }) => {
@@ -369,9 +364,9 @@ function AppContent() {
               onSecondaryCtaClick={() => handleNavigateSection('work-showcase')}
             />
 
-            {/* 2. SOLUTION FINDER: "WHAT ARE YOU TRYING TO ACHIEVE?" (7 Goals) */}
+            {/* 2. SOLUTION FINDER: "WHAT ARE YOU TRYING TO ACHIEVE?" (7 Goals × 6 Industries) */}
             <SolutionFinderSection
-              onActionTrigger={(goalId) => handleSolutionFinderAction(goalId)}
+              onActionTrigger={(payload) => handleSolutionFinderAction(payload)}
             />
 
             {/* 2B. INDUSTRY EXPLORER: "INDUSTRIES WE EMPOWER" (6 Industries) */}

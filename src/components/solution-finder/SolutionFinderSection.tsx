@@ -1,31 +1,47 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Layers,
   Code,
   Users,
+  Briefcase,
   Sparkles,
-  Zap,
-  ShieldCheck,
+  RefreshCw,
+  CheckCircle,
   HelpCircle,
   ArrowRight,
-  CheckCircle2,
   Clock,
-  Briefcase,
+  ShieldCheck,
+  CheckCircle2,
+  ChevronRight,
+  TrendingUp,
+  ShoppingBag,
+  FlaskConical,
+  Activity,
+  Boxes,
+  Flame,
+  RotateCcw,
 } from 'lucide-react';
-import { useSolutionFinder, type GoalId } from '../../context/SolutionFinderContext';
-import { Badge, Button, GradientText } from '../ui';
 import {
-  WebConceptualVisual,
-  MobileConceptualVisual,
-  AiConceptualVisual,
-  CloudConceptualVisual,
-  DataConceptualVisual,
-  QaConceptualVisual,
-} from '../visuals/ConceptualVisuals';
+  useSolutionFinder,
+  type GoalId,
+  type IndustryId,
+  INDUSTRY_OPTIONS,
+  GOAL_TITLES,
+  INDUSTRY_NAMES,
+} from '../../context/SolutionFinderContext';
+import { Button, Badge } from '../ui';
+import {
+  CustomSoftwareVisual,
+  StaffAugVisual,
+  DedicatedTeamsVisual,
+  EmergingTechVisual,
+  ModernizationVisual,
+  QaVisual,
+  StrategicAdvisorVisual,
+} from '../ui/ConceptualVisuals';
 import './solutionFinder.css';
 
-interface GoalCardConfig {
+interface GoalCardData {
   id: GoalId;
   title: string;
   oneLiner: string;
@@ -35,88 +51,138 @@ interface GoalCardConfig {
   visualComponent: React.ReactNode;
 }
 
-const GOAL_CARDS: GoalCardConfig[] = [
+const GOAL_CARDS: GoalCardData[] = [
   {
     id: 'build-product',
-    title: 'Build a Product',
+    title: 'Custom Software',
     oneLiner: 'Turn your concept into a scalable web or mobile application',
-    icon: <Layers size={24} />,
-    accentColor: '#38BDF8',
-    badge: 'Custom Software',
-    visualComponent: <WebConceptualVisual />,
+    icon: <Code size={22} />,
+    accentColor: '#0B2653',
+    badge: 'Build a Product',
+    visualComponent: <CustomSoftwareVisual />,
   },
   {
     id: 'find-developers',
-    title: 'Find Developers',
+    title: 'Staff Augmentation',
     oneLiner: 'Augment your existing team with Top 1% vetted engineers',
-    icon: <Code size={24} />,
-    accentColor: '#3B82F6',
-    badge: 'Staff Augmentation',
-    visualComponent: <DataConceptualVisual />,
+    icon: <Users size={22} />,
+    accentColor: '#EC1C24',
+    badge: 'Find Developers',
+    visualComponent: <StaffAugVisual />,
   },
   {
     id: 'dedicated-team',
-    title: 'Build a Dedicated Team',
+    title: 'Managed Pods',
     oneLiner: 'Deploy an autonomous engineering pod with tech lead & agile governance',
-    icon: <Users size={24} />,
-    accentColor: '#8B5CF6',
-    badge: 'Managed Pods',
-    visualComponent: <CloudConceptualVisual />,
+    icon: <Briefcase size={22} />,
+    accentColor: '#00875A',
+    badge: 'Dedicated Team',
+    visualComponent: <DedicatedTeamsVisual />,
   },
   {
     id: 'add-ai',
-    title: 'Add AI',
+    title: 'Emerging Tech',
     oneLiner: 'Integrate intelligent document recognition, NLP, ML & RPA automation',
-    icon: <Sparkles size={24} />,
-    accentColor: '#C084FC',
-    badge: 'Emerging Tech',
-    visualComponent: <AiConceptualVisual />,
+    icon: <Sparkles size={22} />,
+    accentColor: '#6F42C1',
+    badge: 'Add AI & ML',
+    visualComponent: <EmergingTechVisual />,
   },
   {
     id: 'modernize-tech',
-    title: 'Modernize Technology',
-    oneLiner: 'Refactor legacy code, migrate to cloud microservices & eliminate tech debt',
-    icon: <Zap size={24} />,
-    accentColor: '#06B6D4',
-    badge: 'Cloud & Architecture',
-    visualComponent: <CloudConceptualVisual />,
+    title: 'Modernization',
+    oneLiner: 'Decompose monoliths, migrate to cloud & refactor legacy codebases',
+    icon: <RefreshCw size={22} />,
+    accentColor: '#0B2653',
+    badge: 'Modernize Tech',
+    visualComponent: <ModernizationVisual />,
   },
   {
     id: 'improve-quality',
-    title: 'Improve Quality',
-    oneLiner: 'Automate QA test suites, eliminate regression bugs & accelerate releases',
-    icon: <ShieldCheck size={24} />,
-    accentColor: '#10B981',
-    badge: 'QA & Testing',
-    visualComponent: <QaConceptualVisual />,
+    title: 'QA & Testing',
+    oneLiner: 'Build CI/CD automated test suites and eradicate production bugs',
+    icon: <CheckCircle size={22} />,
+    accentColor: '#00875A',
+    badge: 'Improve Quality',
+    visualComponent: <QaVisual />,
   },
   {
     id: 'not-sure',
     title: "I'm Not Sure",
-    oneLiner: 'Explore options with an unbiased 30-minute technology advisor diagnostic',
-    icon: <HelpCircle size={24} />,
-    accentColor: '#94A3B8',
-    badge: 'Free Consultation',
-    visualComponent: <MobileConceptualVisual />,
+    oneLiner: 'Get an unbiased architectural roadmap and engagement recommendation',
+    icon: <HelpCircle size={22} />,
+    accentColor: '#0B2653',
+    badge: 'Free Diagnostic',
+    visualComponent: <StrategicAdvisorVisual />,
   },
 ];
 
+const INDUSTRY_ICONS: Record<IndustryId, React.ReactNode> = {
+  'capital-market': <TrendingUp size={18} />,
+  'retail': <ShoppingBag size={18} />,
+  'pharma': <FlaskConical size={18} />,
+  'healthcare': <Activity size={18} />,
+  'fmcg': <Boxes size={18} />,
+  'oil-and-gas': <Flame size={18} />,
+};
+
 export interface SolutionFinderSectionProps {
-  onActionTrigger?: (goalId: GoalId) => void;
+  onActionTrigger?: (matrixPayload: {
+    goalId: GoalId;
+    industryId: IndustryId | null;
+    title: string;
+    category: string;
+    details: string;
+    summaryItems: { label: string; value: string }[];
+  }) => void;
 }
 
-export const SolutionFinderSection: React.FC<SolutionFinderSectionProps> = ({ onActionTrigger }) => {
-  const { selectedGoal, setSelectedGoal, recommendation } = useSolutionFinder();
+export const SolutionFinderSection: React.FC<SolutionFinderSectionProps> = ({
+  onActionTrigger,
+}) => {
+  const {
+    selectedGoal,
+    selectedIndustry,
+    funnelStep,
+    matrixRecommendation,
+    setSelectedGoal,
+    setSelectedIndustry,
+    setFunnelStep,
+    reset,
+  } = useSolutionFinder();
 
-  const handleCardClick = (goalId: GoalId) => {
+  const industrySectionRef = useRef<HTMLDivElement>(null);
+  const recommendationSectionRef = useRef<HTMLDivElement>(null);
+
+  const handleGoalSelect = (goalId: GoalId) => {
     setSelectedGoal(goalId);
+    setTimeout(() => {
+      industrySectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 150);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent, goalId: GoalId) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      setSelectedGoal(goalId);
-    }
+  const handleIndustrySelect = (industryId: IndustryId) => {
+    setSelectedIndustry(industryId);
+    setTimeout(() => {
+      recommendationSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 150);
+  };
+
+  const handleActionClick = () => {
+    if (!selectedGoal || !matrixRecommendation) return;
+
+    onActionTrigger?.({
+      goalId: selectedGoal,
+      industryId: selectedIndustry,
+      title: matrixRecommendation.matrixTitle,
+      category: `${selectedIndustry ? INDUSTRY_NAMES[selectedIndustry] : 'Enterprise'} Pathway`,
+      details: matrixRecommendation.recommendedNextStep,
+      summaryItems: [
+        { label: 'Selected Goal', value: GOAL_TITLES[selectedGoal].split('(')[0].trim() },
+        { label: 'Industry Practice', value: selectedIndustry ? INDUSTRY_NAMES[selectedIndustry] : 'General Enterprise' },
+        { label: 'Estimated Timeline', value: matrixRecommendation.timelineEstimate },
+      ],
+    });
   };
 
   return (
@@ -131,11 +197,58 @@ export const SolutionFinderSection: React.FC<SolutionFinderSectionProps> = ({ on
             What are you trying to <span style={{ color: '#EC1C24' }}>achieve?</span>
           </h2>
           <p className="btm-finder-subtitle">
-            Choose a goal. We'll show you the BTM path that fits.
+            Choose your goal and industry. We'll generate your tailored BTM technology blueprint.
           </p>
         </div>
 
-        {/* The 7 Interactive Cards Grid */}
+        {/* Lightweight Funnel Stepper Progress Bar */}
+        <div className="btm-funnel-stepper" role="navigation" aria-label="Solution Pathway Funnel">
+          <button
+            type="button"
+            className={`btm-stepper-item ${!selectedGoal ? 'active' : 'completed'}`}
+            onClick={() => setFunnelStep('goal')}
+          >
+            <span>1. Goal:</span>
+            <span>{selectedGoal ? GOAL_TITLES[selectedGoal].split('(')[0].trim() : 'Select'}</span>
+          </button>
+
+          <span className="btm-stepper-arrow">→</span>
+
+          <button
+            type="button"
+            className={`btm-stepper-item ${selectedGoal && !selectedIndustry ? 'active' : selectedIndustry ? 'completed' : ''}`}
+            onClick={() => setFunnelStep('industry')}
+          >
+            <span>2. Industry:</span>
+            <span>{selectedIndustry ? INDUSTRY_NAMES[selectedIndustry] : 'Select'}</span>
+          </button>
+
+          <span className="btm-stepper-arrow">→</span>
+
+          <button
+            type="button"
+            className={`btm-stepper-item ${selectedGoal && selectedIndustry ? 'active' : ''}`}
+            onClick={() => setFunnelStep('recommendation')}
+            disabled={!selectedGoal}
+          >
+            <span>3. Blueprint Pathway</span>
+          </button>
+
+          {(selectedGoal || selectedIndustry) && (
+            <button
+              type="button"
+              onClick={reset}
+              className="btm-stepper-item"
+              style={{ marginLeft: 'auto', color: 'var(--brand-red)' }}
+              title="Reset selection"
+            >
+              <RotateCcw size={13} />
+              <span>Reset</span>
+            </button>
+          )}
+        </div>
+
+        {/* Step 1: The 7 Interactive Goal Cards Grid */}
         <div className="btm-finder-cards-grid" role="radiogroup" aria-label="Select your technology goal">
           {GOAL_CARDS.map((card, idx) => {
             const isSelected = selectedGoal === card.id;
@@ -148,13 +261,18 @@ export const SolutionFinderSection: React.FC<SolutionFinderSectionProps> = ({ on
                 aria-checked={isSelected}
                 aria-expanded={isSelected}
                 className={`btm-finder-card ${isSelected ? 'selected' : ''} ${card.id === 'not-sure' ? 'card-not-sure' : ''}`}
-                onClick={() => handleCardClick(card.id)}
-                onKeyDown={(e) => handleKeyDown(e, card.id)}
+                onClick={() => handleGoalSelect(card.id)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleGoalSelect(card.id);
+                  }
+                }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 whileTap={{ scale: 0.98 }}
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                transition={{ duration: 0.3, delay: idx * 0.04 }}
               >
                 <div className="btm-card-header">
                   <div
@@ -181,7 +299,7 @@ export const SolutionFinderSection: React.FC<SolutionFinderSectionProps> = ({ on
 
                 <div className="btm-card-footer">
                   <span className="btm-card-action-indicator">
-                    {isSelected ? 'Selected Pathway ✓' : 'Select Goal →'}
+                    {isSelected ? 'Selected Goal ✓' : 'Select Goal →'}
                   </span>
                 </div>
               </motion.div>
@@ -189,11 +307,61 @@ export const SolutionFinderSection: React.FC<SolutionFinderSectionProps> = ({ on
           })}
         </div>
 
-        {/* Dynamic Expanded Solution Pathway Stage */}
-        <AnimatePresence mode="wait">
-          {selectedGoal && recommendation && (
+        {/* Step 2: "Which industry are you building for?" (Appears when Goal is selected) */}
+        <AnimatePresence>
+          {selectedGoal && (
             <motion.div
-              key={selectedGoal}
+              ref={industrySectionRef}
+              className="btm-industry-selector-section"
+              initial={{ opacity: 0, y: 20, height: 0 }}
+              animate={{ opacity: 1, y: 0, height: 'auto' }}
+              exit={{ opacity: 0, y: 10, height: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="btm-industry-selector-header">
+                <Badge variant="cyan" dot className="mb-2">
+                  DIMENSION 2
+                </Badge>
+                <h3 className="btm-industry-selector-title">
+                  Which industry are you building for?
+                </h3>
+                <p className="btm-industry-selector-subtitle">
+                  Select your sector so we can tailor the architectural patterns, compliance boundaries, and pod structure.
+                </p>
+              </div>
+
+              <div className="btm-industry-pills-grid" role="radiogroup" aria-label="Select industry">
+                {INDUSTRY_OPTIONS.map((ind) => {
+                  const isIndSelected = selectedIndustry === ind.id;
+
+                  return (
+                    <button
+                      key={ind.id}
+                      type="button"
+                      role="radio"
+                      aria-checked={isIndSelected}
+                      className={`btm-industry-selector-card ${isIndSelected ? 'active' : ''}`}
+                      onClick={() => handleIndustrySelect(ind.id)}
+                    >
+                      <div className="flex items-center gap-2">
+                        <span aria-hidden="true">{INDUSTRY_ICONS[ind.id]}</span>
+                        <span className="btm-industry-card-name">{ind.name}</span>
+                      </div>
+                      <ChevronRight size={16} className={isIndSelected ? 'text-white' : 'text-slate-400'} />
+                    </button>
+                  );
+                })}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Step 3: Dynamic 2D Matrix Recommendation Stage ("YOUR BTM PATH") */}
+        <AnimatePresence mode="wait">
+          {selectedGoal && matrixRecommendation && (
+            <motion.div
+              ref={recommendationSectionRef}
+              key={`${selectedGoal}-${selectedIndustry || 'general'}`}
               className="btm-expanded-pathway-stage"
               initial={{ opacity: 0, y: 25, height: 0 }}
               animate={{ opacity: 1, y: 0, height: 'auto' }}
@@ -205,44 +373,66 @@ export const SolutionFinderSection: React.FC<SolutionFinderSectionProps> = ({ on
                 <div className="btm-pathway-header">
                   <div>
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="btm-pathway-eyebrow">RECOMMENDED BTM PATHWAY</span>
+                      <span className="btm-pathway-eyebrow">
+                        <Sparkles size={14} />
+                        YOUR BTM PATH
+                      </span>
+                      <Badge variant="primary">
+                        {matrixRecommendation.combinationBadge}
+                      </Badge>
                     </div>
-                    <h3 className="btm-pathway-title">{recommendation.title}</h3>
+                    <h3 className="btm-pathway-title">{matrixRecommendation.matrixTitle}</h3>
                   </div>
 
                   <div className="btm-pathway-quick-meta">
                     <div className="btm-meta-pill">
-                      <Clock size={14} className="text-sky-400" />
-                      <span>{recommendation.timelineEstimate}</span>
+                      <Clock size={14} className="text-[#0B2653]" />
+                      <span>{matrixRecommendation.timelineEstimate}</span>
                     </div>
                     <div className="btm-meta-pill">
-                      <Briefcase size={14} className="text-cyan-400" />
-                      <span>{recommendation.engagementModels[0]}</span>
+                      <Briefcase size={14} className="text-[#00875A]" />
+                      <span>{matrixRecommendation.engagementModels[0]}</span>
                     </div>
+                  </div>
+                </div>
+
+                {/* 4-Step Sequence Flow Visual */}
+                <div className="btm-pathway-sequence-wrap">
+                  <div className="btm-sequence-label">Architectural Blueprint Flow</div>
+                  <div className="btm-sequence-steps-row">
+                    {matrixRecommendation.pillarSequence.map((stepName, sIdx) => (
+                      <React.Fragment key={sIdx}>
+                        <span className="btm-sequence-step-pill">{stepName}</span>
+                        {sIdx < matrixRecommendation.pillarSequence.length - 1 && (
+                          <span className="btm-sequence-step-arrow">→</span>
+                        )}
+                      </React.Fragment>
+                    ))}
                   </div>
                 </div>
 
                 {/* Pathway Content Columns */}
                 <div className="btm-pathway-grid">
-                  {/* Left Column: Services & Deliverables */}
+                  {/* Left Column: Tailored Solution Focus Areas */}
                   <div className="btm-pathway-details">
                     <div className="mb-4">
-                      <h4 className="btm-pathway-section-label">Matched BTM Capabilities</h4>
-                      <div className="btm-pathway-services-wrap">
-                        {recommendation.matchedServices.map((service, sIdx) => (
-                          <Badge key={sIdx} variant="primary">
-                            {service}
-                          </Badge>
+                      <h4 className="btm-pathway-section-label">Tailored Solution Focus Areas</h4>
+                      <div className="btm-pathway-tailored-areas">
+                        {matrixRecommendation.tailoredSolutionAreas.map((area, aIdx) => (
+                          <div key={aIdx} className="btm-tailored-area-box">
+                            <h5 className="btm-tailored-area-title">{area.title}</h5>
+                            <p className="btm-tailored-area-desc">{area.desc}</p>
+                          </div>
                         ))}
                       </div>
                     </div>
 
                     <div>
-                      <h4 className="btm-pathway-section-label">Key Delivery Outcomes</h4>
+                      <h4 className="btm-pathway-section-label">Verified Delivery Governance</h4>
                       <ul className="btm-pathway-checklist">
-                        {recommendation.deliverables.map((item, dIdx) => (
+                        {matrixRecommendation.deliverables.map((item, dIdx) => (
                           <li key={dIdx} className="btm-checklist-item">
-                            <CheckCircle2 size={16} className="text-emerald-400 shrink-0 mt-0.5" />
+                            <CheckCircle2 size={16} className="text-[#00875A] shrink-0 mt-0.5" />
                             <span>{item}</span>
                           </li>
                         ))}
@@ -250,24 +440,24 @@ export const SolutionFinderSection: React.FC<SolutionFinderSectionProps> = ({ on
                     </div>
                   </div>
 
-                  {/* Right Column: Next Step & CTA Box */}
+                  {/* Right Column: Next Step & Personalized Dynamic CTA */}
                   <div className="btm-pathway-action-box">
                     <div className="btm-action-box-inner">
                       <h4 className="btm-action-box-title">Recommended Next Step</h4>
-                      <p className="btm-action-box-text">{recommendation.recommendedNextStep}</p>
+                      <p className="btm-action-box-text">{matrixRecommendation.recommendedNextStep}</p>
 
                       <Button
                         variant="primary"
                         size="lg"
                         className="w-full mt-4"
-                        onClick={() => onActionTrigger?.(selectedGoal)}
+                        onClick={handleActionClick}
                         icon={<ArrowRight size={18} />}
                       >
-                        {recommendation.ctaText}
+                        {matrixRecommendation.personalizedCta}
                       </Button>
 
                       <div className="btm-action-box-footer">
-                        <span>Direct Leadership Access:</span>
+                        <span>Direct Senior Advisory Access:</span>
                         <a href="tel:+18624371138" className="btm-phone-direct">
                           📞 US: +1-862-437-1138
                         </a>

@@ -9,113 +9,218 @@ export type GoalId =
   | 'improve-quality'
   | 'not-sure';
 
-export interface SolutionRecommendation {
+export type IndustryId =
+  | 'capital-market'
+  | 'retail'
+  | 'pharma'
+  | 'healthcare'
+  | 'fmcg'
+  | 'oil-and-gas';
+
+export interface IndustryOption {
+  id: IndustryId;
+  name: string;
+  shortName: string;
+  accentColor: string;
+}
+
+export const INDUSTRY_OPTIONS: IndustryOption[] = [
+  { id: 'capital-market', name: 'Capital Market', shortName: 'Finance', accentColor: '#00C881' },
+  { id: 'retail', name: 'Retail & Commerce', shortName: 'Retail', accentColor: '#EC1C24' },
+  { id: 'pharma', name: 'Pharma & Biotech', shortName: 'Pharma', accentColor: '#6F42C1' },
+  { id: 'healthcare', name: 'Healthcare & HealthTech', shortName: 'Healthcare', accentColor: '#00875A' },
+  { id: 'fmcg', name: 'FMCG & Supply Chain', shortName: 'FMCG', accentColor: '#F5AC00' },
+  { id: 'oil-and-gas', name: 'Oil & Gas / Energy', shortName: 'Energy', accentColor: '#0B2653' },
+];
+
+export interface MatrixRecommendation {
   goalId: GoalId;
-  title: string;
+  industryId: IndustryId | null;
+  matrixTitle: string;
+  combinationBadge: string;
   matchedServices: string[];
-  engagementModels: string[];
+  pillarSequence: string[];
+  tailoredSolutionAreas: { title: string; desc: string }[];
   deliverables: string[];
+  engagementModels: string[];
   timelineEstimate: string;
   recommendedNextStep: string;
-  ctaText: string;
+  personalizedCta: string;
 }
 
 export interface SolutionFinderState {
   selectedGoal: GoalId | null;
+  selectedIndustry: IndustryId | null;
   step: number;
+  funnelStep: 'goal' | 'industry' | 'recommendation';
+  funnelOrigin: 'goal' | 'industry';
   answers: Record<string, any>;
-  recommendation: SolutionRecommendation | null;
+  matrixRecommendation: MatrixRecommendation | null;
   leadIntent: string;
-  setSelectedGoal: (goal: GoalId) => void;
+  setSelectedGoal: (goal: GoalId | null) => void;
+  setSelectedIndustry: (industry: IndustryId | null) => void;
+  setFunnelStep: (step: 'goal' | 'industry' | 'recommendation') => void;
   setAnswer: (key: string, value: any) => void;
   setStep: (step: number) => void;
   reset: () => void;
 }
 
-export const RECOMMENDATIONS: Record<GoalId, SolutionRecommendation> = {
-  'build-product': {
-    goalId: 'build-product',
-    title: 'Custom Product & MVP Engineering',
-    matchedServices: ['Software Outsourcing', 'Web Development', 'Mobile App Development (iOS & Android)'],
-    engagementModels: ['Agile Dedicated Pod', 'Fixed-Scope Milestone'],
-    deliverables: ['UI/UX Prototyping', 'Cloud Architecture (AWS/Azure)', 'Cross-Platform App', 'Automated QA & Launch'],
-    timelineEstimate: '4 – 12 Weeks MVP Launch',
-    recommendedNextStep: 'Define scope, tech stack, and user stories with our solutions architect.',
-    ctaText: 'Scope My Product →',
-  },
-  'find-developers': {
-    goalId: 'find-developers',
-    title: 'Top 1% IT Staff Augmentation',
-    matchedServices: ['Staff Augmentation', 'Dedicated Developers'],
-    engagementModels: ['Direct Talent Augmentation (Monthly/Hourly)', 'Full-Time Remote Engineers'],
-    deliverables: ['Pre-vetted Senior Developers (Java, .NET, Python, React, Cloud)', 'Immediate Time-Zone Aligned Integration', 'Zero Recruitment Overhead'],
-    timelineEstimate: 'Immediate Deployment (48h – 1 Week)',
-    recommendedNextStep: 'Tell us what your team is missing. Interview pre-vetted engineers in 48 hours.',
-    ctaText: 'Build My Team →',
-  },
-  'dedicated-team': {
-    goalId: 'dedicated-team',
-    title: 'Autonomous Managed Engineering Pod',
-    matchedServices: ['Dedicated Teams', 'Engineering Governance & Management'],
-    deliverables: ['Senior Tech Lead & Scrum Master', 'Full-Stack Developers & QA Engineers', 'Sprint Velocity & Transparent Backlog'],
-    engagementModels: ['Dedicated Team Model (Long-term pod)'],
-    timelineEstimate: 'Pod Assembly in 1 – 2 Weeks',
-    recommendedNextStep: 'Spin up a fully managed pod with dedicated Scrum governance aligned with your leadership.',
-    ctaText: 'Spin Up Dedicated Pod →',
-  },
-  'add-ai': {
-    goalId: 'add-ai',
-    title: 'Enterprise AI, NLP & Intelligent Automation',
-    matchedServices: ['Emerging Technologies', 'AI & Machine Learning', 'Robotic Process Automation (RPA)'],
-    deliverables: ['Intelligent Document Recognition (IDR)', 'Natural Language Processing (NLP)', 'Predictive Business Intelligence', 'Workflow Automation Bots'],
-    engagementModels: ['Feasibility Sprint + T&M Development'],
-    timelineEstimate: '2 – 6 Weeks Feasibility & Model Integration',
-    recommendedNextStep: 'Assess data readiness and architect custom AI models tailored to your business data.',
-    ctaText: 'Explore AI Roadmap →',
-  },
-  'modernize-tech': {
-    goalId: 'modernize-tech',
-    title: 'Cloud Architecture & Legacy Modernization',
-    matchedServices: ['Software Modernization', 'Cloud Migration (AWS/Azure/GCP)', 'Microservice Refactoring'],
-    deliverables: ['Monolith to Microservices', 'Database Optimization & SQL Re-architecture', 'API & Integration Modernization', 'Zero-Downtime Migration Plan'],
-    engagementModels: ['Milestone-Based Modernization or Dedicated Refactoring Pod'],
-    timelineEstimate: 'Phased Agile Sprints (Zero Disruption)',
-    recommendedNextStep: 'Audit your current code base and establish a zero-downtime modernization roadmap.',
-    ctaText: 'Plan Modernization →',
-  },
-  'improve-quality': {
-    goalId: 'improve-quality',
-    title: 'End-to-End QA & Test Automation',
-    matchedServices: ['Quality Assurance', 'Software QA Automation Testing', 'Functional & Usability Testing'],
-    deliverables: ['CI/CD Automated Test Suites', 'Regression & Functional Validation', 'Security & Stress Testing', 'Multi-Device Usability Audits'],
-    engagementModels: ['QA-as-a-Service / Embedded QA Engineers'],
-    timelineEstimate: 'Immediate Test Suite Deployment',
-    recommendedNextStep: 'Integrate automated test coverage into your deployment pipelines to accelerate release velocity.',
-    ctaText: 'Improve QA Coverage →',
-  },
-  'not-sure': {
-    goalId: 'not-sure',
-    title: 'Guided Technology Advisor Session',
-    matchedServices: ['All BTM Capabilities: Staff Augmentation, Dedicated Pods, Custom Software, AI & QA'],
-    deliverables: ['Technical Feasibility Study', 'Engagement Model Comparison', 'Cost & Timeline Estimation', 'Architecture Recommendations'],
-    engagementModels: ['Free No-Obligation Architecture Consultation'],
-    timelineEstimate: '30-Minute Architecture Diagnostic',
-    recommendedNextStep: 'Connect directly with our senior technology leadership in the US and India for an unbiased diagnostic.',
-    ctaText: 'Start Guided Diagnostic →',
-  },
+export const GOAL_TITLES: Record<GoalId, string> = {
+  'build-product': 'Custom Software (Build a Product)',
+  'find-developers': 'Staff Augmentation (Find Developers)',
+  'dedicated-team': 'Managed Pods (Build a Dedicated Team)',
+  'add-ai': 'Emerging Tech (Add AI & ML)',
+  'modernize-tech': 'Software Modernization (Modernize Tech)',
+  'improve-quality': 'Quality Assurance (Improve Quality)',
+  'not-sure': 'Strategic Advisory (I’m Not Sure)',
 };
+
+export const INDUSTRY_NAMES: Record<IndustryId, string> = {
+  'capital-market': 'Capital Market',
+  'retail': 'Retail',
+  'pharma': 'Pharma',
+  'healthcare': 'Healthcare',
+  'fmcg': 'FMCG',
+  'oil-and-gas': 'Oil & Gas',
+};
+
+export function generateMatrixRecommendation(
+  goalId: GoalId,
+  industryId: IndustryId | null
+): MatrixRecommendation {
+  const goalTitle = GOAL_TITLES[goalId] || 'Technology Engineering';
+  const industryName = industryId ? INDUSTRY_NAMES[industryId] : 'Enterprise';
+
+  // Compute Personalized CTA based on combination
+  let personalizedCta = 'Build My Solution →';
+  if (industryId === 'healthcare' && goalId === 'add-ai') {
+    personalizedCta = 'Discuss My Healthcare AI Idea →';
+  } else if (industryId === 'capital-market' && goalId === 'modernize-tech') {
+    personalizedCta = 'Discuss My Modernization Plan →';
+  } else if (industryId === 'retail' && goalId === 'build-product') {
+    personalizedCta = 'Build My Retail Product →';
+  } else if (industryId === 'fmcg' && (goalId === 'add-ai' || goalId === 'build-product')) {
+    personalizedCta = 'Explore My Data Solution →';
+  } else if (industryId === 'oil-and-gas' && goalId === 'add-ai') {
+    personalizedCta = 'Discuss My Industrial AI Opportunity →';
+  } else if (industryId === 'pharma' && goalId === 'improve-quality') {
+    personalizedCta = 'Improve My Quality Workflow →';
+  } else if (industryId === 'capital-market' && goalId === 'build-product') {
+    personalizedCta = 'Build My Trading Platform →';
+  } else if (industryId === 'healthcare' && goalId === 'find-developers') {
+    personalizedCta = 'Deploy Healthcare Vetted Developers →';
+  } else if (industryId === 'retail' && goalId === 'dedicated-team') {
+    personalizedCta = 'Spin Up Dedicated Retail Pod →';
+  } else if (industryId) {
+    personalizedCta = `Build My ${industryName} Solution →`;
+  }
+
+  // Pillar sequence
+  const pillarSequence = industryId === 'healthcare'
+    ? ['Data & Intelligence', 'Clinical Automation', 'Digital Health', 'Cloud / Engineering']
+    : industryId === 'capital-market'
+    ? ['Quantitative Modeling', 'Sub-10ms Computing', 'FIX & Execution', 'Wall Street Governance']
+    : industryId === 'retail'
+    ? ['Omnichannel POS', 'Inventory Sync', 'Sub-50ms Checkout', 'Cloud Microservices']
+    : industryId === 'pharma'
+    ? ['IDR Document OCR', 'Clinical Data Hub', '21 CFR Part 11 Audit', 'Secure Cloud']
+    : industryId === 'fmcg'
+    ? ['Demand Forecasting ML', 'Distributor Portals', 'Warehouse WMS', 'Logistics IoT']
+    : industryId === 'oil-and-gas'
+    ? ['Predictive Anomaly ML', 'SCADA Ingestion', 'Digital Twin Simulation', 'Industrial Edge']
+    : ['Discovery & Scope', 'Architecture Design', 'Top 1% Pod Assembly', 'Agile Sprints'];
+
+  // Tailored solution areas
+  const tailoredSolutionAreas: { title: string; desc: string }[] = [];
+
+  if (goalId === 'add-ai') {
+    tailoredSolutionAreas.push(
+      { title: `${industryName} Intelligent Automation`, desc: `Custom NLP, ML models, and workflow automation tailored to ${industryName} domain datasets.` },
+      { title: 'Intelligent Document Recognition (IDR)', desc: 'Automated deep learning extraction over unstructured domain documents and contracts.' },
+      { title: 'Predictive Decision Intelligence', desc: 'Real-time predictive forecasting algorithms embedded into operational software.' }
+    );
+  } else if (goalId === 'modernize-tech') {
+    tailoredSolutionAreas.push(
+      { title: `${industryName} Core Monolith Refactoring`, desc: `Zero-downtime microservices decomposition and database re-architecting for ${industryName}.` },
+      { title: 'Event-Driven Message Bus', desc: 'High-throughput Kafka and Redis streaming pipelines replacing legacy batch jobs.' },
+      { title: 'Cloud Infrastructure Optimization', desc: 'Multi-region AWS/Azure VPC migration with automated auto-scaling and security boundaries.' }
+    );
+  } else if (goalId === 'build-product') {
+    tailoredSolutionAreas.push(
+      { title: `Custom ${industryName} Product MVP`, desc: `End-to-end web & mobile product engineering from user stories to production release.` },
+      { title: 'Modern UI/UX & Design System', desc: 'Responsive high-performance interfaces tailored for domain-specific user workflows.' },
+      { title: 'Production Scalability & CI/CD', desc: 'Cloud-native backend architectures engineered to support heavy concurrency and low latency.' }
+    );
+  } else if (goalId === 'find-developers' || goalId === 'dedicated-team') {
+    tailoredSolutionAreas.push(
+      { title: `Top 1% Vetted ${industryName} Engineers`, desc: `Senior developers with proven hands-on experience delivering in ${industryName}.` },
+      { title: '48-Hour Rapid Pod Assembly', desc: 'Pre-vetted talent matched to your exact tech stack with zero recruitment overhead.' },
+      { title: 'Agile Governance & Transparency', desc: 'Managed sprint cadence with daily standups, transparent burndown, and senior tech lead oversight.' }
+    );
+  } else {
+    tailoredSolutionAreas.push(
+      { title: `${industryName} Architecture Diagnostic`, desc: `Unbiased roadmap analysis, compliance review, and team allocation modeling.` },
+      { title: 'End-to-End QA & Test Automation', desc: 'Automated regression test suites and security validation embedded into CI/CD.' },
+      { title: 'Executive Technology Advisory', desc: 'Direct access to senior technology veterans governing delivery and architectural integrity.' }
+    );
+  }
+
+  return {
+    goalId,
+    industryId,
+    matrixTitle: `${industryName} × ${goalTitle.split('(')[0].trim()}`,
+    combinationBadge: `${industryName} × ${goalTitle.split('(')[0].trim()}`,
+    matchedServices: [
+      `${industryName} Practice`,
+      goalId === 'add-ai' ? 'AI & Machine Learning' : goalId === 'modernize-tech' ? 'Cloud & Modernization' : 'Custom Software Engineering',
+      'Agile Pod Assembly',
+    ],
+    pillarSequence,
+    tailoredSolutionAreas,
+    deliverables: [
+      `Custom ${industryName} Architectural Roadmap`,
+      `Dedicated Top 1% Engineering Pod Assembly`,
+      `Verified Milestone Delivery Sprints`,
+      `100% Strict NDA & Security Governance`,
+    ],
+    engagementModels: ['Dedicated Agile Pod', 'T&M Milestone Sprint', 'Staff Augmentation'],
+    timelineEstimate: goalId === 'find-developers' ? '48h Developer Matching' : '2 – 8 Weeks Initial Delivery Sprint',
+    recommendedNextStep: `Connect with our ${industryName} solutions architect to review your technical specs and configure your engineering pod.`,
+    personalizedCta,
+  };
+}
 
 const SolutionFinderContext = createContext<SolutionFinderState | undefined>(undefined);
 
 export const SolutionFinderProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [selectedGoal, setSelectedGoalInternal] = useState<GoalId | null>(null);
+  const [selectedIndustry, setSelectedIndustryInternal] = useState<IndustryId | null>(null);
   const [step, setStep] = useState<number>(1);
+  const [funnelStep, setFunnelStep] = useState<'goal' | 'industry' | 'recommendation'>('goal');
+  const [funnelOrigin, setFunnelOrigin] = useState<'goal' | 'industry'>('goal');
   const [answers, setAnswers] = useState<Record<string, any>>({});
   const [leadIntent, setLeadIntent] = useState<string>('');
 
-  const setSelectedGoal = (goal: GoalId) => {
+  const setSelectedGoal = (goal: GoalId | null) => {
     setSelectedGoalInternal(goal);
-    setLeadIntent(RECOMMENDATIONS[goal]?.title || '');
+    if (goal) {
+      if (!selectedIndustry) {
+        setFunnelStep('industry');
+      } else {
+        setFunnelStep('recommendation');
+      }
+    }
+  };
+
+  const setSelectedIndustry = (industry: IndustryId | null) => {
+    setSelectedIndustryInternal(industry);
+    if (industry) {
+      if (!selectedGoal) {
+        setFunnelStep('goal');
+      } else {
+        setFunnelStep('recommendation');
+      }
+    }
   };
 
   const setAnswer = (key: string, value: any) => {
@@ -124,22 +229,31 @@ export const SolutionFinderProvider: React.FC<{ children: React.ReactNode }> = (
 
   const reset = () => {
     setSelectedGoalInternal(null);
+    setSelectedIndustryInternal(null);
+    setFunnelStep('goal');
     setStep(1);
     setAnswers({});
     setLeadIntent('');
   };
 
-  const recommendation = selectedGoal ? RECOMMENDATIONS[selectedGoal] : null;
+  const matrixRecommendation = selectedGoal
+    ? generateMatrixRecommendation(selectedGoal, selectedIndustry)
+    : null;
 
   return (
     <SolutionFinderContext.Provider
       value={{
         selectedGoal,
+        selectedIndustry,
         step,
+        funnelStep,
+        funnelOrigin,
         answers,
-        recommendation,
+        matrixRecommendation,
         leadIntent,
         setSelectedGoal,
+        setSelectedIndustry,
+        setFunnelStep,
         setAnswer,
         setStep,
         reset,
