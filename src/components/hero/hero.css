@@ -92,16 +92,22 @@
   line-height: 0.98;
   letter-spacing: -0.035em;
   color: var(--brand-navy);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   max-width: 700px;
+}
+
+.btm-hero-headline .highlight-red {
+  color: #EC1C24;
+  display: inline-block;
+  position: relative;
 }
 
 .btm-hero-description {
   font-size: clamp(1.1rem, 1.5vw, 1.25rem);
   color: var(--text-secondary);
-  line-height: 1.5;
+  line-height: 1.55;
   max-width: 580px;
-  margin-bottom: 2.25rem;
+  margin-bottom: 2rem;
 }
 
 /* CTAs */
@@ -110,17 +116,39 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .btm-hero-primary-btn {
-  padding: 0.9rem 2rem;
-  font-size: 1rem;
+  padding: 0.95rem 2.25rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  box-shadow: 0 8px 24px rgba(236, 28, 36, 0.32);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btm-hero-primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(236, 28, 36, 0.45);
 }
 
 .btm-hero-secondary-btn {
-  padding: 0.9rem 1.75rem;
-  font-size: 1rem;
+  padding: 0.95rem 2rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  background: #FFFFFF;
+  border: 1.5px solid var(--border);
+  color: var(--brand-navy);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btm-hero-secondary-btn:hover {
+  border-color: var(--brand-navy);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 /* Quick Interactive Funnel Triggers (Direct in Hero) */

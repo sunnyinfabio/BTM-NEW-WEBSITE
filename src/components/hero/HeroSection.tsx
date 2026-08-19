@@ -61,7 +61,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           {/* Main Headline */}
           <motion.h1 variants={itemVariants} className="btm-hero-headline">
             WHAT ARE YOU <br />
-            <span style={{ color: '#EC1C24' }}>BUILDING NEXT?</span>
+            <span className="highlight-red">BUILDING NEXT?</span>
           </motion.h1>
 
           {/* Supporting Copy */}
