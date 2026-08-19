@@ -14,6 +14,8 @@ import { Button, GradientText, Badge } from './components/ui';
 import { FloatingAdvisorTrigger } from './components/ui/FloatingAdvisorTrigger';
 import { ArrowRight, ShieldCheck, Menu, X } from 'lucide-react';
 
+import { IndustryExplorer } from './components/industry-explorer/IndustryExplorer';
+
 function AppContent() {
   const [isLeadDrawerOpen, setIsLeadDrawerOpen] = useState(false);
   const [drawerContext, setDrawerContext] = useState<LeadGenContextData | null>(null);
@@ -144,7 +146,7 @@ function AppContent() {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '2.25rem',
+            gap: '2rem',
             fontSize: 'var(--fs-body-sm)',
             fontWeight: 700,
           }}
@@ -157,6 +159,14 @@ function AppContent() {
             onClick={() => handleNavigateSection('solution-finder')}
           >
             Solutions
+          </span>
+          <span
+            style={{ color: 'var(--brand-navy)', cursor: 'pointer', transition: 'color 0.2s ease' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-red)')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--brand-navy)')}
+            onClick={() => handleNavigateSection('industry-explorer')}
+          >
+            Industries
           </span>
           <span
             style={{ color: 'var(--brand-navy)', cursor: 'pointer', transition: 'color 0.2s ease' }}
@@ -258,21 +268,27 @@ function AppContent() {
               </span>
               <span
                 style={{ color: 'var(--brand-navy)', cursor: 'pointer', padding: '0.5rem 0' }}
+                onClick={() => handleNavigateSection('industry-explorer')}
+              >
+                2. Industries We Empower
+              </span>
+              <span
+                style={{ color: 'var(--brand-navy)', cursor: 'pointer', padding: '0.5rem 0' }}
                 onClick={() => handleNavigateSection('tech-universe')}
               >
-                2. Technology Constellation
+                3. Technology Constellation
               </span>
               <span
                 style={{ color: 'var(--brand-navy)', cursor: 'pointer', padding: '0.5rem 0' }}
                 onClick={() => handleNavigateSection('work-showcase')}
               >
-                3. Enterprise Work (8 Case Studies)
+                4. Enterprise Work (8 Case Studies)
               </span>
               <span
                 style={{ color: 'var(--brand-navy)', cursor: 'pointer', padding: '0.5rem 0' }}
                 onClick={() => handleNavigateSection('why-btm')}
               >
-                4. Why Choose BTM (Proof & Process)
+                5. Why Choose BTM (Proof & Process)
               </span>
             </div>
 
@@ -311,6 +327,17 @@ function AppContent() {
         {/* 2. SOLUTION FINDER: "WHAT ARE YOU TRYING TO ACHIEVE?" (7 Goals) */}
         <SolutionFinderSection
           onActionTrigger={(goalId) => handleSolutionFinderAction(goalId)}
+        />
+
+        {/* 2B. INDUSTRY EXPLORER: "INDUSTRIES WE EMPOWER" (6 Industries) */}
+        <IndustryExplorer
+          onConsultIndustryAdvisor={(industryData) =>
+            handleOpenDrawerWithContext({
+              title: industryData.name,
+              category: industryData.category,
+              details: industryData.details,
+            })
+          }
         />
 
         {/* 3. EXPLORE BTM CAPABILITIES: Connected Node Constellation Graph */}

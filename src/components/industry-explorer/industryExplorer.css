@@ -1,0 +1,372 @@
+/* ==========================================================================
+   BTM Industry Explorer Component CSS
+   ========================================================================== */
+
+.btm-industry-explorer-root {
+  position: relative;
+  background-color: var(--background);
+  padding: clamp(4rem, 7vw, 6.5rem) 1.5rem;
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.btm-industry-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Header */
+.btm-industry-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 3.5rem auto;
+}
+
+.btm-industry-title {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-hero);
+  color: var(--brand-navy);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.025em;
+  font-family: var(--font-primary);
+}
+
+.btm-industry-subtitle {
+  font-size: var(--fs-body-lg);
+  color: var(--text-secondary);
+  line-height: var(--lh-normal);
+}
+
+/* 6 Industry Cards Grid (3 Columns Desktop, 2 Tablet, 1 Mobile) */
+.btm-industry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+/* Industry Card */
+.btm-industry-card {
+  position: relative;
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.75rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
+  text-align: left;
+  outline: none;
+  width: 100%;
+}
+
+.btm-industry-card:hover,
+.btm-industry-card:focus-visible {
+  border-color: var(--brand-navy);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+.btm-industry-card:focus-visible {
+  outline: 2px solid var(--brand-red);
+  outline-offset: 3px;
+}
+
+/* Background Image Layer */
+.btm-industry-image-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btm-industry-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: brightness(0.85);
+}
+
+.btm-industry-card:hover .btm-industry-img,
+.btm-industry-card:focus-visible .btm-industry-img {
+  transform: scale(1.05);
+}
+
+/* Scrim & Gradient Overlay */
+.btm-industry-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(11, 38, 83, 0.96) 0%,
+    rgba(11, 38, 83, 0.75) 45%,
+    rgba(11, 38, 83, 0.35) 80%,
+    rgba(11, 38, 83, 0.15) 100%
+  );
+  z-index: 2;
+  transition: opacity var(--transition-normal);
+}
+
+.btm-industry-card:hover .btm-industry-scrim {
+  background: linear-gradient(
+    to top,
+    rgba(11, 38, 83, 0.98) 0%,
+    rgba(11, 38, 83, 0.82) 50%,
+    rgba(11, 38, 83, 0.4) 85%,
+    rgba(11, 38, 83, 0.2) 100%
+  );
+}
+
+/* Card Content Layer */
+.btm-industry-card-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform var(--transition-normal);
+}
+
+.btm-industry-card:hover .btm-industry-card-content {
+  transform: translateY(-2px);
+}
+
+/* Top Icon Bubble */
+.btm-industry-icon-bubble {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  margin-bottom: 0.75rem;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.btm-industry-card:hover .btm-industry-icon-bubble {
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.btm-industry-name {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  font-family: var(--font-primary);
+  line-height: 1.2;
+}
+
+.btm-industry-desc {
+  font-size: var(--fs-body-sm);
+  color: #CAD7E8;
+  line-height: 1.45;
+  margin-bottom: 0.875rem;
+}
+
+/* CTA Arrow Link */
+.btm-industry-cta-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #00C881;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.btm-industry-card:hover .btm-industry-cta-row {
+  color: #FFFFFF;
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   Industry Detail Experience Modal
+   ========================================================================== */
+.btm-industry-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 38, 83, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 3vw, 2.5rem);
+}
+
+.btm-industry-modal-window {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 25px 60px rgba(11, 38, 83, 0.35);
+}
+
+.btm-industry-modal-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.75rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  z-index: 10;
+}
+
+.btm-industry-modal-hero {
+  position: relative;
+  padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 2.5rem);
+  overflow: hidden;
+}
+
+.btm-industry-modal-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.65);
+}
+
+.btm-industry-modal-hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(11, 38, 83, 0.95) 0%, rgba(11, 38, 83, 0.65) 100%);
+}
+
+.btm-industry-modal-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+}
+
+.btm-industry-modal-body {
+  overflow-y: auto;
+  flex: 1;
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.btm-industry-metrics-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+}
+
+.btm-industry-metric-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.btm-industry-metric-val {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--brand-navy);
+  font-family: var(--font-primary);
+}
+
+.btm-industry-metric-lbl {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.btm-industry-caps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.btm-industry-cap-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+}
+
+.btm-industry-cap-card h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--brand-navy);
+  margin-bottom: 0.35rem;
+}
+
+.btm-industry-cap-card p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+/* Modal Footer CTA Box */
+.btm-industry-modal-cta-box {
+  background: rgba(11, 38, 83, 0.04);
+  border: 1.5px solid var(--brand-navy);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .btm-industry-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .btm-industry-explorer-root {
+    padding: 3rem 1rem;
+  }
+
+  .btm-industry-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .btm-industry-card {
+    height: 320px;
+    padding: 1.25rem;
+  }
+
+  .btm-industry-caps-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btm-industry-img,
+  .btm-industry-card,
+  .btm-industry-cta-row {
+    transition: none !important;
+    transform: none !important;
+  }
+}
