@@ -155,7 +155,7 @@ export const IndustryDetailPage: React.FC<IndustryDetailPageProps> = ({
       </div>
 
       {/* ──────────────────────────────────────────────────────────
-          1. Industry Hero Section
+          1. Industry Hero Section (2-Column with Real Sector Visual Card)
           ────────────────────────────────────────────────────────── */}
       <section className="btm-industry-hero-section">
         <img
@@ -165,35 +165,68 @@ export const IndustryDetailPage: React.FC<IndustryDetailPageProps> = ({
         />
         <div className="btm-industry-hero-scrim" />
 
-        <div className="btm-industry-hero-content">
-          <div className="btm-industry-hero-eyebrow">
-            <Sparkles size={15} color="#00C881" />
-            <span>{industry.eyebrow}</span>
+        <div className="btm-industry-hero-container">
+          {/* Left Column: Messaging & Actions */}
+          <div className="btm-industry-hero-left">
+            <div className="btm-industry-hero-eyebrow">
+              <Sparkles size={15} color="#00C881" />
+              <span>{industry.eyebrow}</span>
+            </div>
+
+            <h1 className="btm-industry-hero-h1">{industry.heroHeadline}</h1>
+
+            <p className="btm-industry-hero-p">{industry.heroSubtitle}</p>
+
+            <div className="btm-industry-hero-actions">
+              <Button
+                variant="primary"
+                size="lg"
+                onClick={handleGeneralConsult}
+                icon={<ArrowRight size={18} />}
+              >
+                Find My {industry.name} Solution →
+              </Button>
+              <Button
+                variant="secondary"
+                size="lg"
+                onClick={() => {
+                  const el = document.getElementById('industry-challenges');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Explore Sector Challenges ↓
+              </Button>
+            </div>
           </div>
 
-          <h1 className="btm-industry-hero-h1">{industry.heroHeadline}</h1>
+          {/* Right Column: Real Sector Visual Showcase Card */}
+          <div className="btm-industry-hero-right">
+            <div className="btm-industry-visual-card">
+              <div className="btm-industry-visual-img-wrap">
+                <img
+                  src={industry.imageUrl}
+                  alt={industry.imageAlt}
+                  className="btm-industry-visual-img"
+                />
+                <div className="btm-industry-visual-badge-top">
+                  <span className="btm-live-dot-pulse" />
+                  <span>{industry.name.toUpperCase()} ARCHITECTURE</span>
+                </div>
+              </div>
 
-          <p className="btm-industry-hero-p">{industry.heroSubtitle}</p>
-
-          <div className="btm-industry-hero-actions">
-            <Button
-              variant="primary"
-              size="lg"
-              onClick={handleGeneralConsult}
-              icon={<ArrowRight size={18} />}
-            >
-              Find My {industry.name} Solution →
-            </Button>
-            <Button
-              variant="secondary"
-              size="lg"
-              onClick={() => {
-                const el = document.getElementById('industry-challenges');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              Explore Sector Challenges ↓
-            </Button>
+              <div className="btm-industry-visual-card-footer">
+                <div className="btm-industry-visual-metric-title">
+                  <span>{industry.badgeLabel}</span>
+                </div>
+                <div className="btm-industry-visual-tech-tags">
+                  {industry.verifiedTechnologies.slice(0, 4).map((tech, tIdx) => (
+                    <span key={tIdx} className="btm-industry-visual-tag">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

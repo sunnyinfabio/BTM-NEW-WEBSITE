@@ -105,11 +105,18 @@
   z-index: 2;
 }
 
-.btm-industry-hero-content {
+.btm-industry-hero-container {
   position: relative;
   z-index: 3;
   max-width: 1280px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: center;
+}
+
+.btm-industry-hero-left {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -128,7 +135,7 @@
 }
 
 .btm-industry-hero-h1 {
-  font-size: clamp(2.2rem, 4.8vw, 3.5rem);
+  font-size: clamp(2.2rem, 4.2vw, 3.2rem);
   font-weight: 800;
   font-family: var(--font-primary);
   line-height: var(--lh-tight);
@@ -141,7 +148,7 @@
 .btm-industry-hero-p {
   font-size: var(--fs-body-lg);
   color: #CAD7E8;
-  max-width: 720px;
+  max-width: 620px;
   line-height: var(--lh-normal);
   margin-bottom: 2.25rem;
 }
@@ -151,6 +158,114 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 1rem;
+}
+
+/* Right Column: Real Sector Visual Showcase Card */
+.btm-industry-hero-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.btm-industry-visual-card {
+  width: 100%;
+  max-width: 480px;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.btm-industry-visual-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+}
+
+.btm-industry-visual-img-wrap {
+  height: 250px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btm-industry-visual-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.btm-industry-visual-card:hover .btm-industry-visual-img {
+  transform: scale(1.05);
+}
+
+.btm-industry-visual-badge-top {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(11, 38, 83, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #00C881;
+  border: 1px solid rgba(0, 200, 129, 0.35);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.btm-live-dot-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #00C881;
+  box-shadow: 0 0 8px #00C881;
+  animation: live-dot-pulse 2s infinite ease-in-out;
+}
+
+.btm-industry-visual-card-footer {
+  padding: 1.25rem 1.5rem;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.btm-industry-visual-metric-title {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: #0B2653;
+  font-family: var(--font-primary);
+}
+
+.btm-industry-visual-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.btm-industry-visual-tag {
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #0B2653;
+}
+
+@media (max-width: 960px) {
+  .btm-industry-hero-container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
 }
 
 /* ──────────────────────────────────────────────────────────
