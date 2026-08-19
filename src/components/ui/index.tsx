@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronRight, CheckCircle2, ArrowRight } from 'lucide-react';
 import './components.css';
 export * from './ConceptualVisuals';
+export * from './AmbientFourLayerBackground';
 
 /* ==========================================================================
    1. Button Component

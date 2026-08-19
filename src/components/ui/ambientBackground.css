@@ -1,0 +1,102 @@
+/* ==========================================================================
+   Ambient 4-Layer Atmosphere Animation Styles
+   ========================================================================== */
+
+.btm-ambient-atmosphere-root {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ──────────────────────────────────────────────────────────
+   LAYER 1: Aurora (Atmospheric Moving Blue/Purple/Cyan)
+   ────────────────────────────────────────────────────────── */
+.btm-aurora-glow-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  filter: blur(75px);
+  opacity: 0.65;
+}
+
+.btm-aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  mix-blend-mode: multiply;
+  will-change: transform;
+}
+
+.btm-aurora-blob.blue {
+  width: clamp(350px, 45vw, 650px);
+  height: clamp(350px, 45vw, 650px);
+  background: radial-gradient(circle, rgba(11, 38, 83, 0.18) 0%, rgba(30, 64, 175, 0.08) 50%, transparent 70%);
+  top: -10%;
+  left: 10%;
+  animation: aurora-drift-blue 22s infinite alternate ease-in-out;
+}
+
+.btm-aurora-blob.purple {
+  width: clamp(320px, 40vw, 580px);
+  height: clamp(320px, 40vw, 580px);
+  background: radial-gradient(circle, rgba(111, 66, 193, 0.15) 0%, rgba(124, 58, 237, 0.06) 50%, transparent 70%);
+  top: 25%;
+  right: 15%;
+  animation: aurora-drift-purple 26s infinite alternate ease-in-out;
+}
+
+.btm-aurora-blob.cyan {
+  width: clamp(300px, 35vw, 520px);
+  height: clamp(300px, 35vw, 520px);
+  background: radial-gradient(circle, rgba(0, 200, 129, 0.14) 0%, rgba(6, 182, 212, 0.05) 50%, transparent 70%);
+  bottom: -5%;
+  left: 35%;
+  animation: aurora-drift-cyan 20s infinite alternate ease-in-out;
+}
+
+@keyframes aurora-drift-blue {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(60px, 40px) scale(1.1);
+  }
+  100% {
+    transform: translate(-40px, 80px) scale(0.95);
+  }
+}
+
+@keyframes aurora-drift-purple {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-70px, 50px) scale(1.12);
+  }
+  100% {
+    transform: translate(50px, -40px) scale(0.92);
+  }
+}
+
+@keyframes aurora-drift-cyan {
+  0% {
+    transform: translate(0, 0) scale(0.95);
+  }
+  50% {
+    transform: translate(80px, -60px) scale(1.08);
+  }
+  100% {
+    transform: translate(-50px, 30px) scale(1);
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   LAYERS 2, 3, 4: Canvas Layer
+   ────────────────────────────────────────────────────────── */
+.btm-atmosphere-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}

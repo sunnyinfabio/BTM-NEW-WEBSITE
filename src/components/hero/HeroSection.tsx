@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { ArrowRight, Sparkles, ShieldCheck, CheckCircle2 } from 'lucide-react';
-import { Button, GradientText } from '../ui';
+import { Button, GradientText, AmbientFourLayerBackground } from '../ui';
 import { HeroNetwork3D } from './HeroNetwork3D';
 import './hero.css';
 
@@ -36,10 +36,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
   return (
     <section className="btm-hero-root">
-      {/* Dynamic Background Canvas & Ambient Layer */}
-      <div className="btm-hero-ambient-glow" />
+      {/* 4-Layer Ambient Atmosphere: 1. Aurora, 2. Digital Mesh, 3. Data Particles, 4. Light Waves */}
+      <AmbientFourLayerBackground />
       <div className="btm-hero-grid-pattern" />
-      <div className="btm-hero-noise-layer" />
 
       <div className="btm-hero-container">
         {/* Left Column: Editorial Value Proposition & Messaging */}
