@@ -207,18 +207,29 @@ export const HeroNetwork3D: React.FC<{ className?: string }> = ({ className = ''
         const x2 = (toNode.x / 100) * width;
         const y2 = (toNode.y / 100) * height;
 
-        const curX = x1 + (x2 - x1) * p.progress;
-        const curY = y1 + (y2 - y1) * p.progress;
-
         const isHoveredTrack =
           hoveredNodeId &&
           (hoveredNodeId === fromNode.id || hoveredNodeId === toNode.id);
 
+        // 3. Flowing Data Particles with Dynamic Node-Matched Spectrum Colors
+        const particleColor = isHoveredTrack
+          ? '#EC1C24'
+          : p.pairIndex % 4 === 0
+          ? '#8B5CF6' // Vibrant Purple (AI)
+          : p.pairIndex % 4 === 1
+          ? '#0284C7' // Electric Sky Blue (Data)
+          : p.pairIndex % 4 === 2
+          ? '#00C881' // Vibrant Emerald (Engineering)
+          : '#06B6D4'; // Cyan (Cloud)
+
+        const curX = x1 + (x2 - x1) * p.progress;
+        const curY = y1 + (y2 - y1) * p.progress;
+
         ctx.beginPath();
         ctx.arc(curX, curY, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = isHoveredTrack ? '#EC1C24' : '#00C881';
-        ctx.shadowColor = isHoveredTrack ? '#EC1C24' : '#00C881';
-        ctx.shadowBlur = isHoveredTrack ? 12 : 8;
+        ctx.fillStyle = particleColor;
+        ctx.shadowColor = particleColor;
+        ctx.shadowBlur = isHoveredTrack ? 14 : 9;
         ctx.fill();
         ctx.shadowBlur = 0;
       });
