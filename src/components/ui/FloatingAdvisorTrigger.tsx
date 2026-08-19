@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, ArrowRight, Zap } from 'lucide-react';
+import { ArrowRight, Zap } from 'lucide-react';
 
 export interface FloatingAdvisorTriggerProps {
   onClick: () => void;
@@ -41,39 +41,34 @@ export const FloatingAdvisorTrigger: React.FC<FloatingAdvisorTriggerProps> = ({ 
             type="button"
             onClick={onClick}
             style={{
-              background: 'linear-gradient(135deg, #2563EB 0%, #06B6D4 100%)',
+              background: '#EC1C24',
               color: '#FFFFFF',
               border: '1px solid rgba(255, 255, 255, 0.25)',
               borderRadius: '9999px',
-              padding: '0.65rem 1.25rem',
+              padding: '0.75rem 1.4rem',
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.5rem',
               fontSize: '0.85rem',
               fontWeight: 700,
-              boxShadow: '0 8px 30px rgba(37, 99, 235, 0.45), 0 0 20px rgba(6, 182, 212, 0.35)',
+              boxShadow: '0 8px 25px rgba(236, 28, 36, 0.4)',
               cursor: 'pointer',
-              transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+              transition: 'transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease',
             }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)';
+              (e.currentTarget as HTMLElement).style.backgroundColor = '#0B2653';
+              (e.currentTarget as HTMLElement).style.boxShadow = '0 10px 30px rgba(11, 38, 83, 0.4)';
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
+              (e.currentTarget as HTMLElement).style.backgroundColor = '#EC1C24';
+              (e.currentTarget as HTMLElement).style.boxShadow = '0 8px 25px rgba(236, 28, 36, 0.4)';
             }}
           >
-            <span
-              style={{
-                width: '8px',
-                height: '8px',
-                borderRadius: '50%',
-                backgroundColor: '#10B981',
-                boxShadow: '0 0 8px #10B981',
-                display: 'inline-block',
-              }}
-            />
+            <Zap size={15} color="#FFFFFF" />
             <span>⚡ Match My Pod in 48h</span>
-            <ArrowRight size={14} />
+            <ArrowRight size={14} color="#FFFFFF" />
           </button>
         </motion.div>
       )}

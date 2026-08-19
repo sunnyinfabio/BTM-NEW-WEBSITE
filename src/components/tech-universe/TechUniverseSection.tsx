@@ -233,7 +233,7 @@ export const TechUniverseSection: React.FC<TechUniverseSectionProps> = ({ onTech
             <div className="btm-constellation-header">
               <span className="btm-constellation-status">
                 <span className="btm-live-node-dot" />
-                <span>Active Node: <strong className="text-white">{activeNode.name}</strong></span>
+                <span>Active Node: <strong className="text-[#0B2653]">{activeNode.name}</strong></span>
               </span>
               <span className="btm-constellation-hint">Click any node to reveal specs</span>
             </div>
@@ -324,8 +324,8 @@ export const TechUniverseSection: React.FC<TechUniverseSectionProps> = ({ onTech
                     {activeNode.coreStack.map((item, sIdx) => (
                       <div key={sIdx} className="btm-stack-item-card">
                         <div className="btm-stack-name-row">
-                          <CheckCircle2 size={14} className="text-emerald-400 shrink-0" />
-                          <strong className="text-white text-sm">{item.name}</strong>
+                          <CheckCircle2 size={14} className="text-[#00C881] shrink-0" />
+                          <strong className="text-[#0B2653] text-sm">{item.name}</strong>
                         </div>
                         <p className="btm-stack-desc">{item.desc}</p>
                       </div>

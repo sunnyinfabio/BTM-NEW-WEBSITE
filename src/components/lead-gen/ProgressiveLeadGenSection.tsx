@@ -116,10 +116,10 @@ export const ProgressiveLeadGenSection: React.FC<ProgressiveLeadGenSectionProps>
                   transition={{ duration: 0.3 }}
                 >
                   <div className="mb-4 text-center">
-                    <p className="text-sm text-sky-400 font-semibold">
-                      Work Email: <span className="text-white">{email}</span> (✓ Saved)
+                    <p className="text-sm text-[#00875A] font-semibold">
+                      Work Email: <span className="text-[#0B2653] font-bold">{email}</span> (✓ Saved)
                     </p>
-                    <p className="text-xs text-slate-400 mt-0.5">
+                    <p className="text-xs text-[#51668A] mt-0.5">
                       Configure your company details to tailor the delivery proposal:
                     </p>
                   </div>
@@ -213,12 +213,12 @@ export const ProgressiveLeadGenSection: React.FC<ProgressiveLeadGenSectionProps>
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.35 }}
                 >
-                  <CheckCircle2 size={44} color="#34d399" className="mb-2" />
-                  <h3 className="text-xl font-bold text-white mb-1">
+                  <CheckCircle2 size={44} color="#00C881" className="mb-2" />
+                  <h3 className="text-xl font-bold text-[#0B2653] mb-1">
                     Your Custom Plan is on its Way!
                   </h3>
-                  <p className="text-sm text-slate-300 max-w-md mx-auto mb-4">
-                    Thank you, <strong className="text-white">{fullName || 'Builder'}</strong>. Our senior solutions architects are preparing your roadmap and sending it to <strong className="text-sky-400">{email}</strong> within 24 hours.
+                  <p className="text-sm text-[#51668A] max-w-md mx-auto mb-4">
+                    Thank you, <strong className="text-[#0B2653]">{fullName || 'Builder'}</strong>. Our senior solutions architects are preparing your roadmap and sending it to <strong className="text-[#EC1C24]">{email}</strong> within 24 hours.
                   </p>
 
                   <div className="flex flex-wrap gap-3 justify-center text-xs">

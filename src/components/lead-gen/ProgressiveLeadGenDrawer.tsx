@@ -142,14 +142,14 @@ export const ProgressiveLeadGenDrawer: React.FC<ProgressiveLeadGenDrawerProps> =
               {contextData && step !== 3 && (
                 <div className="btm-leadgen-context-capsule">
                   <div className="flex items-center gap-2 mb-1">
-                    <Sparkles size={14} className="text-sky-400" />
-                    <span className="text-xs font-bold text-sky-400 uppercase tracking-wider">
+                    <Sparkles size={14} className="text-[#00C881]" />
+                    <span className="text-xs font-bold text-[#00875A] uppercase tracking-wider">
                       Selected Blueprint Target
                     </span>
                   </div>
-                  <h4 className="text-white text-sm font-bold">{activeTitle}</h4>
+                  <h4 className="text-[#0B2653] text-sm font-bold">{activeTitle}</h4>
                   {contextData.details && (
-                    <p className="text-xs text-slate-400 mt-1 leading-snug">{contextData.details}</p>
+                    <p className="text-xs text-[#51668A] mt-1 leading-snug">{contextData.details}</p>
                   )}
                   {contextData.summaryItems && (
                     <div className="btm-capsule-items-list">
@@ -356,16 +356,16 @@ export const ProgressiveLeadGenDrawer: React.FC<ProgressiveLeadGenDrawerProps> =
                   className="btm-leadgen-success-card"
                 >
                   <div className="btm-success-icon-bubble">
-                    <CheckCircle2 size={36} color="#34d399" />
+                    <CheckCircle2 size={36} color="#00C881" />
                   </div>
 
                   <h3 className="btm-success-title">Blueprint Request Confirmed!</h3>
                   <p className="btm-success-desc">
-                    Thank you, <strong className="text-white">{fullName || 'Builder'}</strong>. Your custom plan for <strong className="text-sky-400">{activeTitle}</strong> is being prepared and will be sent to <strong className="text-white">{email}</strong>.
+                    Thank you, <strong className="text-[#0B2653]">{fullName || 'Builder'}</strong>. Your custom plan for <strong className="text-[#EC1C24]">{activeTitle}</strong> is being prepared and will be sent to <strong className="text-[#0B2653]">{email}</strong>.
                   </p>
 
                   <div className="btm-success-next-box">
-                    <h4 className="text-white text-xs font-bold uppercase tracking-wider mb-2">
+                    <h4 className="text-[#0B2653] text-xs font-bold uppercase tracking-wider mb-2">
                       What Happens Next:
                     </h4>
                     <ul className="btm-success-steps-list">
@@ -386,7 +386,7 @@ export const ProgressiveLeadGenDrawer: React.FC<ProgressiveLeadGenDrawerProps> =
 
                   {/* Direct Contact Links */}
                   <div className="btm-success-direct-call">
-                    <p className="text-xs text-slate-400 mb-2">Need an immediate technical consultation?</p>
+                    <p className="text-xs text-[#51668A] mb-2">Need an immediate technical consultation?</p>
                     <div className="flex flex-wrap gap-2 justify-center mb-3">
                       <a href="tel:+18624371138" className="btm-phone-bubble">
                         📞 US: +1-862-437-1138
@@ -397,7 +397,7 @@ export const ProgressiveLeadGenDrawer: React.FC<ProgressiveLeadGenDrawerProps> =
                     </div>
                     <a
                       href={`mailto:cs@btm-financial.com?subject=${encodeURIComponent(`BTM Engineering Consultation: ${activeTitle}`)}&body=${encodeURIComponent(`Hello BTM Leadership,\n\nI submitted an advisory request on your website:\n- Name: ${fullName || 'N/A'}\n- Company: ${company || 'N/A'}\n- Role: ${role}\n- Timeline: ${timeline}\n- Details: ${projectDetails || 'Custom Roadmap Inquiry'}\n\nPlease get in touch with me at ${email}.\n\nBest regards,\n${fullName || 'Engineering Lead'}`)}`}
-                      className="inline-flex items-center gap-1.5 text-xs text-sky-400 font-semibold hover:underline"
+                      className="inline-flex items-center gap-1.5 text-xs text-[#EC1C24] font-semibold hover:underline"
                     >
                       <Mail size={13} />
                       <span>Send Direct Email to Executive Team (cs@btm-financial.com) →</span>

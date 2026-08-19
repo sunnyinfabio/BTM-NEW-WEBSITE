@@ -12,16 +12,12 @@ import {
   Zap,
   TrendingUp,
   Activity,
-  Layers,
-  Terminal,
   FileCode2,
-  Calendar,
-  Lock,
 } from 'lucide-react';
 import { Badge, Button, GradientText } from '../ui';
 import './whyBtm.css';
 
-export type InteractiveViewMode = 'proof' | 'process' | 'comparison';
+export type InteractiveViewMode = 'process' | 'proof' | 'comparison';
 export type IndustryFilter = 'all' | 'fintech' | 'healthcare' | 'logistics' | 'ai' | 'telecom';
 
 interface ProofMetric {
@@ -45,7 +41,7 @@ const PROOF_METRICS: ProofMetric[] = [
     subValue: '<10ms valuation latency',
     sla: '100% Mathematical Audit Accuracy',
     icon: <Activity size={22} />,
-    accentColor: '#38BDF8',
+    accentColor: '#0B2653',
     description: 'Real-time fixed income valuation, risk analytics & bond structuring engines for Wall Street tier-1 institutions.',
   },
   {
@@ -56,7 +52,7 @@ const PROOF_METRICS: ProofMetric[] = [
     subValue: '250,000+ active patients',
     sla: '100% HIPAA & SOC2 Type II Certified',
     icon: <ShieldCheck size={22} />,
-    accentColor: '#34D399',
+    accentColor: '#00875A',
     description: 'Zero-vulnerability encrypted patient record synchronization and WebRTC teleconsultation infrastructure.',
   },
   {
@@ -67,7 +63,7 @@ const PROOF_METRICS: ProofMetric[] = [
     subValue: '<250ms GPS data sync',
     sla: '18% Verified Fuel Cost Reduction',
     icon: <TrendingUp size={22} />,
-    accentColor: '#F59E0B',
+    accentColor: '#EC1C24',
     description: 'Real-time turn-by-turn route optimization and high-frequency IoT streaming across cross-border freight.',
   },
   {
@@ -78,7 +74,7 @@ const PROOF_METRICS: ProofMetric[] = [
     subValue: '2,000,000+ complex PDFs parsed',
     sla: '85% Faster Processing Cycle Time',
     icon: <Sparkles size={22} />,
-    accentColor: '#C084FC',
+    accentColor: '#6F42C1',
     description: 'BTM proprietary deep learning layout analysis & NLP parsing over unstructured contracts and financial statements.',
   },
   {
@@ -89,7 +85,7 @@ const PROOF_METRICS: ProofMetric[] = [
     subValue: '<10ms real-time rating',
     sla: '99.999% Carrier-Grade Reliability',
     icon: <Zap size={22} />,
-    accentColor: '#06B6D4',
+    accentColor: '#0B2653',
     description: 'Distributed gRPC & Spring Boot microservice rating engines running on multi-region Kubernetes clusters.',
   },
 ];
@@ -266,26 +262,26 @@ export const WhyBtmSection: React.FC<WhyBtmSectionProps> = ({ onLearnMoreClick }
                   <div className="btm-step-details-box">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="btm-step-pill-accent">{activeSprintStep.hour}</span>
-                      <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                      <span className="text-xs font-bold text-[#0B2653] uppercase tracking-wider">
                         {activeSprintStep.badge}
                       </span>
                     </div>
 
-                    <h3 className="text-white font-extrabold text-xl font-primary mb-2">
+                    <h3 className="text-[#0B2653] font-extrabold text-xl font-primary mb-2">
                       {activeSprintStep.title}
                     </h3>
-                    <p className="text-slate-300 text-sm mb-5 leading-relaxed">
+                    <p className="text-[#51668A] text-sm mb-5 leading-relaxed">
                       {activeSprintStep.tagline}
                     </p>
 
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">
+                    <h4 className="text-xs font-bold text-[#0B2653] uppercase tracking-wider mb-3">
                       Verified Milestone Deliverables:
                     </h4>
                     <ul className="btm-deliverables-checklist mb-6">
                       {activeSprintStep.deliverables.map((item, dIdx) => (
                         <li key={dIdx} className="btm-deliverable-item">
-                          <CheckCircle2 size={16} className="text-emerald-400 shrink-0 mt-0.5" />
-                          <span>{item}</span>
+                          <CheckCircle2 size={16} className="text-[#00C881] shrink-0 mt-0.5" />
+                          <span className="text-[#0B2653] font-medium">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -309,10 +305,10 @@ export const WhyBtmSection: React.FC<WhyBtmSectionProps> = ({ onLearnMoreClick }
                         <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block" />
                       </div>
                       <span className="btm-terminal-filename">
-                        <FileCode2 size={12} className="inline mr-1 text-sky-400" />
+                        <FileCode2 size={12} className="inline mr-1 text-[#00C881]" />
                         {activeSprintStep.artifactLabel}
                       </span>
-                      <span className="text-[10px] text-emerald-400 font-mono">LIVE ARTIFACT</span>
+                      <span className="text-[10px] text-[#00C881] font-mono font-bold">LIVE ARTIFACT</span>
                     </div>
                     <pre className="btm-terminal-code-body">
                       <code>{activeSprintStep.artifactCode}</code>
@@ -390,8 +386,8 @@ export const WhyBtmSection: React.FC<WhyBtmSectionProps> = ({ onLearnMoreClick }
 
                 {/* SLA Trust Footer */}
                 <div className="btm-proof-trust-footer">
-                  <div className="flex items-center gap-2 text-xs text-slate-300">
-                    <ShieldCheck size={16} className="text-emerald-400" />
+                  <div className="flex items-center gap-2 text-xs text-[#51668A]">
+                    <ShieldCheck size={16} className="text-[#00C881]" />
                     <span>100% Strict NDA Protection • Full IP Rights Transferred on Milestone Payment</span>
                   </div>
                   <Button
@@ -423,32 +419,32 @@ export const WhyBtmSection: React.FC<WhyBtmSectionProps> = ({ onLearnMoreClick }
                   <div className="btm-matrix-col traditional">
                     <div className="btm-matrix-col-header">
                       <span className="btm-matrix-badge-bad">Traditional Matching Platforms</span>
-                      <h3 className="text-white text-lg font-bold">Turing / BairesDev / Legacy Agencies</h3>
-                      <p className="text-xs text-slate-400">Keyword-matching and massive developer rosters</p>
+                      <h3 className="text-[#0B2653] text-lg font-bold">Turing / BairesDev / Legacy Agencies</h3>
+                      <p className="text-xs text-[#51668A]">Keyword-matching and massive developer rosters</p>
                     </div>
 
                     <div className="btm-matrix-items-list">
                       <div className="btm-matrix-item bad">
                         <span className="btm-bad-x">✕</span>
                         <div>
-                          <strong className="text-white text-xs block">"Search 10,000 resumes yourself"</strong>
-                          <span className="text-xs text-slate-400">Pushes candidate filtering burden onto your busy engineering team.</span>
+                          <strong className="text-[#0B2653] text-xs block">"Search 10,000 resumes yourself"</strong>
+                          <span className="text-xs text-[#51668A]">Pushes candidate filtering burden onto your busy engineering team.</span>
                         </div>
                       </div>
 
                       <div className="btm-matrix-item bad">
                         <span className="btm-bad-x">✕</span>
                         <div>
-                          <strong className="text-white text-xs block">Billable Hours vs. Outcomes</strong>
-                          <span className="text-xs text-slate-400">Incentivized to inflate headcount rather than optimize velocity.</span>
+                          <strong className="text-[#0B2653] text-xs block">Billable Hours vs. Outcomes</strong>
+                          <span className="text-xs text-[#51668A]">Incentivized to inflate headcount rather than optimize velocity.</span>
                         </div>
                       </div>
 
                       <div className="btm-matrix-item bad">
                         <span className="btm-bad-x">✕</span>
                         <div>
-                          <strong className="text-white text-xs block">Junior Account Hand-Off</strong>
-                          <span className="text-xs text-slate-400">Account passes to non-technical coordinators post-sale.</span>
+                          <strong className="text-[#0B2653] text-xs block">Junior Account Hand-Off</strong>
+                          <span className="text-xs text-[#51668A]">Account passes to non-technical coordinators post-sale.</span>
                         </div>
                       </div>
                     </div>
@@ -458,35 +454,35 @@ export const WhyBtmSection: React.FC<WhyBtmSectionProps> = ({ onLearnMoreClick }
                   <div className="btm-matrix-col advisor">
                     <div className="btm-matrix-col-header">
                       <div className="flex items-center gap-1.5">
-                        <Sparkles size={14} className="text-sky-400" />
+                        <Sparkles size={14} className="text-[#00C881]" />
                         <span className="btm-matrix-badge-good">The BTM Technology Advisor Model</span>
                       </div>
-                      <h3 className="text-white text-lg font-bold">Outcome-Driven Interactive Advisory</h3>
-                      <p className="text-xs text-sky-200">Architectural blueprint + precision engineering pod</p>
+                      <h3 className="text-[#0B2653] text-lg font-bold">Outcome-Driven Interactive Advisory</h3>
+                      <p className="text-xs text-[#51668A]">Architectural blueprint + precision engineering pod</p>
                     </div>
 
                     <div className="btm-matrix-items-list">
                       <div className="btm-matrix-item good">
                         <span className="btm-good-check">✔</span>
                         <div>
-                          <strong className="text-sky-400 text-xs block">"Tell us what you're trying to accomplish"</strong>
-                          <span className="text-xs text-slate-200">We analyze requirements and design the tailored team and tech stack.</span>
+                          <strong className="text-[#0B2653] text-xs block">"Tell us what you're trying to accomplish"</strong>
+                          <span className="text-xs text-[#51668A]">We analyze requirements and design the tailored team and tech stack.</span>
                         </div>
                       </div>
 
                       <div className="btm-matrix-item good">
                         <span className="btm-good-check">✔</span>
                         <div>
-                          <strong className="text-sky-400 text-xs block">Wall Street Executive Governance</strong>
-                          <span className="text-xs text-slate-200">Governed by Goldman Sachs & Lehman Brothers engineering alumni.</span>
+                          <strong className="text-[#0B2653] text-xs block">Wall Street Executive Governance</strong>
+                          <span className="text-xs text-[#51668A]">Governed by Goldman Sachs & Lehman Brothers engineering alumni.</span>
                         </div>
                       </div>
 
                       <div className="btm-matrix-item good">
                         <span className="btm-good-check">✔</span>
                         <div>
-                          <strong className="text-sky-400 text-xs block">Precision Pod Assembly in 48 Hours</strong>
-                          <span className="text-xs text-slate-200">Tech Lead + Senior Engineers + Automated QA with 100% timezone alignment.</span>
+                          <strong className="text-[#0B2653] text-xs block">Precision Pod Assembly in 48 Hours</strong>
+                          <span className="text-xs text-[#51668A]">Tech Lead + Senior Engineers + Automated QA with 100% timezone alignment.</span>
                         </div>
                       </div>
                     </div>

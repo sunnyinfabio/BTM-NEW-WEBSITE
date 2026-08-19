@@ -155,10 +155,10 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
 
                   {/* CTA Action */}
                   <div className="btm-case-discuss-card">
-                    <h4 className="text-white font-bold text-sm mb-1">
+                    <h4 className="text-[#0B2653] font-bold text-sm mb-1">
                       Building a similar {caseStudy.category} platform?
                     </h4>
-                    <p className="text-slate-400 text-xs mb-4">
+                    <p className="text-[#51668A] text-xs mb-4">
                       Our senior architects will prepare an architectural breakdown and scope estimate for your roadmap.
                     </p>
                     <Button
