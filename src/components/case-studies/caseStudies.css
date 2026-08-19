@@ -69,24 +69,37 @@
 }
 
 /* ==========================================================================
-   8 Case Cards Grid
+   8 Case Cards Grid (Consistent 3-Column Size across all filters & sections)
    ========================================================================== */
 .btm-case-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+@media (max-width: 1024px) {
+  .btm-case-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .btm-case-cards-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .btm-case-card {
   background: #FFFFFF;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-xl);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   cursor: pointer;
   box-shadow: var(--shadow-sm);
-  transition: all var(--transition-normal);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  min-height: 380px;
 }
 
 .btm-case-card:hover {
