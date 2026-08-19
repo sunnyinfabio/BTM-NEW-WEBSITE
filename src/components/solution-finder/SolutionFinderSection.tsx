@@ -29,8 +29,9 @@ import {
   GOAL_TITLES,
   INDUSTRY_NAMES,
 } from '../../context/SolutionFinderContext';
-import { Button, Badge } from '../ui';
 import {
+  Button,
+  Badge,
   CustomSoftwareVisual,
   StaffAugVisual,
   DedicatedTeamsVisual,
@@ -38,7 +39,7 @@ import {
   ModernizationVisual,
   QaVisual,
   StrategicAdvisorVisual,
-} from '../ui/ConceptualVisuals';
+} from '../ui';
 import './solutionFinder.css';
 
 interface GoalCardData {
