@@ -10,6 +10,14 @@
   z-index: 1;
 }
 
+.btm-ambient-atmosphere-root.btm-global-atmosphere {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 0 !important;
+}
+
 /* ──────────────────────────────────────────────────────────
    LAYER 1: Aurora (Atmospheric Moving Blue/Purple/Cyan)
    ────────────────────────────────────────────────────────── */

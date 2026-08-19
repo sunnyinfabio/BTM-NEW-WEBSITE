@@ -10,7 +10,7 @@ import { LeadershipTrustSection } from './components/leadership/LeadershipTrustS
 import { ProgressiveLeadGenDrawer, type LeadGenContextData } from './components/lead-gen/ProgressiveLeadGenDrawer';
 import { ProgressiveLeadGenSection } from './components/lead-gen/ProgressiveLeadGenSection';
 import { SolutionFinderProvider, useSolutionFinder, type GoalId } from './context/SolutionFinderContext';
-import { Button, Badge } from './components/ui';
+import { Button, Badge, AmbientFourLayerBackground } from './components/ui';
 import { FloatingAdvisorTrigger } from './components/ui/FloatingAdvisorTrigger';
 import { ArrowRight, ShieldCheck, Menu, X } from 'lucide-react';
 
@@ -123,7 +123,10 @@ function AppContent() {
   const industrySlug = isIndustryRoute ? currentPath.replace('/industries/', '').replace(/\/$/, '') : null;
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: 'var(--background)', color: 'var(--text-primary)', position: 'relative' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--background)', color: 'var(--text-primary)', position: 'relative', overflowX: 'hidden' }}>
+      {/* Global Persistent 4-Layer Ambient Atmosphere across all pages */}
+      <AmbientFourLayerBackground className="btm-global-atmosphere" />
+
       {/* ──────────────────────────────────────────────────────────
           1. Clean Primary Navigation Header (Matching Live BTM Site)
           ────────────────────────────────────────────────────────── */}
