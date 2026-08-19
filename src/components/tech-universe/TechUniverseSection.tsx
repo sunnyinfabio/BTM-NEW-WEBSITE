@@ -347,24 +347,24 @@ export const TechUniverseSection: React.FC<TechUniverseSectionProps> = ({ onTech
                 {/* Quality & Security Standards */}
                 <div className="btm-detail-standards-section">
                   <h4 className="btm-detail-section-heading">Engineering & Security Standards:</h4>
-                  <ul className="btm-standards-checklist">
+                  <div className="btm-standards-checklist">
                     {activeNode.standards.map((std, idx) => (
-                      <li key={idx} className="btm-standard-item">
-                        <Cpu size={14} className="text-sky-400 shrink-0" />
+                      <div key={idx} className="btm-standard-item">
+                        <Cpu size={13} className="text-sky-500 shrink-0" />
                         <span>{std}</span>
-                      </li>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
 
                 {/* Action CTA */}
                 <div className="btm-detail-footer-action">
                   <Button
                     variant="primary"
-                    size="lg"
+                    size="md"
                     className="w-full"
                     onClick={() => onTechExploreClick?.(activeNode)}
-                    icon={<ArrowRight size={18} />}
+                    icon={<ArrowRight size={16} />}
                   >
                     {activeNode.ctaLabel}
                   </Button>
