@@ -101,23 +101,49 @@
 
 .btm-finder-card {
   background: var(--surface-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-xl);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
   position: relative;
-  transition: all var(--transition-fast);
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
   outline: none;
   box-shadow: var(--shadow-sm);
 }
 
+.btm-finder-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(450px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(11, 38, 83, 0.05), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.btm-finder-card:hover::before {
+  opacity: 1;
+}
+
 .btm-finder-card:hover {
   border-color: var(--brand-navy);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(11, 38, 83, 0.12);
+  transform: translateY(-6px);
+}
+
+.btm-finder-card:hover .btm-card-icon-wrapper {
+  box-shadow: 0 0 16px currentColor;
+  transform: scale(1.05);
+}
+
+.btm-finder-card:hover .btm-card-title {
+  transform: translateX(2px);
 }
 
 .btm-finder-card:focus-visible {
@@ -129,8 +155,8 @@
 .btm-finder-card.selected {
   background: #FFFFFF;
   border-color: var(--brand-red);
-  box-shadow: 0 0 0 2px var(--brand-red), var(--shadow-lg);
-  transform: translateY(-4px);
+  box-shadow: 0 0 0 2px var(--brand-red), 0 16px 36px rgba(236, 28, 36, 0.15);
+  transform: translateY(-6px);
 }
 
 .btm-finder-card.card-not-sure {
@@ -141,7 +167,7 @@
 .btm-finder-card.card-not-sure.selected {
   border-style: solid;
   border-color: var(--brand-green);
-  box-shadow: 0 0 0 2px var(--brand-green), var(--shadow-lg);
+  box-shadow: 0 0 0 2px var(--brand-green), 0 16px 36px rgba(0, 200, 129, 0.15);
 }
 
 .btm-card-header {
@@ -149,17 +175,20 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.25rem;
+  position: relative;
+  z-index: 2;
 }
 
 .btm-card-icon-wrapper {
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   border-radius: var(--radius-md);
-  border: 1px solid;
+  border: 1.5px solid;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #FFFFFF;
+  transition: all 0.3s ease;
 }
 
 .btm-card-badge-pill {

@@ -37,9 +37,16 @@ export const IndustryCard: React.FC<IndustryCardProps> = ({ industry, onClick, i
       type="button"
       className="btm-industry-card"
       onClick={onClick}
+      onMouseMove={(e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+        e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+      }}
       onKeyDown={handleKeyDown}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -6, transition: { duration: 0.25 } }}
+      whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.35, delay: index * 0.08 }}
       aria-label={`Explore ${industry.name} technology solutions`}
       tabIndex={0}

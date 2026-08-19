@@ -263,13 +263,18 @@ export const SolutionFinderSection: React.FC<SolutionFinderSectionProps> = ({
                 aria-expanded={isSelected}
                 className={`btm-finder-card ${isSelected ? 'selected' : ''} ${card.id === 'not-sure' ? 'card-not-sure' : ''}`}
                 onClick={() => handleGoalSelect(card.id)}
+                onMouseMove={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                  e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+                }}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
                     handleGoalSelect(card.id);
                   }
                 }}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                whileHover={{ y: -6, transition: { duration: 0.25 } }}
                 whileTap={{ scale: 0.98 }}
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
