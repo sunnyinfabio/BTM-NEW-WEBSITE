@@ -82,26 +82,27 @@
 }
 
 /* ==========================================================================
-   2-Column Main Grid (Left Diagram, Right Detail Panel)
+   2-Column Main Grid (Left Diagram, Right Detail Panel - Equal Heights)
    ========================================================================== */
 .btm-universe-main-grid {
   display: grid;
   grid-template-columns: 1fr 1.25fr;
   gap: clamp(1.5rem, 4vw, 2.5rem);
-  align-items: start;
+  align-items: stretch;
 }
 
 /* Left Column: Visual Node Constellation Box */
 .btm-universe-constellation-box {
   background: #FFFFFF;
-  border: 1.5px solid var(--border);
+  border: 1.5px solid var(--brand-navy);
   border-radius: var(--radius-xl);
-  padding: 1.5rem;
+  padding: 1.75rem;
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-md);
+  justify-content: space-between;
+  box-shadow: var(--shadow-lg);
   position: relative;
-  min-height: 480px;
+  height: 100%;
 }
 
 .btm-constellation-header {
@@ -110,7 +111,7 @@
   align-items: center;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--border);
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .btm-constellation-status {
@@ -140,11 +141,19 @@
 .btm-constellation-diagram {
   position: relative;
   width: 100%;
-  height: 400px;
+  min-height: 480px;
   flex: 1;
   background: radial-gradient(circle at center, rgba(11, 38, 83, 0.02) 0%, transparent 70%);
   border-radius: var(--radius-lg);
   overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.btm-constellation-footer {
+  margin-top: auto;
 }
 
 .btm-constellation-svg {

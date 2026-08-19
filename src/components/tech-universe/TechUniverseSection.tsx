@@ -289,6 +289,17 @@ export const TechUniverseSection: React.FC<TechUniverseSectionProps> = ({ onTech
                 );
               })}
             </div>
+
+            {/* Left Box Footer Telemetry */}
+            <div className="btm-constellation-footer">
+              <div className="flex items-center justify-between text-xs text-[#51668A] font-semibold pt-3 border-t border-[#E2E8F0]">
+                <span>⚡ 6 Connected Core Stacks</span>
+                <span>•</span>
+                <span>🔒 Strict Enterprise VPC</span>
+                <span>•</span>
+                <span>⏱ 48h Pod Match</span>
+              </div>
+            </div>
           </div>
 
           {/* Right Column: Progressive Disclosure Detail Panel */}
