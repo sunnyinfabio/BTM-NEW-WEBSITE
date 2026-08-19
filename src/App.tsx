@@ -588,11 +588,47 @@ function AppContent() {
             </div>
           </div>
 
-          {/* Bottom Copyright */}
-          <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.1)', paddingTop: '1.5rem', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', fontSize: '0.75rem', color: '#CAD7E8' }}>
+          {/* Bottom Copyright & Site Credit */}
+          <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.1)', paddingTop: '1.5rem', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '1.25rem', fontSize: '0.75rem', color: '#CAD7E8' }}>
             <div>
               © {new Date().getFullYear()} BTM Financial LLC / BTM Outsourcing. All rights reserved.
             </div>
+
+            {/* Site Credit (FabulousMedia & GoCommercially) */}
+            <div className="poweredBy">
+              <a
+                href="https://play.fabulousmedia.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="FabulousMedia"
+                className="creditLogo"
+              >
+                <img
+                  src="https://www.infabio.com/fabulous-logo.webp"
+                  alt="FabulousMedia"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = 'https://play.fabulousmedia.in/sitecredit/images/fabulousmedia.svg';
+                  }}
+                />
+              </a>
+              <div className="divider"></div>
+              <a
+                href="https://gocommercially.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GoCommercially"
+                className="creditLogo"
+              >
+                <img
+                  src="https://www.infabio.com/gocommercially-logo.webp"
+                  alt="GoCommercially"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = 'https://play.fabulousmedia.in/sitecredit/images/gocommercially.svg';
+                  }}
+                />
+              </a>
+            </div>
+
             <div style={{ display: 'flex', gap: '1.5rem' }}>
               <span style={{ cursor: 'pointer' }}>Privacy Policy</span>
               <span style={{ cursor: 'pointer' }}>Terms of Service</span>

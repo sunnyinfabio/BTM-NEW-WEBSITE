@@ -190,3 +190,59 @@ input, textarea, select {
     scroll-behavior: auto !important;
   }
 }
+
+/* ==========================================================================
+   Site Credit Component (FabulousMedia & GoCommercially)
+   ========================================================================== */
+.poweredBy {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  width: fit-content;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.creditLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  padding: 4px 7px;
+  border-radius: 6px;
+  opacity: 0.85;
+  transition: 0.35s ease;
+}
+
+.creditLogo:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(253, 181, 20, 0.5);
+}
+
+.creditLogo img {
+  height: 13px;
+  width: auto;
+  display: block;
+}
+
+.poweredBy .divider {
+  width: 1px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+  .poweredBy {
+    padding: 6px 10px;
+    gap: 8px;
+  }
+
+  .creditLogo img {
+    height: 11px;
+  }
+}
