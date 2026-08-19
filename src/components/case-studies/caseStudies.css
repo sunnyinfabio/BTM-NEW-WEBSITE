@@ -1,10 +1,10 @@
 /* ==========================================================================
-   BTM Work / Case Studies Component CSS
+   BTM Work / Case Studies Component CSS (Live BTM Outsourcing Theme)
    ========================================================================== */
 
 .btm-work-root {
   position: relative;
-  background-color: var(--background);
+  background-color: var(--surface);
   padding: clamp(4rem, 7vw, 7rem) 1.5rem;
   border-top: 1px solid var(--border);
   overflow: hidden;
@@ -25,9 +25,10 @@
 .btm-work-title {
   font-size: var(--fs-h2);
   font-weight: var(--fw-hero);
-  color: #FFFFFF;
+  color: var(--brand-navy);
   margin-bottom: 0.75rem;
   letter-spacing: -0.025em;
+  font-family: var(--font-primary);
 }
 
 .btm-work-subtitle {
@@ -44,27 +45,28 @@
 }
 
 .btm-filter-pill {
-  background: var(--surface);
+  background: #FFFFFF;
   border: 1px solid var(--border);
-  color: var(--text-secondary);
+  color: var(--brand-navy);
   font-size: var(--fs-body-sm);
   font-weight: 600;
   padding: 0.45rem 1.125rem;
   border-radius: var(--radius-full);
   cursor: pointer;
   transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
 }
 
 .btm-filter-pill:hover {
-  color: var(--text-primary);
-  border-color: var(--border-hover);
+  color: var(--brand-navy);
+  border-color: var(--brand-navy);
 }
 
 .btm-filter-pill.active {
-  background: var(--primary);
+  background: var(--brand-navy);
   color: #FFFFFF;
-  border-color: var(--primary-glow);
-  box-shadow: 0 0 16px rgba(37, 99, 235, 0.4);
+  border-color: var(--brand-navy);
+  box-shadow: 0 4px 14px rgba(11, 38, 83, 0.3);
 }
 
 /* ==========================================================================
@@ -77,19 +79,21 @@
 }
 
 .btm-case-card {
-  background: var(--surface-card);
+  background: #FFFFFF;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
 }
 
 .btm-case-card:hover {
-  border-color: var(--primary-border);
-  box-shadow: var(--shadow-lg), 0 0 30px rgba(37, 99, 235, 0.18);
+  border-color: var(--brand-navy);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
 }
 
 /* Card Image Box */
@@ -105,7 +109,7 @@
 .btm-card-image-scrim {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, transparent 30%, rgba(7, 10, 15, 0.7) 100%);
+  background: radial-gradient(circle at center, transparent 30%, rgba(11, 38, 83, 0.6) 100%);
 }
 
 .btm-card-icon-float {
@@ -127,11 +131,11 @@
   font-weight: 800;
   color: #FFFFFF;
   letter-spacing: 0.1em;
-  background: rgba(7, 10, 15, 0.75);
+  background: rgba(11, 38, 83, 0.85);
   backdrop-filter: blur(8px);
   padding: 0.25rem 0.65rem;
   border-radius: var(--radius-full);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Card Details */
@@ -145,7 +149,7 @@
 .btm-card-project-title {
   font-size: 1.15rem;
   font-weight: 700;
-  color: #FFFFFF;
+  color: var(--brand-navy);
   font-family: var(--font-primary);
   margin-bottom: 0.4rem;
 }
@@ -164,24 +168,24 @@
 
 .btm-card-tech-text {
   font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--accent-electric);
-  background: rgba(56, 189, 248, 0.08);
+  font-weight: 700;
+  color: var(--brand-navy);
+  background: rgba(11, 38, 83, 0.05);
   padding: 0.3rem 0.65rem;
   border-radius: 6px;
-  border: 1px solid rgba(56, 189, 248, 0.2);
+  border: 1px solid rgba(11, 38, 83, 0.1);
   display: inline-block;
 }
 
 .btm-card-footer-trigger {
   padding-top: 0.875rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid var(--border-subtle);
 }
 
 .btm-view-case-btn {
   font-size: 0.85rem;
   font-weight: 700;
-  color: #FFFFFF;
+  color: var(--brand-red);
   transition: color var(--transition-fast), transform var(--transition-fast);
   display: inline-flex;
   align-items: center;
@@ -189,7 +193,7 @@
 }
 
 .btm-case-card:hover .btm-view-case-btn {
-  color: var(--accent-electric);
+  color: var(--brand-navy);
   transform: translateX(4px);
 }
 
@@ -199,9 +203,9 @@
 .btm-case-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(7, 10, 15, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(11, 38, 83, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   z-index: 1100;
   display: flex;
   align-items: center;
@@ -210,8 +214,8 @@
 }
 
 .btm-case-modal-window {
-  background: var(--surface-elevated);
-  border: 1px solid var(--border-hover);
+  background: #FFFFFF;
+  border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   max-width: 960px;
   width: 100%;
@@ -220,7 +224,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  box-shadow: var(--shadow-lg), 0 0 60px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 25px 60px rgba(11, 38, 83, 0.3);
 }
 
 .btm-case-modal-topbar {
@@ -234,8 +238,8 @@
 }
 
 .btm-case-modal-close-btn {
-  color: var(--text-secondary);
-  background: rgba(255, 255, 255, 0.05);
+  color: var(--brand-navy);
+  background: #FFFFFF;
   border: 1px solid var(--border);
   width: 36px;
   height: 36px;
@@ -248,8 +252,8 @@
 }
 
 .btm-case-modal-close-btn:hover {
+  background: var(--brand-navy);
   color: #FFFFFF;
-  background: rgba(255, 255, 255, 0.12);
 }
 
 .btm-case-modal-scrollable {
@@ -267,7 +271,7 @@
 .btm-case-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, var(--surface-elevated) 0%, rgba(13, 18, 26, 0.65) 100%);
+  background: linear-gradient(to top, rgba(11, 38, 83, 0.95) 0%, rgba(11, 38, 83, 0.65) 100%);
 }
 
 .btm-case-hero-content {
@@ -280,8 +284,8 @@
   width: 60px;
   height: 60px;
   border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -291,7 +295,7 @@
 .btm-case-hero-cat {
   font-size: 0.75rem;
   font-weight: 800;
-  color: var(--accent-electric);
+  color: var(--brand-green);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   display: block;
@@ -309,7 +313,7 @@
 
 .btm-case-hero-tagline {
   font-size: var(--fs-body-lg);
-  color: var(--text-secondary);
+  color: #CAD7E8;
 }
 
 /* Metrics Ribbon */
@@ -331,13 +335,13 @@
 .btm-case-metric-value {
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 800;
-  color: var(--accent-electric);
+  color: var(--brand-navy);
   font-family: var(--font-primary);
 }
 
 .btm-case-metric-label {
   font-size: 0.75rem;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
   font-weight: 600;
 }
 
@@ -352,7 +356,7 @@
 .btm-case-section-title {
   font-size: 1.15rem;
   font-weight: 700;
-  color: #FFFFFF;
+  color: var(--brand-navy);
   font-family: var(--font-primary);
   margin-bottom: 0.6rem;
 }
@@ -390,7 +394,7 @@
 .btm-sidebar-heading {
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--text-tertiary);
+  color: var(--brand-navy);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 0.875rem;
@@ -403,11 +407,11 @@
 }
 
 .btm-tech-tag {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #FFFFFF;
+  border: 1px solid var(--border);
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--brand-navy);
   padding: 0.25rem 0.65rem;
   border-radius: 6px;
 }
@@ -424,12 +428,12 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.8rem;
-  color: var(--text-secondary);
+  color: var(--text-primary);
 }
 
 .btm-case-discuss-card {
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, var(--surface) 100%);
-  border: 1px solid var(--primary-border);
+  background: rgba(11, 38, 83, 0.04);
+  border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 1.25rem;
 }

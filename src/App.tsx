@@ -12,7 +12,7 @@ import { ProgressiveLeadGenSection } from './components/lead-gen/ProgressiveLead
 import { SolutionFinderProvider, useSolutionFinder, type GoalId } from './context/SolutionFinderContext';
 import { Button, GradientText, Badge } from './components/ui';
 import { FloatingAdvisorTrigger } from './components/ui/FloatingAdvisorTrigger';
-import { ArrowRight, ShieldCheck, Menu, X, Phone, Mail } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Menu, X } from 'lucide-react';
 
 function AppContent() {
   const [isLeadDrawerOpen, setIsLeadDrawerOpen] = useState(false);
@@ -98,14 +98,14 @@ function AppContent() {
   return (
     <div style={{ minHeight: '100vh', backgroundColor: 'var(--background)', color: 'var(--text-primary)', position: 'relative' }}>
       {/* ──────────────────────────────────────────────────────────
-          1. Clean Primary Navigation Header
+          1. Clean Primary Navigation Header (Matching Live BTM Site)
           ────────────────────────────────────────────────────────── */}
       <header
         style={{
           position: 'sticky',
           top: 0,
           zIndex: 100,
-          background: 'var(--glass-surface)',
+          background: 'rgba(255, 255, 255, 0.95)',
           backdropFilter: 'blur(16px)',
           WebkitBackdropFilter: 'blur(16px)',
           borderBottom: '1px solid var(--border)',
@@ -113,6 +113,7 @@ function AppContent() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
+          boxShadow: 'var(--shadow-sm)',
         }}
       >
         {/* Brand Logo & Tag */}
@@ -122,16 +123,12 @@ function AppContent() {
             style={{
               display: 'flex',
               alignItems: 'center',
-              background: 'rgba(255, 255, 255, 0.05)',
-              padding: '4px 10px',
-              borderRadius: '8px',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
             }}
           >
             <img
               src="https://btmoutsourcing.com/assets/images/logo/logo-dark.png"
               alt="BTM Outsourcing Logo"
-              style={{ height: '32px', width: 'auto', objectFit: 'contain' }}
+              style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
               onError={(e) => {
                 (e.target as HTMLElement).style.display = 'none';
               }}
@@ -149,38 +146,38 @@ function AppContent() {
             alignItems: 'center',
             gap: '2.25rem',
             fontSize: 'var(--fs-body-sm)',
-            fontWeight: 600,
+            fontWeight: 700,
           }}
           className="hidden md:flex"
         >
           <span
-            style={{ color: 'var(--text-secondary)', cursor: 'pointer', transition: 'color 0.2s ease' }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = '#FFFFFF')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
+            style={{ color: 'var(--brand-navy)', cursor: 'pointer', transition: 'color 0.2s ease' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-red)')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--brand-navy)')}
             onClick={() => handleNavigateSection('solution-finder')}
           >
             Solutions
           </span>
           <span
-            style={{ color: 'var(--text-secondary)', cursor: 'pointer', transition: 'color 0.2s ease' }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = '#FFFFFF')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
+            style={{ color: 'var(--brand-navy)', cursor: 'pointer', transition: 'color 0.2s ease' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-red)')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--brand-navy)')}
             onClick={() => handleNavigateSection('tech-universe')}
           >
             Technology
           </span>
           <span
-            style={{ color: 'var(--text-secondary)', cursor: 'pointer', transition: 'color 0.2s ease' }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = '#FFFFFF')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
+            style={{ color: 'var(--brand-navy)', cursor: 'pointer', transition: 'color 0.2s ease' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-red)')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--brand-navy)')}
             onClick={() => handleNavigateSection('work-showcase')}
           >
             Work
           </span>
           <span
-            style={{ color: 'var(--text-secondary)', cursor: 'pointer', transition: 'color 0.2s ease' }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = '#FFFFFF')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
+            style={{ color: 'var(--brand-navy)', cursor: 'pointer', transition: 'color 0.2s ease' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-red)')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--brand-navy)')}
             onClick={() => handleNavigateSection('why-btm')}
           >
             About
@@ -211,8 +208,8 @@ function AppContent() {
             className="md:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             style={{
-              color: '#FFFFFF',
-              background: 'rgba(255, 255, 255, 0.08)',
+              color: 'var(--brand-navy)',
+              background: 'var(--surface)',
               border: '1px solid var(--border)',
               borderRadius: '8px',
               padding: '6px',
@@ -243,36 +240,36 @@ function AppContent() {
               left: 0,
               right: 0,
               zIndex: 99,
-              background: 'rgba(13, 18, 26, 0.98)',
-              backdropFilter: 'blur(24px)',
-              borderBottom: '1px solid var(--border)',
+              background: '#FFFFFF',
+              borderBottom: '2px solid var(--brand-navy)',
               padding: '1.5rem',
               display: 'flex',
               flexDirection: 'column',
               gap: '1.25rem',
+              boxShadow: 'var(--shadow-lg)',
             }}
           >
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '1.1rem', fontWeight: 700 }}>
               <span
-                style={{ color: '#FFFFFF', cursor: 'pointer', padding: '0.5rem 0' }}
+                style={{ color: 'var(--brand-navy)', cursor: 'pointer', padding: '0.5rem 0' }}
                 onClick={() => handleNavigateSection('solution-finder')}
               >
                 1. Solutions & Goals
               </span>
               <span
-                style={{ color: '#FFFFFF', cursor: 'pointer', padding: '0.5rem 0' }}
+                style={{ color: 'var(--brand-navy)', cursor: 'pointer', padding: '0.5rem 0' }}
                 onClick={() => handleNavigateSection('tech-universe')}
               >
                 2. Technology Constellation
               </span>
               <span
-                style={{ color: '#FFFFFF', cursor: 'pointer', padding: '0.5rem 0' }}
+                style={{ color: 'var(--brand-navy)', cursor: 'pointer', padding: '0.5rem 0' }}
                 onClick={() => handleNavigateSection('work-showcase')}
               >
                 3. Enterprise Work (8 Case Studies)
               </span>
               <span
-                style={{ color: '#FFFFFF', cursor: 'pointer', padding: '0.5rem 0' }}
+                style={{ color: 'var(--brand-navy)', cursor: 'pointer', padding: '0.5rem 0' }}
                 onClick={() => handleNavigateSection('why-btm')}
               >
                 4. Why Choose BTM (Proof & Process)
@@ -302,7 +299,7 @@ function AppContent() {
       </AnimatePresence>
 
       {/* ──────────────────────────────────────────────────────────
-          The Final Pure Flow (Detailed info lives behind interactions)
+          The Final Pure Flow
           ────────────────────────────────────────────────────────── */}
       <main>
         {/* 1. HERO SECTION: "WHAT ARE YOU BUILDING NEXT?" + 3D TECH WORLD */}
@@ -365,20 +362,21 @@ function AppContent() {
       />
 
       {/* ──────────────────────────────────────────────────────────
-          Enterprise Footer (Real BTM Headquarters & APAC Center)
+          Corporate Enterprise Footer (Authentic BTM Deep Navy Theme)
           ────────────────────────────────────────────────────────── */}
       <footer
         style={{
-          backgroundColor: 'var(--surface-elevated)',
-          borderTop: '1px solid var(--border)',
-          padding: '4rem 1.5rem 2rem 1.5rem',
+          backgroundColor: '#0B2653',
+          color: '#FFFFFF',
+          borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+          padding: '4.5rem 1.5rem 2.5rem 1.5rem',
         }}
       >
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '2.5rem', marginBottom: '3rem' }}>
             {/* Col 1: BTM Overview */}
             <div>
-              <div style={{ marginBottom: '1rem', display: 'inline-block', background: 'rgba(255, 255, 255, 0.05)', padding: '4px 10px', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+              <div style={{ marginBottom: '1.25rem', display: 'inline-block', background: 'rgba(255, 255, 255, 0.1)', padding: '6px 12px', borderRadius: '8px' }}>
                 <img
                   src="https://btmoutsourcing.com/assets/images/logo/logo-dark.png"
                   alt="BTM Outsourcing Logo"
@@ -388,10 +386,10 @@ function AppContent() {
                   }}
                 />
               </div>
-              <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1rem' }}>
+              <p style={{ fontSize: '0.85rem', color: '#CAD7E8', lineHeight: 1.6, marginBottom: '1rem' }}>
                 Interactive Technology Advisor & elite software engineering partner. Delivering high-throughput platforms, dedicated agile pods, and production AI architectures.
               </p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.75rem', color: '#10B981' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.75rem', color: '#00C881' }}>
                 <ShieldCheck size={16} />
                 <span>100% Strict NDA Protection & Top 1% Vetted Talent</span>
               </div>
@@ -399,48 +397,48 @@ function AppContent() {
 
             {/* Col 2: US Corporate Office */}
             <div>
-              <h4 style={{ color: '#FFFFFF', fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1rem' }}>
+              <h4 style={{ color: '#FFFFFF', fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1rem' }}>
                 US Corporate Headquarters
               </h4>
-              <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5, marginBottom: '0.75rem' }}>
+              <p style={{ fontSize: '0.8rem', color: '#CAD7E8', lineHeight: 1.5, marginBottom: '0.75rem' }}>
                 4 Canterbury Road, Denville,<br />
                 NJ -07834, United States
               </p>
-              <p style={{ fontSize: '0.8rem', color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
-                <a href="tel:+18624371138" style={{ color: 'var(--accent-electric)', textDecoration: 'none' }}>
+              <p style={{ fontSize: '0.8rem', color: '#FFFFFF', marginBottom: '0.35rem' }}>
+                <a href="tel:+18624371138" style={{ color: '#00C881', textDecoration: 'none', fontWeight: 700 }}>
                   📞 +1-862-437-1138
                 </a>
               </p>
-              <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+              <p style={{ fontSize: '0.8rem', color: '#CAD7E8' }}>
                 ✉ cs@btm-financial.com
               </p>
             </div>
 
             {/* Col 3: India Delivery Center */}
             <div>
-              <h4 style={{ color: '#FFFFFF', fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1rem' }}>
+              <h4 style={{ color: '#FFFFFF', fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1rem' }}>
                 APAC Delivery & Engineering Center
               </h4>
-              <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5, marginBottom: '0.75rem' }}>
+              <p style={{ fontSize: '0.8rem', color: '#CAD7E8', lineHeight: 1.5, marginBottom: '0.75rem' }}>
                 Unit No. 807, Tower-B4, Spaze I Tech Park,<br />
                 Sector-49, Sohna Road, Gurgaon Haryana, India (122018)
               </p>
-              <p style={{ fontSize: '0.8rem', color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
-                <a href="tel:+911244104312" style={{ color: 'var(--accent-electric)', textDecoration: 'none' }}>
+              <p style={{ fontSize: '0.8rem', color: '#FFFFFF', marginBottom: '0.35rem' }}>
+                <a href="tel:+911244104312" style={{ color: '#00C881', textDecoration: 'none', fontWeight: 700 }}>
                   📞 +91-124-410-4312
                 </a>
               </p>
-              <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+              <p style={{ fontSize: '0.8rem', color: '#CAD7E8' }}>
                 ✉ infocs@btm-financial.com
               </p>
             </div>
 
             {/* Col 4: Solutions & Leadership */}
             <div>
-              <h4 style={{ color: '#FFFFFF', fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1rem' }}>
+              <h4 style={{ color: '#FFFFFF', fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1rem' }}>
                 Core Capabilities
               </h4>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.8rem', color: '#CAD7E8' }}>
                 <li>• Top 1% IT Staff Augmentation</li>
                 <li>• Dedicated Agile Engineering Pods</li>
                 <li>• Custom SaaS & Web Application Build</li>
@@ -451,14 +449,14 @@ function AppContent() {
           </div>
 
           {/* Bottom Copyright */}
-          <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1.5rem', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>
+          <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.1)', paddingTop: '1.5rem', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', fontSize: '0.75rem', color: '#CAD7E8' }}>
             <div>
               © {new Date().getFullYear()} BTM Financial LLC / BTM Outsourcing. All rights reserved.
             </div>
             <div style={{ display: 'flex', gap: '1.5rem' }}>
-              <span>Privacy Policy</span>
-              <span>Terms of Service</span>
-              <span>Security & Compliance</span>
+              <span style={{ cursor: 'pointer' }}>Privacy Policy</span>
+              <span style={{ cursor: 'pointer' }}>Terms of Service</span>
+              <span style={{ cursor: 'pointer' }}>Security & Compliance</span>
             </div>
           </div>
         </div>

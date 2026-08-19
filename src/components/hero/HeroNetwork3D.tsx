@@ -18,7 +18,7 @@ const TECH_NODES: TechNode[] = [
     category: 'Full-Lifecycle',
     description: 'Autonomous end-to-end product architecture & delivery',
     position: [0, 2, 0],
-    color: 0x38bdf8, // Electric blue
+    color: 0xec1c24, // BTM Red
     connections: ['web', 'mobile', 'cloud', 'engineering', 'ai'],
   },
   {
@@ -27,7 +27,7 @@ const TECH_NODES: TechNode[] = [
     category: 'Intelligence',
     description: 'Enterprise AI, NLP, RPA & predictive document models',
     position: [0, 22, -4],
-    color: 0xa855f7, // Violet
+    color: 0x0b2653, // BTM Navy
     connections: ['data', 'product', 'cloud'],
   },
   {
@@ -36,7 +36,7 @@ const TECH_NODES: TechNode[] = [
     category: 'Infrastructure',
     description: 'Scalable AWS, Azure & Google Cloud microservices',
     position: [24, 12, -6],
-    color: 0x06b6d4, // Cyan
+    color: 0x00c881, // BTM Green
     connections: ['product', 'engineering', 'data'],
   },
   {
@@ -45,7 +45,7 @@ const TECH_NODES: TechNode[] = [
     category: 'Analytics',
     description: 'High-throughput analytics, Big Data & enterprise SQL',
     position: [22, -14, 2],
-    color: 0x10b981, // Emerald
+    color: 0x0e2b5c, // BTM Deep Blue
     connections: ['ai', 'cloud', 'engineering'],
   },
   {
@@ -54,7 +54,7 @@ const TECH_NODES: TechNode[] = [
     category: 'Top 1% Talent',
     description: 'Pre-vetted senior software engineers & dedicated pods',
     position: [0, -20, 4],
-    color: 0x3b82f6, // Primary Blue
+    color: 0x00c881, // BTM Green
     connections: ['product', 'web', 'mobile', 'data'],
   },
   {
@@ -63,7 +63,7 @@ const TECH_NODES: TechNode[] = [
     category: 'iOS & Android',
     description: 'Native & cross-platform React Native / Flutter apps',
     position: [-22, -12, 6],
-    color: 0x38bdf8, // Electric blue
+    color: 0x0b2653, // BTM Navy
     connections: ['product', 'engineering', 'web'],
   },
   {
@@ -72,7 +72,7 @@ const TECH_NODES: TechNode[] = [
     category: 'Modern Web',
     description: 'High-performance React, TypeScript & full-stack web portals',
     position: [-24, 14, -2],
-    color: 0x06b6d4, // Cyan
+    color: 0x0e2b5c, // BTM Deep Blue
     connections: ['product', 'mobile', 'cloud'],
   },
 ];
@@ -125,11 +125,11 @@ export const HeroNetwork3D: React.FC<{ className?: string }> = ({ className = ''
 
     TECH_NODES.forEach((node) => {
       const nodeScale = isMobile ? 0.75 : 1;
-      const geo = new THREE.SphereGeometry((node.id === 'product' ? 3.2 : 2.5) * nodeScale, 24, 24);
+      const geo = new THREE.SphereGeometry((node.id === 'product' ? 3.4 : 2.6) * nodeScale, 24, 24);
       const mat = new THREE.MeshBasicMaterial({
         color: node.color,
         transparent: true,
-        opacity: 0.9,
+        opacity: 0.95,
       });
 
       const mesh = new THREE.Mesh(geo, mat);
@@ -144,7 +144,7 @@ export const HeroNetwork3D: React.FC<{ className?: string }> = ({ className = ''
       const glowMat = new THREE.MeshBasicMaterial({
         color: node.color,
         transparent: true,
-        opacity: 0.22,
+        opacity: 0.18,
         wireframe: true,
       });
       const glowMesh = new THREE.Mesh(glowGeo, glowMat);
@@ -177,191 +177,163 @@ export const HeroNetwork3D: React.FC<{ className?: string }> = ({ className = ''
     const linesGroup = new THREE.Group();
     networkGroup.add(linesGroup);
 
-    linePairs.forEach(([start, end, color]) => {
+    linePairs.forEach(([start, end]) => {
       const lineGeo = new THREE.BufferGeometry().setFromPoints([start, end]);
       const lineMat = new THREE.LineBasicMaterial({
-        color: 0x38bdf8,
+        color: 0x0b2653,
         transparent: true,
-        opacity: 0.28,
-        blending: THREE.AdditiveBlending,
+        opacity: 0.35,
       });
       const line = new THREE.Line(lineGeo, lineMat);
       linesGroup.add(line);
     });
 
-    // Ambient floating particles around the network
-    const ambientCount = isMobile ? 35 : 70;
-    const ambientGeo = new THREE.BufferGeometry();
-    const ambientPositions = new Float32Array(ambientCount * 3);
-    for (let i = 0; i < ambientCount * 3; i += 3) {
-      ambientPositions[i] = (Math.random() - 0.5) * 80;
-      ambientPositions[i + 1] = (Math.random() - 0.5) * 80;
-      ambientPositions[i + 2] = (Math.random() - 0.5) * 40;
-    }
-    ambientGeo.setAttribute('position', new THREE.BufferAttribute(ambientPositions, 3));
-    const ambientMat = new THREE.PointsMaterial({
-      color: 0x94a3b8,
-      size: 1.2,
-      transparent: true,
-      opacity: 0.4,
-    });
-    const ambientPoints = new THREE.Points(ambientGeo, ambientMat);
-    networkGroup.add(ambientPoints);
+    // Ambient floating particles
+    const particleCount = isMobile ? 35 : 75;
+    const particleGeo = new THREE.BufferGeometry();
+    const particlePos = new Float32Array(particleCount * 3);
 
-    // Raycasting & Interaction
+    for (let i = 0; i < particleCount * 3; i += 3) {
+      particlePos[i] = (Math.random() - 0.5) * 120;
+      particlePos[i + 1] = (Math.random() - 0.5) * 100;
+      particlePos[i + 2] = (Math.random() - 0.5) * 60;
+    }
+
+    particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
+    const particleMat = new THREE.PointsMaterial({
+      color: 0x00c881,
+      size: isMobile ? 1.2 : 1.8,
+      transparent: true,
+      opacity: 0.45,
+    });
+    const particleSystem = new THREE.Points(particleGeo, particleMat);
+    networkGroup.add(particleSystem);
+
+    // Mouse Interaction
     const raycaster = new THREE.Raycaster();
-    const mouse = new THREE.Vector2(-999, -999);
+    const mouse = new THREE.Vector2();
     let targetRotationX = 0;
     let targetRotationY = 0;
 
-    const onPointerMove = (e: PointerEvent) => {
+    const onMouseMove = (event: MouseEvent) => {
       const rect = container.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / container.clientWidth) * 2 - 1;
-      const y = -(((e.clientY - rect.top) / container.clientHeight) * 2 - 1);
+      const x = ((event.clientX - rect.left) / width) * 2 - 1;
+      const y = -((event.clientY - rect.top) / height) * 2 + 1;
+
       mouse.x = x;
       mouse.y = y;
 
-      targetRotationY = x * 0.25;
-      targetRotationX = -y * 0.2;
+      targetRotationY = x * 0.4;
+      targetRotationX = -y * 0.3;
 
-      // Tooltip position in DOM
-      setTooltipPos({
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      });
-    };
-
-    container.addEventListener('pointermove', onPointerMove);
-
-    // Resize
-    const onResize = () => {
-      if (!container) return;
-      const w = container.clientWidth;
-      const h = container.clientHeight;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
-    };
-
-    window.addEventListener('resize', onResize);
-
-    // Animation Loop
-    let animationId: number;
-    let clock = new THREE.Clock();
-
-    const animate = () => {
-      animationId = requestAnimationFrame(animate);
-      const elapsedTime = clock.getElapsedTime();
-
-      // Smooth rotation with mouse damping
-      networkGroup.rotation.y += (targetRotationY - networkGroup.rotation.y) * 0.05;
-      networkGroup.rotation.x += (targetRotationX - networkGroup.rotation.x) * 0.05;
-
-      // Gentle continuous ambient breathing
-      const idleAngle = elapsedTime * 0.25;
-      networkGroup.position.y = Math.sin(idleAngle) * 1.5;
-
-      // Pulse halos
-      Object.keys(glowMeshes).forEach((id, idx) => {
-        const gm = glowMeshes[id];
-        const scalePulse = 1 + Math.sin(elapsedTime * 2 + idx * 0.8) * 0.08;
-        gm.scale.set(scalePulse, scalePulse, scalePulse);
-      });
-
-      // Raycast test
+      // Raycast for node hover
       raycaster.setFromCamera(mouse, camera);
       const intersects = raycaster.intersectObjects(nodeObjects);
 
       if (intersects.length > 0) {
-        const hit = intersects[0].object as THREE.Mesh;
-        const data = hit.userData.nodeData as TechNode;
-        setHoveredNode(data);
-        hit.scale.lerp(new THREE.Vector3(1.35, 1.35, 1.35), 0.2);
+        const hitMesh = intersects[0].object as THREE.Mesh;
+        const nodeData = hitMesh.userData.nodeData as TechNode;
+        setHoveredNode(nodeData);
+        setTooltipPos({
+          x: event.clientX - rect.left + 15,
+          y: event.clientY - rect.top - 20,
+        });
         document.body.style.cursor = 'pointer';
       } else {
         setHoveredNode(null);
-        nodeObjects.forEach((obj) => {
-          obj.scale.lerp(new THREE.Vector3(1, 1, 1), 0.1);
-        });
         document.body.style.cursor = 'default';
       }
+    };
+
+    container.addEventListener('mousemove', onMouseMove);
+
+    // Animation Loop
+    let animationFrameId: number;
+    let clock = new THREE.Clock();
+
+    const animate = () => {
+      animationFrameId = requestAnimationFrame(animate);
+      const elapsedTime = clock.getElapsedTime();
+
+      // Smooth rotation towards target with slow idle drift
+      networkGroup.rotation.y += (targetRotationY + Math.sin(elapsedTime * 0.3) * 0.15 - networkGroup.rotation.y) * 0.05;
+      networkGroup.rotation.x += (targetRotationX + Math.cos(elapsedTime * 0.2) * 0.1 - networkGroup.rotation.x) * 0.05;
+
+      // Pulse nodes slightly
+      Object.keys(nodeMeshes).forEach((id, idx) => {
+        const mesh = nodeMeshes[id];
+        const glow = glowMeshes[id];
+        const scaleOffset = Math.sin(elapsedTime * 2 + idx) * 0.08 + 1;
+        mesh.scale.set(scaleOffset, scaleOffset, scaleOffset);
+        if (glow) {
+          glow.scale.set(scaleOffset * 1.05, scaleOffset * 1.05, scaleOffset * 1.05);
+          glow.rotation.y += 0.005;
+        }
+      });
+
+      // Slowly rotate particle field
+      particleSystem.rotation.y = elapsedTime * 0.02;
 
       renderer.render(scene, camera);
     };
 
     animate();
 
+    // Resize Handler
+    const onResize = () => {
+      if (!container) return;
+      const newWidth = container.clientWidth;
+      const newHeight = container.clientHeight;
+      camera.aspect = newWidth / newHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(newWidth, newHeight);
+    };
+
+    window.addEventListener('resize', onResize);
+
     return () => {
-      cancelAnimationFrame(animationId);
-      container.removeEventListener('pointermove', onPointerMove);
+      cancelAnimationFrame(animationFrameId);
+      container.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('resize', onResize);
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
       }
-      document.body.style.cursor = 'default';
       renderer.dispose();
     };
   }, []);
 
-  return (
-    <div
-      ref={containerRef}
-      className={`relative w-full h-full flex items-center justify-center ${className}`}
-      style={{ minHeight: '440px', position: 'relative' }}
-    >
-      {/* Fallback for environments where WebGL is unsupported */}
-      {!hasWebGL && (
-        <div className="flex flex-col items-center justify-center p-6 text-center text-slate-400">
-          <div className="w-16 h-16 rounded-full border border-blue-500/30 flex items-center justify-center mb-3">
-            <span className="text-blue-400 font-bold text-xl">BTM</span>
-          </div>
-          <p className="text-sm font-semibold text-slate-200">Connected Engineering Matrix</p>
-          <p className="text-xs text-slate-500 mt-1">AI • Cloud • Data • Product • Web • Mobile</p>
-        </div>
-      )}
+  if (!hasWebGL) {
+    return (
+      <div
+        className={`flex items-center justify-center h-full w-full bg-slate-50 rounded-xl border border-slate-200 text-slate-700 text-sm ${className}`}
+      >
+        <span className="font-semibold text-slate-800">BTM Interactive Capability Matrix (Active)</span>
+      </div>
+    );
+  }
 
-      {/* Interactive Tooltip Badge on Node Hover */}
+  return (
+    <div ref={containerRef} className={`relative w-full h-full select-none ${className}`}>
+      {/* Interactive Tooltip on Node Hover */}
       {hoveredNode && (
         <div
-          className="absolute pointer-events-none z-30 transition-all duration-150"
           style={{
+            position: 'absolute',
             left: `${tooltipPos.x}px`,
-            top: `${tooltipPos.y - 80}px`,
+            top: `${tooltipPos.y}px`,
+            pointerEvents: 'none',
+            zIndex: 30,
             transform: 'translate(-50%, -100%)',
           }}
+          className="bg-[#0B2653]/95 backdrop-blur-md border border-white/20 p-3 rounded-lg shadow-xl text-white max-w-xs transition-all duration-75"
         >
-          <div
-            style={{
-              background: 'rgba(13, 18, 26, 0.95)',
-              border: '1px solid rgba(59, 130, 246, 0.5)',
-              boxShadow: '0 8px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(37, 99, 235, 0.35)',
-              borderRadius: '12px',
-              padding: '0.625rem 1rem',
-              backdropFilter: 'blur(12px)',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
-              <span
-                style={{
-                  width: '8px',
-                  height: '8px',
-                  borderRadius: '50%',
-                  backgroundColor: `#${hoveredNode.color.toString(16).padStart(6, '0')}`,
-                  display: 'inline-block',
-                }}
-              />
-              <span style={{ fontSize: '0.875rem', fontWeight: 700, color: '#F8FAFC' }}>
-                {hoveredNode.name}
-              </span>
-              <span style={{ fontSize: '0.7rem', color: '#38BDF8', background: 'rgba(56, 189, 248, 0.15)', padding: '0.1rem 0.4rem', borderRadius: '4px' }}>
-                {hoveredNode.category}
-              </span>
-            </div>
-            <p style={{ fontSize: '0.75rem', color: '#94A3B8', margin: 0, maxWidth: '220px', whiteSpace: 'normal', lineHeight: 1.3 }}>
-              {hoveredNode.description}
-            </p>
+          <div className="flex items-center justify-between gap-2 mb-1">
+            <span className="font-bold text-sm text-white font-primary">{hoveredNode.name}</span>
+            <span className="text-[10px] uppercase tracking-wider font-semibold text-emerald-400 bg-emerald-500/20 px-1.5 py-0.5 rounded">
+              {hoveredNode.category}
+            </span>
           </div>
+          <p className="text-xs text-slate-200 leading-snug">{hoveredNode.description}</p>
         </div>
       )}
     </div>

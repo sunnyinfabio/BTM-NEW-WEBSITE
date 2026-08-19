@@ -1,10 +1,10 @@
 /* ==========================================================================
-   BTM Why Companies Choose BTM (Proof • Process • People) Interactive CSS
+   BTM Why Companies Choose BTM (Live BTM Outsourcing Theme)
    ========================================================================== */
 
 .btm-why-root {
   position: relative;
-  background-color: var(--surface);
+  background-color: var(--background);
   padding: clamp(4rem, 7vw, 7rem) 1.5rem;
   border-top: 1px solid var(--border);
   overflow: hidden;
@@ -25,9 +25,10 @@
 .btm-why-title {
   font-size: var(--fs-h2);
   font-weight: var(--fw-hero);
-  color: #FFFFFF;
+  color: var(--brand-navy);
   margin-bottom: 0.75rem;
   letter-spacing: -0.025em;
+  font-family: var(--font-primary);
 }
 
 .btm-why-subtitle {
@@ -45,7 +46,7 @@
 }
 
 .btm-why-mode-btn {
-  background: var(--surface-card);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-full);
   padding: 0.6rem 1.35rem;
@@ -54,31 +55,31 @@
   gap: 0.5rem;
   font-size: var(--fs-body-sm);
   font-weight: 700;
-  color: var(--text-secondary);
+  color: var(--brand-navy);
   cursor: pointer;
   transition: all var(--transition-fast);
 }
 
 .btm-why-mode-btn:hover {
-  border-color: var(--border-hover);
-  color: var(--text-primary);
-  background: var(--surface-elevated);
+  border-color: var(--brand-navy);
+  color: var(--brand-navy);
+  background: #FFFFFF;
 }
 
 .btm-why-mode-btn.active {
-  background: var(--primary);
-  border-color: var(--primary-glow);
+  background: var(--brand-navy);
+  border-color: var(--brand-navy);
   color: #FFFFFF;
-  box-shadow: 0 0 18px rgba(37, 99, 235, 0.4);
+  box-shadow: 0 4px 14px rgba(11, 38, 83, 0.3);
 }
 
 /* Dynamic Interactive Stage */
 .btm-why-interactive-canvas {
-  background: var(--surface-elevated);
-  border: 1px solid var(--border-hover);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   padding: clamp(1.5rem, 4vw, 2.75rem);
-  box-shadow: var(--shadow-lg), 0 0 50px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--shadow-md);
   min-height: 480px;
 }
 
@@ -99,7 +100,7 @@
 }
 
 .btm-scrubber-node {
-  background: var(--surface);
+  background: #FFFFFF;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 1rem 1.15rem;
@@ -110,17 +111,18 @@
   cursor: pointer;
   transition: all var(--transition-fast);
   text-align: left;
+  box-shadow: var(--shadow-sm);
 }
 
 .btm-scrubber-node:hover {
-  border-color: var(--border-hover);
-  background: var(--surface-card);
+  border-color: var(--brand-navy);
+  transform: translateY(-2px);
 }
 
 .btm-scrubber-node.active {
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.22) 0%, var(--surface-card) 100%);
-  border-color: var(--primary-glow);
-  box-shadow: 0 0 18px rgba(37, 99, 235, 0.3);
+  background: #FFFFFF;
+  border-color: var(--brand-red);
+  box-shadow: 0 0 0 2px var(--brand-red), var(--shadow-md);
 }
 
 .btm-scrubber-top {
@@ -133,20 +135,20 @@
 .btm-scrubber-hour {
   font-size: 0.85rem;
   font-weight: 800;
-  color: var(--accent-electric);
+  color: var(--brand-navy);
   font-family: var(--font-primary);
 }
 
 .btm-scrubber-badge {
   font-size: 0.65rem;
-  color: var(--text-tertiary);
-  font-weight: 700;
+  color: var(--brand-green);
+  font-weight: 800;
   text-transform: uppercase;
 }
 
 .btm-scrubber-title {
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-primary);
   line-height: 1.3;
 }
@@ -160,20 +162,21 @@
 }
 
 .btm-step-details-box {
-  background: var(--surface);
+  background: #FFFFFF;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: clamp(1.5rem, 3vw, 2.25rem);
   display: flex;
   flex-direction: column;
+  box-shadow: var(--shadow-sm);
 }
 
 .btm-step-pill-accent {
   font-size: 0.75rem;
   font-weight: 800;
-  color: var(--accent-cyan);
-  background: rgba(6, 182, 212, 0.12);
-  border: 1px solid rgba(6, 182, 212, 0.3);
+  color: var(--brand-navy);
+  background: rgba(11, 38, 83, 0.08);
+  border: 1px solid rgba(11, 38, 83, 0.2);
   padding: 0.2rem 0.6rem;
   border-radius: var(--radius-full);
 }
@@ -196,13 +199,13 @@
 
 /* Terminal Artifact Box */
 .btm-step-terminal-box {
-  background: #05080D;
+  background: var(--brand-navy);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+  box-shadow: var(--shadow-md);
 }
 
 .btm-terminal-topbar {
@@ -210,14 +213,14 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 1rem;
-  background: rgba(255, 255, 255, 0.03);
-  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .btm-terminal-filename {
   font-size: 0.75rem;
   font-family: monospace;
-  color: var(--text-secondary);
+  color: #CAD7E8;
 }
 
 .btm-terminal-code-body {
@@ -226,7 +229,7 @@
   flex: 1;
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 0.8rem;
-  color: #38BDF8;
+  color: #00C881;
   line-height: 1.6;
   white-space: pre-wrap;
   overflow-x: auto;
@@ -249,27 +252,28 @@
 }
 
 .btm-filter-pill-btn {
-  background: var(--surface);
+  background: #FFFFFF;
   border: 1px solid var(--border);
-  color: var(--text-secondary);
+  color: var(--brand-navy);
   font-size: var(--fs-body-sm);
   font-weight: 600;
   padding: 0.4rem 1rem;
   border-radius: var(--radius-full);
   cursor: pointer;
   transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
 }
 
 .btm-filter-pill-btn:hover {
-  color: #FFFFFF;
-  border-color: var(--border-hover);
+  color: var(--brand-navy);
+  border-color: var(--brand-navy);
 }
 
 .btm-filter-pill-btn.active {
-  background: var(--primary);
-  border-color: var(--primary-glow);
+  background: var(--brand-navy);
+  border-color: var(--brand-navy);
   color: #FFFFFF;
-  box-shadow: 0 0 14px rgba(37, 99, 235, 0.4);
+  box-shadow: 0 4px 14px rgba(11, 38, 83, 0.3);
 }
 
 .btm-proof-cards-grid {
@@ -279,18 +283,18 @@
 }
 
 .btm-proof-telemetry-card {
-  background: var(--surface);
+  background: #FFFFFF;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
+  box-shadow: var(--shadow-sm);
   transition: all var(--transition-fast);
 }
 
 .btm-proof-telemetry-card:hover {
-  border-color: var(--border-hover);
-  background: var(--surface-card);
+  border-color: var(--brand-navy);
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
 }
@@ -299,8 +303,8 @@
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid;
+  background: rgba(11, 38, 83, 0.05);
+  border: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -309,8 +313,9 @@
 .btm-proof-sla-badge {
   font-size: 0.7rem;
   font-weight: 700;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border-subtle);
+  background: rgba(0, 200, 129, 0.1);
+  color: #00875A;
+  border: 1px solid rgba(0, 200, 129, 0.25);
   padding: 0.25rem 0.55rem;
   border-radius: var(--radius-full);
 }
@@ -319,6 +324,7 @@
   font-size: clamp(2rem, 3.5vw, 2.5rem);
   font-weight: 800;
   font-family: var(--font-primary);
+  color: var(--brand-navy);
   line-height: 1.1;
   margin-bottom: 0.25rem;
 }
@@ -326,13 +332,13 @@
 .btm-proof-card-label {
   font-size: 1rem;
   font-weight: 700;
-  color: #FFFFFF;
+  color: var(--brand-navy);
   font-family: var(--font-primary);
 }
 
 .btm-proof-sub-value {
   font-size: 0.75rem;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
   margin-bottom: 0.875rem;
 }
 
@@ -350,7 +356,7 @@
   align-items: center;
   gap: 1rem;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--border);
 }
 
 /* ==========================================================================
@@ -375,19 +381,20 @@
 }
 
 .btm-matrix-col.traditional {
-  background: var(--surface);
+  background: #FFFFFF;
   border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
 }
 
 .btm-matrix-col.advisor {
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.16) 0%, var(--surface-card) 100%);
-  border: 1px solid var(--primary-border);
-  box-shadow: 0 0 35px rgba(37, 99, 235, 0.18);
+  background: #FFFFFF;
+  border: 2px solid var(--brand-navy);
+  box-shadow: var(--shadow-md);
 }
 
 .btm-matrix-col-header {
   padding-bottom: 1.25rem;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border);
   margin-bottom: 1.5rem;
 }
 
@@ -405,9 +412,9 @@
 .btm-matrix-badge-good {
   font-size: 0.7rem;
   font-weight: 700;
-  color: var(--accent-electric);
-  background: var(--primary-subtle);
-  border: 1px solid var(--primary-border);
+  color: #00875A;
+  background: rgba(0, 200, 129, 0.1);
+  border: 1px solid rgba(0, 200, 129, 0.3);
   padding: 0.2rem 0.5rem;
   border-radius: var(--radius-full);
   display: inline-block;
@@ -434,7 +441,7 @@
 }
 
 .btm-good-check {
-  color: #38BDF8;
+  color: #00C881;
   font-weight: 800;
   font-size: 0.9rem;
 }

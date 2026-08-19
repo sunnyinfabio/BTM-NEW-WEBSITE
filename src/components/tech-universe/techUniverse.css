@@ -1,10 +1,10 @@
 /* ==========================================================================
-   BTM Technology Universe Component CSS
+   BTM Technology Universe Component CSS (Live BTM Outsourcing Theme)
    ========================================================================== */
 
 .btm-techuniverse-root {
   position: relative;
-  background-color: var(--surface);
+  background-color: var(--background);
   padding: clamp(4rem, 7vw, 7rem) 1.5rem;
   border-top: 1px solid var(--border);
   overflow: hidden;
@@ -25,9 +25,10 @@
 .btm-techuniverse-title {
   font-size: var(--fs-h2);
   font-weight: var(--fw-hero);
-  color: #FFFFFF;
+  color: var(--brand-navy);
   margin-bottom: 0.75rem;
   letter-spacing: -0.025em;
+  font-family: var(--font-primary);
 }
 
 .btm-techuniverse-subtitle {
@@ -45,7 +46,7 @@
 }
 
 .btm-universe-chip {
-  background: var(--surface-card);
+  background: #FFFFFF;
   border: 1px solid var(--border);
   border-radius: var(--radius-full);
   padding: 0.5rem 1.125rem;
@@ -54,27 +55,28 @@
   gap: 0.5rem;
   font-size: var(--fs-body-sm);
   font-weight: 600;
-  color: var(--text-secondary);
+  color: var(--brand-navy);
   cursor: pointer;
   transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
 }
 
 .btm-universe-chip:hover {
-  border-color: var(--border-hover);
-  color: var(--text-primary);
-  background: var(--surface-elevated);
+  border-color: var(--brand-navy);
+  color: var(--brand-navy);
+  background: var(--surface);
 }
 
 .btm-universe-chip.active {
-  background: var(--primary);
-  border-color: var(--primary-glow);
+  background: var(--brand-navy);
+  border-color: var(--brand-navy);
   color: #FFFFFF;
-  box-shadow: 0 0 16px rgba(37, 99, 235, 0.4);
+  box-shadow: 0 4px 14px rgba(11, 38, 83, 0.3);
 }
 
 .btm-chip-indicator {
   font-size: 0.55rem;
-  color: #38BDF8;
+  color: var(--brand-green);
 }
 
 /* ==========================================================================
@@ -89,13 +91,13 @@
 
 /* Left Column: Visual Node Constellation Box */
 .btm-universe-constellation-box {
-  background: var(--surface-card);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-sm);
   position: relative;
   min-height: 480px;
 }
@@ -105,7 +107,7 @@
   justify-content: space-between;
   align-items: center;
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border);
 }
 
 .btm-constellation-status {
@@ -113,15 +115,16 @@
   align-items: center;
   gap: 0.5rem;
   font-size: var(--fs-caption);
-  color: var(--text-secondary);
+  color: var(--brand-navy);
+  font-weight: 700;
 }
 
 .btm-live-node-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: var(--accent-cyan);
-  box-shadow: 0 0 10px var(--accent-cyan);
+  background-color: var(--brand-green);
+  box-shadow: 0 0 8px var(--brand-green);
   animation: pulse-node 2s infinite;
 }
 
@@ -130,143 +133,149 @@
   color: var(--text-tertiary);
 }
 
-/* SVG Constellation Area */
-.btm-constellation-diagram {
-  position: relative;
+.btm-svg-graph-container {
   flex: 1;
-  width: 100%;
-  height: 100%;
-  min-height: 380px;
-}
-
-.btm-constellation-svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.btm-constellation-line {
-  stroke: rgba(59, 130, 246, 0.28);
-  stroke-width: 0.75;
-  stroke-dasharray: 2 1;
-}
-
-.btm-constellation-node-btn {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.35rem;
-  cursor: pointer;
-  z-index: 10;
-  outline: none;
-  background: none;
-  border: none;
-}
-
-.btm-node-icon-circle {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--surface-elevated);
-  border: 2px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1rem 0;
+}
+
+.btm-constellation-svg {
+  width: 100%;
+  height: 100%;
+  max-height: 380px;
+  overflow: visible;
+}
+
+/* SVG Line & Node Styles */
+.btm-constellation-line {
+  stroke: rgba(11, 38, 83, 0.15);
+  stroke-width: 2;
   transition: all var(--transition-fast);
 }
 
-.btm-constellation-node-btn:hover .btm-node-icon-circle {
-  transform: scale(1.18);
-  border-color: var(--accent-electric);
+.btm-constellation-line.connected-active {
+  stroke: var(--brand-navy);
+  stroke-width: 2.5;
+  stroke-dasharray: 4 2;
 }
 
-.btm-constellation-node-btn.selected .btm-node-icon-circle {
-  transform: scale(1.22);
-  background: var(--surface-highlight);
+.btm-node-group {
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+  outline: none;
 }
 
-.btm-node-floating-label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  background: rgba(7, 10, 15, 0.85);
-  backdrop-filter: blur(6px);
-  padding: 0.2rem 0.5rem;
-  border-radius: var(--radius-full);
+.btm-node-group:hover,
+.btm-node-group.active {
+  transform: scale(1.1);
+}
+
+.btm-node-glow-ring {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  opacity: 0.3;
+}
+
+.btm-node-circle {
+  fill: #FFFFFF;
+  stroke: currentColor;
+  stroke-width: 3;
+  transition: all var(--transition-fast);
+  filter: drop-shadow(0 2px 8px rgba(11, 38, 83, 0.15));
+}
+
+.btm-node-group.active .btm-node-circle {
+  fill: currentColor;
+}
+
+.btm-node-text-svg {
+  font-family: var(--font-primary);
+  font-size: 11px;
+  font-weight: 800;
+  fill: var(--brand-navy);
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+
+.btm-node-group.active .btm-node-text-svg {
+  fill: #FFFFFF;
+}
+
+/* Right Column: Dynamic Detail Panel */
+.btm-universe-detail-box {
+  background: #FFFFFF;
   border: 1px solid var(--border);
-  white-space: nowrap;
-}
-
-/* ==========================================================================
-   Right Column: Progressive Detail Panel
-   ========================================================================== */
-.btm-universe-detail-panel {
-  width: 100%;
-}
-
-.btm-detail-panel-card {
-  background: var(--surface-elevated);
-  border: 1px solid var(--border-hover);
   border-radius: var(--radius-xl);
-  padding: clamp(1.75rem, 4vw, 2.75rem);
-  box-shadow: var(--shadow-lg), 0 0 50px rgba(37, 99, 235, 0.12);
+  padding: clamp(1.75rem, 3.5vw, 2.5rem);
   display: flex;
   flex-direction: column;
-  height: 100%;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
 }
 
-.btm-detail-header {
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 1.75rem;
+.btm-detail-top-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-.btm-detail-cat {
-  font-size: var(--fs-caption);
+.btm-detail-icon-bubble {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btm-detail-category-badge {
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 0.25rem;
 }
 
 .btm-detail-title {
   font-size: clamp(1.35rem, 2.5vw, 1.85rem);
   font-weight: 800;
-  color: #FFFFFF;
+  color: var(--brand-navy);
   font-family: var(--font-primary);
-  margin-bottom: 0.4rem;
 }
 
-.btm-detail-tagline {
+.btm-detail-desc {
   font-size: var(--fs-body);
   color: var(--text-secondary);
-  line-height: 1.45;
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
 }
 
 .btm-detail-section-heading {
-  font-size: var(--fs-caption);
+  font-size: 0.8rem;
   font-weight: 700;
-  color: var(--text-tertiary);
+  color: var(--brand-navy);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 1rem;
 }
 
-/* Stack List */
-.btm-detail-stack-section {
-  margin-bottom: 1.75rem;
+/* Stacks 2-Col Grid */
+.btm-detail-stacks-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.875rem;
+  margin-bottom: 2rem;
 }
 
-.btm-detail-stack-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.btm-stack-item-card {
+.btm-stack-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -302,14 +311,14 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.8rem;
-  color: var(--text-secondary);
+  font-size: 0.85rem;
+  color: var(--text-primary);
 }
 
 .btm-detail-footer-action {
   margin-top: auto;
   padding-top: 1.25rem;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--border);
 }
 
 @keyframes pulse-node {

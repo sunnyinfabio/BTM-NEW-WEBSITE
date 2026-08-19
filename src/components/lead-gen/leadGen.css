@@ -1,29 +1,29 @@
 /* ==========================================================================
-   BTM Progressive Lead Generation (Drawer & Section) CSS
+   BTM Progressive Lead Generation Component Styles (Live BTM Theme)
    ========================================================================== */
 
 /* Drawer Backdrop & Panel */
 .btm-leadgen-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(7, 10, 15, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(11, 38, 83, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   z-index: 1200;
   display: flex;
   justify-content: flex-end;
 }
 
 .btm-leadgen-panel {
-  background: var(--surface-elevated);
-  border-left: 1px solid var(--border-hover);
+  background: #FFFFFF;
+  border-left: 1px solid var(--border);
   width: 100%;
   max-width: 540px;
   height: 100%;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  box-shadow: -10px 0 50px rgba(0, 0, 0, 0.8);
+  box-shadow: -10px 0 50px rgba(11, 38, 83, 0.2);
   position: relative;
 }
 
@@ -42,20 +42,20 @@
 .btm-leadgen-step-tag {
   font-size: var(--fs-caption);
   font-weight: 700;
-  color: var(--accent-electric);
+  color: var(--brand-navy);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  background: var(--primary-subtle);
+  background: #FFFFFF;
   padding: 0.25rem 0.65rem;
   border-radius: var(--radius-full);
-  border: 1px solid var(--primary-border);
+  border: 1px solid var(--border);
 }
 
 .btm-leadgen-back-btn,
 .btm-leadgen-close-btn {
-  background: rgba(255, 255, 255, 0.05);
+  background: #FFFFFF;
   border: 1px solid var(--border);
-  color: var(--text-secondary);
+  color: var(--brand-navy);
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -68,71 +68,94 @@
 
 .btm-leadgen-back-btn:hover,
 .btm-leadgen-close-btn:hover {
+  background: var(--brand-navy);
   color: #FFFFFF;
-  background: rgba(255, 255, 255, 0.12);
 }
 
 .btm-leadgen-body {
-  padding: clamp(1.5rem, 3.5vw, 2.5rem);
+  padding: 1.75rem;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  flex: 1;
 }
 
-/* Context Capsule */
-.btm-leadgen-context-capsule {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 1rem 1.25rem;
-  box-shadow: var(--shadow-sm);
-}
-
-.btm-capsule-items-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 0.5rem;
-}
-
-.btm-capsule-pill {
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-  background: rgba(255, 255, 255, 0.04);
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  border: 1px solid var(--border-subtle);
-}
-
-/* Typography in Form */
-.btm-leadgen-prompt-title {
-  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
-  font-weight: 800;
-  color: #FFFFFF;
-  font-family: var(--font-primary);
-  line-height: 1.25;
-  margin-bottom: 0.5rem;
-}
-
-.btm-leadgen-prompt-desc {
-  font-size: var(--fs-body-sm);
-  color: var(--text-secondary);
-  line-height: 1.5;
+.btm-leadgen-heading-wrap {
   margin-bottom: 1.5rem;
 }
 
-/* Form Elements */
+.btm-leadgen-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--brand-navy);
+  font-family: var(--font-primary);
+  line-height: 1.2;
+  margin-bottom: 0.4rem;
+}
+
+.btm-leadgen-subtitle {
+  font-size: var(--fs-body-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Context Badge Box */
+.btm-leadgen-context-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.btm-context-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--brand-navy);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.btm-context-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--brand-navy);
+  margin-bottom: 0.35rem;
+}
+
+.btm-context-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.btm-context-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.btm-context-mini-tag {
+  font-size: 0.75rem;
+  color: var(--brand-navy);
+  font-weight: 600;
+}
+
+/* Form Controls */
 .btm-leadgen-form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .btm-input-grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.875rem;
+  gap: 1rem;
 }
 
 .btm-input-wrap {
@@ -142,21 +165,34 @@
 }
 
 .btm-lead-label {
-  font-size: var(--fs-caption);
-  font-weight: 600;
-  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--brand-navy);
+}
+
+.btm-input-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.btm-lead-input-icon {
+  position: absolute;
+  left: 0.875rem;
+  color: var(--text-tertiary);
+  pointer-events: none;
 }
 
 .btm-lead-input,
 .btm-lead-select,
 .btm-lead-textarea {
   width: 100%;
-  background: var(--surface);
+  background: #FFFFFF;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 0.75rem 1rem;
   font-size: var(--fs-body-sm);
-  color: #FFFFFF;
+  color: var(--text-primary);
   font-family: var(--font-secondary);
   transition: all var(--transition-fast);
   outline: none;
@@ -165,19 +201,18 @@
 .btm-lead-input:focus,
 .btm-lead-select:focus,
 .btm-lead-textarea:focus {
-  border-color: var(--border-focus);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
-  background: var(--surface-highlight);
+  border-color: var(--brand-navy);
+  box-shadow: 0 0 0 3px rgba(11, 38, 83, 0.12);
 }
 
 .btm-lead-select option {
-  background: var(--surface-elevated);
-  color: #FFFFFF;
+  background: #FFFFFF;
+  color: var(--text-primary);
 }
 
 .btm-error-msg {
   font-size: 0.75rem;
-  color: var(--status-error);
+  color: #EF4444;
   margin-top: 0.25rem;
 }
 
@@ -187,9 +222,9 @@
   gap: 0.4rem;
   margin-top: 1.5rem;
   padding-top: 1.25rem;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--border);
   font-size: 0.75rem;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
 }
 
 /* Success Card */
@@ -205,8 +240,8 @@
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: rgba(16, 185, 129, 0.12);
-  border: 1px solid rgba(16, 185, 129, 0.35);
+  background: rgba(0, 200, 129, 0.12);
+  border: 1px solid rgba(0, 200, 129, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -216,7 +251,7 @@
 .btm-success-title {
   font-size: 1.45rem;
   font-weight: 800;
-  color: #FFFFFF;
+  color: var(--brand-navy);
   font-family: var(--font-primary);
   margin-bottom: 0.5rem;
 }
@@ -250,7 +285,7 @@
   align-items: flex-start;
   gap: 0.75rem;
   font-size: 0.8rem;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   line-height: 1.4;
 }
 
@@ -258,100 +293,92 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: var(--primary);
+  background: var(--brand-navy);
   color: #FFFFFF;
   font-size: 0.7rem;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  shrink: 0;
-}
-
-.btm-success-direct-call {
-  border-top: 1px solid var(--border-subtle);
-  padding-top: 1rem;
-  width: 100%;
+  flex-shrink: 0;
 }
 
 .btm-phone-bubble {
   font-size: 0.75rem;
-  padding: 0.4rem 0.8rem;
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.05);
+  font-weight: 700;
+  color: var(--brand-navy);
+  background: #FFFFFF;
   border: 1px solid var(--border);
-  color: var(--text-primary);
-  transition: all var(--transition-fast);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  text-decoration: none;
 }
 
 .btm-phone-bubble:hover {
-  background: rgba(56, 189, 248, 0.12);
-  border-color: var(--accent-electric);
-  color: #FFFFFF;
+  border-color: var(--brand-navy);
 }
 
-/* ==========================================================================
-   Progressive Lead Gen Section (In-Page Bottom Conversion Funnel)
-   ========================================================================== */
+/* In-Page Lead Generation Section */
 .btm-leadgen-section-root {
-  position: relative;
-  background-color: var(--background);
-  padding: clamp(5rem, 8vw, 8rem) 1.5rem;
+  background: var(--surface);
+  padding: clamp(4.5rem, 7vw, 7.5rem) 1.5rem;
   border-top: 1px solid var(--border);
+  position: relative;
   overflow: hidden;
 }
 
 .btm-leadgen-section-container {
-  max-width: 960px;
+  max-width: 900px;
   margin: 0 auto;
-  width: 100%;
 }
 
-.btm-leadgen-section-box {
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.12) 0%, var(--surface-card) 60%, var(--surface-elevated) 100%);
-  border: 1px solid var(--primary-border);
-  border-radius: var(--radius-2xl);
-  padding: clamp(2rem, 5vw, 4rem);
-  box-shadow: var(--shadow-lg), 0 0 60px rgba(37, 99, 235, 0.18);
+.btm-leadgen-section-card {
+  background: #FFFFFF;
+  border: 1.5px solid var(--brand-navy);
+  border-radius: var(--radius-xl);
+  padding: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 4vw, 3rem);
   text-align: center;
+  box-shadow: var(--shadow-lg);
+  position: relative;
 }
 
-.btm-leadgen-section-header {
-  max-width: 680px;
-  margin: 0 auto 2.5rem auto;
+.btm-leadgen-section-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-navy) 0%, var(--brand-red) 50%, var(--brand-green) 100%);
 }
 
-.btm-leadgen-section-title {
-  font-size: clamp(1.65rem, 3vw, 2.5rem);
+.btm-section-lead-title {
+  font-size: clamp(1.6rem, 3.2vw, 2.35rem);
   font-weight: 800;
-  color: #FFFFFF;
+  color: var(--brand-navy);
   font-family: var(--font-primary);
-  line-height: 1.2;
   margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
 }
 
-.btm-leadgen-section-subtitle {
+.btm-section-lead-subtitle {
   font-size: var(--fs-body-lg);
   color: var(--text-secondary);
-}
-
-/* Single Email Row (Step 1) */
-.btm-section-single-email-form {
   max-width: 620px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  margin: 0 auto 2.25rem auto;
 }
 
+/* Email Row Box */
 .btm-section-email-row {
+  max-width: 620px;
+  margin: 0 auto 1.5rem auto;
   display: flex;
-  gap: 0.625rem;
+  align-items: center;
+  gap: 0.5rem;
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1.5px solid var(--border);
   padding: 0.45rem;
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
 }
 
 .btm-section-email-input {
@@ -360,7 +387,7 @@
   border: none;
   padding: 0.75rem 1rem;
   font-size: var(--fs-body);
-  color: #FFFFFF;
+  color: var(--text-primary);
   outline: none;
   font-family: var(--font-secondary);
 }
@@ -382,23 +409,8 @@
   align-items: center;
   gap: 0.75rem;
   font-size: 0.75rem;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
   margin-top: 0.5rem;
-}
-
-/* Expanded Form (Step 2) */
-.btm-section-expanded-form {
-  max-width: 620px;
-  margin: 0 auto;
-  text-align: left;
-}
-
-/* Confirmed Card (Step 3) */
-.btm-section-confirmed-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1.5rem 0;
 }
 
 /* Responsive (< 640px) */

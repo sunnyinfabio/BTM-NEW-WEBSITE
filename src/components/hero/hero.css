@@ -1,28 +1,28 @@
 /* ==========================================================================
-   BTM Hero Section Styles (Responsive & Performance Optimized)
+   BTM Hero Section Styles (Live BTM Outsourcing Color Scheme)
    ========================================================================== */
 
 .btm-hero-root {
   position: relative;
-  min-height: 90vh;
+  min-height: 85vh;
   width: 100%;
   background-color: var(--background);
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: clamp(3rem, 6vw, 6rem) 1.5rem;
+  padding: clamp(3.5rem, 6vw, 6rem) 1.5rem;
 }
 
 /* Ambient Radial Glows & Grid Layer */
 .btm-hero-ambient-glow {
   position: absolute;
-  top: -15%;
-  right: 10%;
-  width: clamp(350px, 50vw, 750px);
-  height: clamp(350px, 50vw, 750px);
+  top: -10%;
+  right: 5%;
+  width: clamp(350px, 45vw, 650px);
+  height: clamp(350px, 45vw, 650px);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(37, 99, 235, 0.28) 0%, rgba(6, 182, 212, 0.12) 40%, rgba(7, 10, 15, 0) 70%);
-  filter: blur(100px);
+  background: radial-gradient(circle, rgba(0, 200, 129, 0.12) 0%, rgba(11, 38, 83, 0.06) 40%, rgba(255, 255, 255, 0) 70%);
+  filter: blur(80px);
   pointer-events: none;
   z-index: 1;
 }
@@ -32,8 +32,8 @@
   inset: 0;
   background-size: 48px 48px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    linear-gradient(to right, rgba(11, 38, 83, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(11, 38, 83, 0.03) 1px, transparent 1px);
   mask-image: radial-gradient(ellipse 80% 65% at 50% 35%, #000 50%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 80% 65% at 50% 35%, #000 50%, transparent 100%);
   pointer-events: none;
@@ -41,12 +41,7 @@
 }
 
 .btm-hero-noise-layer {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
-  background-size: 20px 20px;
-  pointer-events: none;
-  z-index: 1;
+  display: none;
 }
 
 /* Layout Container */
@@ -78,31 +73,32 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(37, 99, 235, 0.12);
-  border: 1px solid rgba(59, 130, 246, 0.35);
+  background: rgba(0, 200, 129, 0.08);
+  border: 1px solid rgba(0, 200, 129, 0.3);
   border-radius: var(--radius-full);
   padding: 0.375rem 1rem;
   font-family: var(--font-ui);
   font-size: var(--fs-caption);
-  font-weight: var(--fw-label);
-  letter-spacing: 0.12em;
-  color: var(--accent-electric);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #00875A;
   text-transform: uppercase;
 }
 
 .btm-hero-headline {
   font-size: var(--fs-hero);
-  font-weight: var(--fw-hero);
+  font-weight: 800;
   line-height: var(--lh-tight);
   letter-spacing: -0.03em;
-  color: #FFFFFF;
-  margin-bottom: 1.5rem;
+  color: var(--brand-navy);
+  margin-bottom: 1.25rem;
+  font-family: var(--font-primary);
 }
 
 .btm-hero-description {
   font-size: var(--fs-body-lg);
   color: var(--text-secondary);
-  line-height: var(--lh-relaxed);
+  line-height: var(--lh-normal);
   max-width: 540px;
   margin-bottom: 2.25rem;
 }
@@ -113,7 +109,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 2.75rem;
+  margin-bottom: 2.5rem;
 }
 
 .btm-hero-primary-btn {
@@ -133,71 +129,80 @@
   align-items: center;
   gap: 1.5rem;
   padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--border);
 }
 
 .btm-trust-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-family: var(--font-ui);
   font-size: var(--fs-body-sm);
-  color: var(--text-secondary);
+  font-weight: 600;
+  color: var(--brand-navy);
 }
 
 .btm-trust-icon {
-  color: var(--accent-electric);
+  color: var(--brand-green);
+  flex-shrink: 0;
 }
 
 .btm-trust-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: var(--accent-cyan);
+  background-color: var(--brand-red);
 }
 
-/* Right Column: Visual Frame */
+/* Right Column: Visual Housing */
 .btm-hero-visual {
-  width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
 }
 
 .btm-hero-visual-card {
   width: 100%;
-  max-width: 580px;
   background: var(--surface-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
-  padding: 1.25rem;
-  position: relative;
-  box-shadow: var(--shadow-lg), 0 0 40px rgba(37, 99, 235, 0.12);
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  box-shadow: var(--shadow-lg);
   display: flex;
   flex-direction: column;
+  gap: 0.875rem;
 }
 
 .btm-visual-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 0.75rem 0.75rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .btm-visual-status-pill {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-family: var(--font-ui);
   font-size: var(--fs-caption);
-  font-weight: 600;
-  color: var(--text-primary);
+  font-weight: 700;
+  color: var(--brand-navy);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
 }
 
 .btm-live-indicator-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: #10B981;
-  box-shadow: 0 0 10px #10B981;
+  background-color: var(--brand-green);
+  box-shadow: 0 0 8px var(--brand-green);
   animation: pulse-dot 2s infinite;
 }
 
@@ -212,7 +217,7 @@
   height: 380px;
   overflow: hidden;
   border-radius: var(--radius-md);
-  background: radial-gradient(circle at center, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle at center, rgba(11, 38, 83, 0.03) 0%, transparent 70%);
 }
 
 .btm-visual-tags-bar {
@@ -222,10 +227,10 @@
   align-items: center;
   gap: 0.5rem;
   padding-top: 0.75rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid var(--border-subtle);
   font-size: 0.75rem;
-  color: var(--text-tertiary);
-  font-weight: 500;
+  color: var(--text-secondary);
+  font-weight: 600;
 }
 
 @keyframes pulse-dot {
@@ -233,9 +238,7 @@
   50% { opacity: 0.4; transform: scale(0.85); }
 }
 
-/* ==========================================================================
-   Mobile Responsive Ordering & Scaling (< 1024px)
-   ========================================================================== */
+/* Responsive (< 1024px) */
 @media (max-width: 1023px) {
   .btm-hero-container {
     grid-template-columns: 1fr;
