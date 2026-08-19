@@ -115,9 +115,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <div className="btm-hero-visual-card">
             {/* Visual Header Indicator */}
             <div className="btm-visual-header">
-              <div className="btm-visual-status-pill">
-                <span className="btm-live-indicator-dot" />
-                <span>Interactive Capability Matrix</span>
+              <div className="btm-live-badge-premium">
+                <span className="btm-live-pulsing-dot" />
+                <span className="btm-live-badge-text">LIVE TECHNOLOGY ECOSYSTEM</span>
               </div>
               <span className="btm-visual-hint">Hover nodes to inspect</span>
             </div>
