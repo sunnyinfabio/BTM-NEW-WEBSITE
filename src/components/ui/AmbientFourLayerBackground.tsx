@@ -17,6 +17,19 @@ export const AmbientFourLayerBackground: React.FC<{ className?: string }> = ({ c
     let targetScrollProgress = 0;
     let smoothScrollProgress = 0;
 
+    // Mouse Tracking for subtle cursor reaction in Hero
+    let mouseX = -1000;
+    let mouseY = -1000;
+    let targetMouseX = -1000;
+    let targetMouseY = -1000;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      targetMouseX = e.clientX;
+      targetMouseY = e.clientY;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+
     const handleScroll = () => {
       const scrollY = window.scrollY || window.pageYOffset;
       const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
@@ -38,15 +51,14 @@ export const AmbientFourLayerBackground: React.FC<{ className?: string }> = ({ c
     handleResize();
     window.addEventListener('resize', handleResize);
 
-    // Dynamic Pool of Nodes (Supports expansion in Technology Section)
-    const maxNodes = window.innerWidth < 768 ? 24 : 44;
+    // Dynamic Pool of Nodes
+    const maxNodes = window.innerWidth < 768 ? 26 : 46;
     const nodes = Array.from({ length: maxNodes }, (_, i) => {
-      // Structured target coordinates (Isometric grid for Industries Section)
       const cols = 6;
       const row = Math.floor(i / cols);
       const col = i % cols;
-      const structX = 12 + col * 15 + (row % 2 === 0 ? 4 : -4);
-      const structY = 15 + row * 16;
+      const structX = 10 + col * 16 + (row % 2 === 0 ? 4 : -4);
+      const structY = 14 + row * 16;
 
       return {
         x: Math.random() * 100,
@@ -55,28 +67,30 @@ export const AmbientFourLayerBackground: React.FC<{ className?: string }> = ({ c
         originY: Math.random() * 100,
         structX,
         structY,
-        vx: (Math.random() - 0.5) * 0.035,
-        vy: (Math.random() - 0.5) * 0.035,
+        vx: (Math.random() - 0.5) * 0.032,
+        vy: (Math.random() - 0.5) * 0.032,
         radius: 2 + Math.random() * 1.5,
-        tier: i < 18 ? 'hero' : i < 30 ? 'standard' : 'tech-dense',
       };
     });
 
     // Particle Packets pool
-    const packetCount = 28;
+    const packetCount = 32;
     const dataPackets = Array.from({ length: packetCount }, () => ({
       fromNode: 0,
       toNode: 1,
       progress: Math.random(),
-      speed: 0.003 + Math.random() * 0.005,
+      speed: 0.003 + Math.random() * 0.004,
       size: 2.2,
-      active: true,
     }));
 
     const render = () => {
       time += 0.015;
       smoothScrollProgress += (targetScrollProgress - smoothScrollProgress) * 0.07;
       const p = smoothScrollProgress;
+
+      // Mouse smooth interpolation
+      mouseX += (targetMouseX - mouseX) * 0.06;
+      mouseY += (targetMouseY - mouseY) * 0.06;
 
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const width = canvas.width / dpr;
@@ -85,82 +99,83 @@ export const AmbientFourLayerBackground: React.FC<{ className?: string }> = ({ c
       ctx.clearRect(0, 0, width, height);
 
       // ────────────────────────────────────────────────────────
-      // SCROLL-REACTIVE ENVIRONMENT PARAMETERS
+      // HERO = 100% INTENSITY vs REST OF WEBSITE = 35–45%
       // ────────────────────────────────────────────────────────
-      // Section stages:
-      // 0.0 - 0.18: Hero (Visible: Aurora + Mesh + Particles)
-      // 0.18 - 0.38: Solution Section (Softer background for card readability)
-      // 0.38 - 0.58: Industries (Mesh becomes structured lattice)
-      // 0.58 - 0.76: Technology (More nodes & dense constellation links)
-      // 0.76 - 0.88: Case Studies (Particles become softer & serene)
-      // 0.88 - 1.0: Final CTA (Network converges towards center CTA)
-
-      let auroraOpacity = 0.75;
-      let meshAlpha = 0.16;
-      let particleBrightness = 0.95;
-      let particleGlow = 8;
+      let auroraOpacity = 0.95; // 100% in Hero
+      let meshAlpha = 0.28;     // 100% in Hero
+      let particleBrightness = 1.0;
+      let particleGlow = 12;
+      let waveOpacity = 0.055;
       let structureBias = 0.0;
-      let nodeActiveRatio = 0.65; // ~28 nodes in Hero
+      let nodeActiveRatio = 0.85;
+      let activePacketRatio = 1.0;
       let convergence = 0.0;
-      let waveOpacity = 0.035;
 
-      if (p < 0.18) {
-        // Hero: High visibility
-        auroraOpacity = 0.85;
-        meshAlpha = 0.18;
+      if (p < 0.15) {
+        // ── HERO: 100% Maximum Spectacle ──
+        auroraOpacity = 0.95;
+        meshAlpha = 0.28;
         particleBrightness = 1.0;
-        particleGlow = 9;
-        nodeActiveRatio = 0.65;
+        particleGlow = 12;
+        waveOpacity = 0.055;
+        nodeActiveRatio = 0.85;
+        activePacketRatio = 1.0;
         structureBias = 0.0;
-      } else if (p >= 0.18 && p < 0.38) {
-        // Solution Section: Softer for focus on interactive cards
-        const sub = (p - 0.18) / 0.2;
-        auroraOpacity = 0.85 - sub * 0.45; // drops to 0.40
-        meshAlpha = 0.18 - sub * 0.1; // drops to 0.08
-        particleBrightness = 1.0 - sub * 0.55;
+      } else if (p >= 0.15 && p < 0.35) {
+        // ── TRANSITION TO REST OF SITE (Drops to 35-40%) ──
+        const sub = (p - 0.15) / 0.2;
+        auroraOpacity = 0.95 - sub * 0.58; // drops to 0.37
+        meshAlpha = 0.28 - sub * 0.19;     // drops to 0.09
+        particleBrightness = 1.0 - sub * 0.6; // drops to 0.40
+        particleGlow = 12 - sub * 8;       // drops to 4
+        waveOpacity = 0.055 - sub * 0.035; // drops to 0.02
+        nodeActiveRatio = 0.85 - sub * 0.3; // drops to 0.55
+        activePacketRatio = 1.0 - sub * 0.6; // drops to 0.40
+      } else if (p >= 0.35 && p < 0.58) {
+        // ── INDUSTRIES (Structured 40% Intensity) ──
+        const sub = (p - 0.35) / 0.23;
+        auroraOpacity = 0.38 + sub * 0.07;
+        meshAlpha = 0.10 + sub * 0.04;
+        structureBias = sub * 0.7;
+        particleBrightness = 0.45 + sub * 0.15;
         particleGlow = 4;
-        nodeActiveRatio = 0.5;
-        structureBias = 0.0;
-      } else if (p >= 0.38 && p < 0.58) {
-        // Industries: Structured lattice
-        const sub = (p - 0.38) / 0.2;
-        auroraOpacity = 0.4 + sub * 0.25;
-        meshAlpha = 0.08 + sub * 0.07;
-        structureBias = sub * 0.75; // morphs into structured mesh
-        particleBrightness = 0.65 + sub * 0.2;
-        particleGlow = 6;
+        waveOpacity = 0.022;
         nodeActiveRatio = 0.65;
+        activePacketRatio = 0.45;
       } else if (p >= 0.58 && p < 0.76) {
-        // Technology: More nodes appear & dense constellation
+        // ── TECHNOLOGY UNIVERSE (45% Density Expansion) ──
         const sub = (p - 0.58) / 0.18;
-        auroraOpacity = 0.65 + sub * 0.15;
-        meshAlpha = 0.15 + sub * 0.08; // deepens to 0.23
-        nodeActiveRatio = 0.65 + sub * 0.35; // scales to 100% all 44 nodes!
-        structureBias = 0.75 - sub * 0.65; // returns to organic cosmos
-        particleBrightness = 1.0;
-        particleGlow = 10;
-        waveOpacity = 0.05;
+        auroraOpacity = 0.45 + sub * 0.1;
+        meshAlpha = 0.14 + sub * 0.06;
+        nodeActiveRatio = 0.65 + sub * 0.35; // all nodes appear
+        structureBias = 0.7 - sub * 0.6;
+        particleBrightness = 0.6 + sub * 0.25;
+        particleGlow = 6;
+        waveOpacity = 0.03;
+        activePacketRatio = 0.65;
       } else if (p >= 0.76 && p < 0.88) {
-        // Case Studies: Particles become softer & calmer
+        // ── CASE STUDIES (35% Softer & Serene) ──
         const sub = (p - 0.76) / 0.12;
-        auroraOpacity = 0.55 - sub * 0.15;
-        meshAlpha = 0.16 - sub * 0.06;
-        nodeActiveRatio = 0.7;
-        particleBrightness = 0.8 - sub * 0.45; // softer particles
+        auroraOpacity = 0.42 - sub * 0.07;
+        meshAlpha = 0.12 - sub * 0.04; // drops to 0.08
+        particleBrightness = 0.5 - sub * 0.2; // soft 0.3
         particleGlow = 2;
-        waveOpacity = 0.025;
+        waveOpacity = 0.018;
+        nodeActiveRatio = 0.6;
+        activePacketRatio = 0.35;
       } else {
-        // Final CTA: Convergence toward CTA center
+        // ── FINAL CTA (Convergence) ──
         const sub = (p - 0.88) / 0.12;
         convergence = sub;
-        auroraOpacity = 0.45 + sub * 0.35;
-        meshAlpha = 0.12 + sub * 0.12;
-        particleBrightness = 0.5 + sub * 0.5;
-        particleGlow = 12 * sub;
-        nodeActiveRatio = 0.85;
+        auroraOpacity = 0.38 + sub * 0.32;
+        meshAlpha = 0.10 + sub * 0.12;
+        particleBrightness = 0.4 + sub * 0.4;
+        particleGlow = 3 + sub * 8;
+        nodeActiveRatio = 0.8;
+        activePacketRatio = 0.6;
       }
 
-      // Update Aurora Container Opacity
+      // Sync Aurora Container Opacity
       if (auroraContainer) {
         auroraContainer.style.opacity = `${auroraOpacity}`;
       }
@@ -185,18 +200,17 @@ export const AmbientFourLayerBackground: React.FC<{ className?: string }> = ({ c
           ctx.lineTo(x, y);
         }
 
-        ctx.strokeStyle = `rgba(0, 200, 129, ${waveOpacity + Math.sin(time + waveIdx) * 0.01})`;
+        ctx.strokeStyle = `rgba(0, 200, 129, ${waveOpacity + Math.sin(time + waveIdx) * 0.008})`;
         ctx.lineWidth = 1.8 + waveIdx * 0.6;
         ctx.stroke();
       });
 
       // ────────────────────────────────────────────────────────
-      // LAYER 2: Digital Mesh with Scroll Structure & Convergence
+      // LAYER 2: Digital Mesh + Cursor Reaction in Hero
       // ────────────────────────────────────────────────────────
       const activeCount = Math.floor(nodes.length * nodeActiveRatio);
       const activeConnections: { p1: { x: number; y: number }; p2: { x: number; y: number } }[] = [];
 
-      // CTA Convergence target point (center bottom where CTA card sits)
       const ctaTargetX = width * 0.5;
       const ctaTargetY = height * 0.72;
 
@@ -209,14 +223,24 @@ export const AmbientFourLayerBackground: React.FC<{ className?: string }> = ({ c
         if (node.originX < 0 || node.originX > 100) node.vx *= -1;
         if (node.originY < 0 || node.originY > 100) node.vy *= -1;
 
-        // Structured blend (Industries phase)
+        // Structured blend
         let currentX = node.originX * (1 - structureBias) + node.structX * structureBias;
         let currentY = node.originY * (1 - structureBias) + node.structY * structureBias;
 
-        // Convergence blend (Final CTA phase)
         let px = (currentX / 100) * width;
         let py = (currentY / 100) * height;
 
+        // Subtle Cursor Reaction (Active primarily in Hero screen)
+        if (p < 0.2 && mouseX > 0) {
+          const distToMouse = Math.hypot(px - mouseX, py - mouseY);
+          if (distToMouse < 220 && distToMouse > 0) {
+            const force = (1 - distToMouse / 220) * 22 * (1 - p / 0.2);
+            px += ((px - mouseX) / distToMouse) * force;
+            py += ((py - mouseY) / distToMouse) * force;
+          }
+        }
+
+        // Convergence blend (Final CTA)
         if (convergence > 0) {
           px = px * (1 - convergence * 0.6) + ctaTargetX * (convergence * 0.6);
           py = py * (1 - convergence * 0.6) + ctaTargetY * (convergence * 0.6);
@@ -239,7 +263,7 @@ export const AmbientFourLayerBackground: React.FC<{ className?: string }> = ({ c
             ctx.moveTo(px, py);
             ctx.lineTo(x2, y2);
             ctx.strokeStyle = `rgba(11, 38, 83, ${alpha})`;
-            ctx.lineWidth = 1;
+            ctx.lineWidth = p < 0.15 ? 1.2 : 1;
             ctx.stroke();
 
             activeConnections.push({ p1: { x: px, y: py }, p2: { x: x2, y: y2 } });
@@ -248,18 +272,45 @@ export const AmbientFourLayerBackground: React.FC<{ className?: string }> = ({ c
 
         // Draw node points
         ctx.beginPath();
-        ctx.arc(px, py, node.radius, 0, Math.PI * 2);
+        ctx.arc(px, py, node.radius * (p < 0.15 ? 1.15 : 1), 0, Math.PI * 2);
         ctx.fillStyle = `rgba(11, 38, 83, ${meshAlpha * 1.5})`;
         ctx.fill();
       }
 
       // ────────────────────────────────────────────────────────
-      // LAYER 3: Data Particles with Reactive Brightness & Velocity
+      // HERO SPECIAL: Brighter Central Nexus Node (Active in Hero)
       // ────────────────────────────────────────────────────────
+      if (p < 0.22) {
+        const heroCoreAlpha = 1 - p / 0.22;
+        const coreX = width * 0.68;
+        const coreY = height * 0.46;
+
+        // Core central pulse node
+        ctx.beginPath();
+        ctx.arc(coreX, coreY, 7, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 200, 129, ${0.9 * heroCoreAlpha})`;
+        ctx.shadowColor = '#00C881';
+        ctx.shadowBlur = 18 * heroCoreAlpha;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+
+        // Outer ambient halo ring
+        ctx.beginPath();
+        ctx.arc(coreX, coreY, 20 + Math.sin(time * 2.5) * 3, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(0, 200, 129, ${0.35 * heroCoreAlpha})`;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      }
+
+      // ────────────────────────────────────────────────────────
+      // LAYER 3: Data Particles (Traveling along mesh)
+      // ────────────────────────────────────────────────────────
+      const activePacketLimit = Math.floor(dataPackets.length * activePacketRatio);
       if (activeConnections.length > 0 && particleBrightness > 0.05) {
-        dataPackets.forEach((dp, idx) => {
+        for (let idx = 0; idx < activePacketLimit; idx++) {
+          const dp = dataPackets[idx];
           const conn = activeConnections[idx % activeConnections.length];
-          if (!conn) return;
+          if (!conn) continue;
 
           dp.progress += dp.speed * (p >= 0.76 && p < 0.88 ? 0.6 : 1.0);
           if (dp.progress > 1) dp.progress = 0;
@@ -268,7 +319,7 @@ export const AmbientFourLayerBackground: React.FC<{ className?: string }> = ({ c
           const py = conn.p1.y + (conn.p2.y - conn.p1.y) * dp.progress;
 
           ctx.beginPath();
-          ctx.arc(px, py, dp.size, 0, Math.PI * 2);
+          ctx.arc(px, py, dp.size * (p < 0.15 ? 1.2 : 1), 0, Math.PI * 2);
           ctx.fillStyle = `rgba(0, 200, 129, ${particleBrightness})`;
 
           if (particleGlow > 0) {
@@ -277,7 +328,7 @@ export const AmbientFourLayerBackground: React.FC<{ className?: string }> = ({ c
           }
           ctx.fill();
           ctx.shadowBlur = 0;
-        });
+        }
       }
 
       animId = requestAnimationFrame(render);
@@ -287,6 +338,7 @@ export const AmbientFourLayerBackground: React.FC<{ className?: string }> = ({ c
 
     return () => {
       cancelAnimationFrame(animId);
+      window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
     };
@@ -294,14 +346,14 @@ export const AmbientFourLayerBackground: React.FC<{ className?: string }> = ({ c
 
   return (
     <div className={`btm-ambient-atmosphere-root ${className}`} aria-hidden="true">
-      {/* LAYER 1: Aurora Glow with Scroll-Reactive Opacity */}
+      {/* LAYER 1: Aurora Glow */}
       <div ref={auroraRef} className="btm-aurora-glow-layer">
         <div className="btm-aurora-blob blue" />
         <div className="btm-aurora-blob purple" />
         <div className="btm-aurora-blob cyan" />
       </div>
 
-      {/* LAYERS 2, 3, 4: Dynamic Scroll-Reactive Canvas */}
+      {/* LAYERS 2, 3, 4: Dynamic Canvas */}
       <canvas ref={canvasRef} className="btm-atmosphere-canvas" />
     </div>
   );
