@@ -304,3 +304,33 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 640px) {
+  .btm-solution-finder-root {
+    padding: 3rem 1rem;
+  }
+
+  .btm-finder-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .btm-pathway-inner-card {
+    padding: 1.25rem;
+  }
+
+  .btm-pathway-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .btm-pathway-quick-meta {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .btm-pathway-action-box {
+    padding: 1.25rem;
+  }
+}

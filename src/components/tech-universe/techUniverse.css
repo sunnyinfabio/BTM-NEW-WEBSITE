@@ -323,3 +323,32 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 640px) {
+  .btm-techuniverse-root {
+    padding: 3rem 1rem;
+  }
+
+  .btm-universe-constellation-box {
+    min-height: 340px;
+    padding: 1rem;
+  }
+
+  .btm-universe-detail-box {
+    padding: 1.25rem;
+  }
+
+  .btm-detail-stacks-grid {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .btm-universe-chips-row {
+    gap: 0.35rem;
+  }
+
+  .btm-universe-chip {
+    padding: 0.4rem 0.85rem;
+    font-size: 0.75rem;
+  }
+}

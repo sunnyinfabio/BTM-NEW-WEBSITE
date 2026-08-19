@@ -403,6 +403,26 @@
 
 /* Responsive (< 640px) */
 @media (max-width: 639px) {
+  .btm-leadgen-panel {
+    max-width: 100vw;
+  }
+
+  .btm-leadgen-topbar {
+    padding: 1rem 1.25rem;
+  }
+
+  .btm-leadgen-body {
+    padding: 1.25rem;
+  }
+
+  .btm-leadgen-section-root {
+    padding: 3rem 1rem;
+  }
+
+  .btm-leadgen-section-card {
+    padding: 1.5rem 1rem;
+  }
+
   .btm-section-email-row {
     flex-direction: column;
     padding: 0.75rem;

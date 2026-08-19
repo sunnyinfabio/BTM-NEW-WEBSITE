@@ -223,3 +223,18 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 640px) {
+  .btm-leadership-root {
+    padding: 3rem 1rem;
+  }
+
+  .btm-leaders-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .btm-leader-card {
+    padding: 1.25rem;
+  }
+}

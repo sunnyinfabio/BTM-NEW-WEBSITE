@@ -438,5 +438,40 @@
 @media (max-width: 767px) {
   .btm-case-content-grid {
     grid-template-columns: 1fr;
+    padding: 1.25rem;
+    gap: 1.5rem;
+  }
+
+  .btm-case-metrics-ribbon {
+    grid-template-columns: 1fr 1fr;
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .btm-case-modal-backdrop {
+    padding: 0.5rem;
+  }
+
+  .btm-case-modal-window {
+    max-height: 95vh;
+  }
+}
+
+@media (max-width: 640px) {
+  .btm-work-root {
+    padding: 3rem 1rem;
+  }
+
+  .btm-case-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .btm-case-hero-title {
+    font-size: 1.35rem;
+  }
+
+  .btm-case-hero-tagline {
+    font-size: 0.9rem;
   }
 }

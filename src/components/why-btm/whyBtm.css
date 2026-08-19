@@ -453,3 +453,48 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 640px) {
+  .btm-why-root {
+    padding: 3rem 1rem;
+  }
+
+  .btm-why-interactive-canvas {
+    padding: 1.25rem;
+    border-radius: 14px;
+  }
+
+  .btm-why-mode-btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .btm-timeline-scrubber {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .btm-step-details-box {
+    padding: 1.25rem;
+  }
+
+  .btm-terminal-code-body {
+    font-size: 0.72rem;
+    padding: 0.875rem;
+  }
+
+  .btm-proof-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btm-industry-filter-row {
+    gap: 0.35rem;
+  }
+
+  .btm-filter-pill-btn {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.75rem;
+  }
+}
