@@ -6,7 +6,7 @@
   position: relative;
   min-height: 85vh;
   width: 100%;
-  background-color: var(--background);
+  background-color: transparent;
   display: flex;
   align-items: center;
   overflow: hidden;

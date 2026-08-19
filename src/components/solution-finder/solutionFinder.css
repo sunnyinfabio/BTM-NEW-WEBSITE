@@ -4,9 +4,9 @@
 
 .btm-solution-finder-root {
   position: relative;
-  background-color: var(--surface);
-  padding: clamp(4rem, 7vw, 7rem) 1.5rem;
-  border-top: 1px solid var(--border);
+  background-color: transparent;
+  padding: clamp(4rem, 7vw, 6.5rem) 1.5rem;
+  border-top: none;
   overflow: hidden;
 }
 

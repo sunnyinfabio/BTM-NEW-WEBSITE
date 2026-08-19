@@ -4,9 +4,8 @@
 
 .btm-work-root {
   position: relative;
-  background-color: var(--surface);
+  background-color: transparent;
   padding: clamp(4rem, 7vw, 7rem) 1.5rem;
-  border-top: 1px solid var(--border);
   overflow: hidden;
 }
 

@@ -4,9 +4,9 @@
 
 .btm-industry-explorer-root {
   position: relative;
-  background-color: var(--background);
+  background-color: transparent;
   padding: clamp(4rem, 7vw, 6.5rem) 1.5rem;
-  border-top: 1px solid var(--border);
+  border-top: none;
   overflow: hidden;
 }
 
