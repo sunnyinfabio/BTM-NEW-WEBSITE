@@ -10,6 +10,12 @@ export interface IndustryChallenge {
   actionLabel: string;
 }
 
+export interface IndustrySolutionArea {
+  title: string;
+  desc: string;
+  highlights: string[];
+}
+
 export interface IndustryCaseStudyRef {
   title: string;
   category: string;
@@ -30,6 +36,7 @@ export interface IndustryDetailData {
   accentColor: string;
   badgeLabel: string;
   challenges: IndustryChallenge[];
+  solutionAreas: IndustrySolutionArea[];
   capabilitiesSummary: string[];
   verifiedTechnologies: string[];
   proofSection: {
@@ -71,7 +78,7 @@ export const INDUSTRY_DETAILS: Record<string, IndustryDetailData> = {
         title: 'Real-Time Risk & Derivative Valuation',
         oneLiner: 'Intra-day yield curve construction, Greeks calculation & portfolio stress testing.',
         problem: 'Legacy batch risk engines take hours to compute portfolio risk, exposing institutions to sudden intra-day volatility.',
-        btmCapability: 'Distributed pricing grids + parallel GPU computing + real-time mathematical valuation models.',
+        btmCapability: 'Distributed pricing grids + parallel GPU compute + real-time mathematical valuation models.',
         technology: ['Python Quant', '.NET Core', 'SQL Server', 'C++', 'Redis'],
         actionLabel: 'Explore Risk Engines',
       },
@@ -101,6 +108,23 @@ export const INDUSTRY_DETAILS: Record<string, IndustryDetailData> = {
         btmCapability: 'Event-driven message pipelines + distributed time-series caches + cloud microservices.',
         technology: ['Kafka', 'Redis', 'Python', 'AWS', 'Docker'],
         actionLabel: 'Explore Data Architecture',
+      },
+    ],
+    solutionAreas: [
+      {
+        title: 'Quantitative Valuation & Pricing Grids',
+        desc: 'Sub-10ms mathematical engines computing yield curves, Greeks, and fixed income derivatives on distributed grids.',
+        highlights: ['50M+ daily calculations', 'Parallel compute optimization', 'Mortgage cash flow waterfalls'],
+      },
+      {
+        title: 'Algorithmic Execution & Order Routing',
+        desc: 'Low-latency FIX protocol adapters, smart liquidity aggregation, and high-frequency messaging bridges.',
+        highlights: ['FIX 4.2 / 4.4 / 5.0 bridges', 'Sub-millisecond messaging', 'Direct exchange connectivity'],
+      },
+      {
+        title: 'Regulatory Telemetry & Audit Integrity',
+        desc: 'Automated MiFID II, Dodd-Frank, and Basel III reporting with tamper-proof transaction log immutability.',
+        highlights: ['Immutable audit trails', 'Automated trade reconstruction', 'Zero calculation discrepancy'],
       },
     ],
     capabilitiesSummary: [
@@ -176,6 +200,23 @@ export const INDUSTRY_DETAILS: Record<string, IndustryDetailData> = {
         actionLabel: 'Explore Retail Analytics',
       },
     ],
+    solutionAreas: [
+      {
+        title: 'Cloud POS & In-Store Systems',
+        desc: 'Offline-first point-of-sale register software with local encrypted SQLite queuing and automatic cloud reconciliation.',
+        highlights: ['1,500+ store registers synced', 'Offline-first durability', 'Instant receipt & payment flow'],
+      },
+      {
+        title: 'Distributed Inventory Microservices',
+        desc: 'Event-driven stock synchronization across digital stores, regional fulfillment hubs, and physical retail floors.',
+        highlights: ['Sub-second inventory updates', 'Safety stock buffers', 'Automated depot transfer logic'],
+      },
+      {
+        title: 'High-Throughput Checkout Architecture',
+        desc: 'Asynchronous cart and payment gateway pipelines maintaining sub-50ms response times during peak holiday spikes.',
+        highlights: ['99.999% peak availability', 'Sub-50ms transaction latency', 'Automated surge scaling'],
+      },
+    ],
     capabilitiesSummary: [
       'High-availability POS systems with offline-first synchronization',
       'Sub-50ms checkout latency under heavy peak concurrency',
@@ -247,6 +288,23 @@ export const INDUSTRY_DETAILS: Record<string, IndustryDetailData> = {
         btmCapability: 'Instrument communication bridges + automated assay data validation pipelines.',
         technology: ['Python', 'FastAPI', 'PostgreSQL', 'Docker'],
         actionLabel: 'Explore LIMS Integration',
+      },
+    ],
+    solutionAreas: [
+      {
+        title: 'Intelligent Document Recognition (IDR)',
+        desc: 'Deep learning OCR and layout analysis extracting structured data from unstructured clinical protocols and lab reports.',
+        highlights: ['99.2% OCR extraction accuracy', '2M+ documents parsed', '85% faster review velocity'],
+      },
+      {
+        title: 'Clinical Trial Systems & EDC Pipelines',
+        desc: 'Centralized clinical trial management systems ingesting electronic data capture (EDC) from multi-center trials.',
+        highlights: ['Multi-site cohort management', 'Real-time safety telemetry', 'Automated anomaly flagging'],
+      },
+      {
+        title: '21 CFR Part 11 & GxP Verification',
+        desc: 'Cryptographically verified electronic records, dual-custody approval workflows, and immutable FDA submission logs.',
+        highlights: ['100% compliance audit pass', 'Role-based authorization', 'Tamper-proof e-signatures'],
       },
     ],
     capabilitiesSummary: [
@@ -322,6 +380,23 @@ export const INDUSTRY_DETAILS: Record<string, IndustryDetailData> = {
         actionLabel: 'Explore RPM Telemetry',
       },
     ],
+    solutionAreas: [
+      {
+        title: 'Telemedicine & Clinical WebRTC',
+        desc: 'HIPAA-compliant high-definition WebRTC video engines with adaptive bitrate streaming and in-consultation clinical charting.',
+        highlights: ['99.99% video uptime SLA', 'End-to-end encrypted sessions', 'Sub-second connection latency'],
+      },
+      {
+        title: 'EHR / FHIR Health Data Bridges',
+        desc: 'Bi-directional interoperability connecting EHR platforms (Epic, Cerner) using HL7 and SMART-on-FHIR REST protocols.',
+        highlights: ['FHIR R4 compliant schemas', 'Master patient index matching', 'Secure audit logging'],
+      },
+      {
+        title: 'Patient Experience & Portals',
+        desc: 'Self-service patient scheduling, lab diagnostic results viewing, e-prescriptions, and biometric authenticated access.',
+        highlights: ['250,000+ active patients', '100% HIPAA & SOC2 Type II', 'Multi-channel notifications'],
+      },
+    ],
     capabilitiesSummary: [
       '250,000+ active patients supported on production platforms',
       '99.99% teleconsultation uptime with sub-second video latency',
@@ -395,6 +470,23 @@ export const INDUSTRY_DETAILS: Record<string, IndustryDetailData> = {
         actionLabel: 'Explore Fleet Telemetry',
       },
     ],
+    solutionAreas: [
+      {
+        title: 'Machine Learning Demand Forecasting',
+        desc: 'Advanced time-series forecasting algorithms incorporating promotional calendars, distributor sell-through, and regional seasonality.',
+        highlights: ['3.4x forecasting precision', '22% depot stockout reduction', 'Automated replenishment orders'],
+      },
+      {
+        title: 'B2B Distributor Self-Service Portals',
+        desc: 'High-volume ordering platforms with real-time credit checks, instant stock reservation, and automated ERP sync.',
+        highlights: ['Direct ERP accounting sync', 'Automated multi-depot allocation', 'Self-service invoice tracking'],
+      },
+      {
+        title: 'Connected Logistics & Telematics',
+        desc: 'IoT sensor streaming for fleet routing, driver hours compliance, and temperature-controlled cold chain validation.',
+        highlights: ['10,000+ assets tracked live', '<250ms GPS latency', '18% fuel cost savings'],
+      },
+    ],
     capabilitiesSummary: [
       '3.4x demand forecasting accuracy reducing inventory write-offs',
       '22% regional depot stockout reduction with automated replenishment',
@@ -466,6 +558,23 @@ export const INDUSTRY_DETAILS: Record<string, IndustryDetailData> = {
         btmCapability: 'Real-time hazard telemetry dashboards + automated regulatory environmental compliance logs.',
         technology: ['React', 'Node.js', 'PostgreSQL', 'Docker'],
         actionLabel: 'Explore Safety Systems',
+      },
+    ],
+    solutionAreas: [
+      {
+        title: 'Predictive Equipment Health & Anomaly ML',
+        desc: 'Edge computing ML models analyzing time-series vibration, pressure, and thermal signals to forecast equipment failure before it occurs.',
+        highlights: ['40% unplanned downtime reduction', 'Sub-second anomaly alert trigger', 'Automated work-order generation'],
+      },
+      {
+        title: 'SCADA & Industrial Edge Ingestion',
+        desc: 'Industrial protocol adapters (OPC-UA, Modbus, MQTT) ingesting continuous high-frequency telemetry into central cloud data lakes.',
+        highlights: ['100,000+ sensor streams/sec', 'Ruggedized edge deployment', 'Zero packet loss architecture'],
+      },
+      {
+        title: 'Digital Twin & Simulation Modeling',
+        desc: 'Interactive 3D facility simulation engines allowing engineers to model pressure spikes, valve shutdowns, and pipeline stress in real time.',
+        highlights: ['Real-time sensor sync', 'Scenario stress simulation', 'Visual risk heatmaps'],
       },
     ],
     capabilitiesSummary: [

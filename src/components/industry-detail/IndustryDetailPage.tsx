@@ -10,16 +10,27 @@ import {
   Cpu,
   Layers,
   PhoneCall,
+  Check,
 } from 'lucide-react';
 import { Button, Badge } from '../ui';
-import { INDUSTRY_DETAILS, type IndustryDetailData, type IndustryChallenge } from './industryDetailData';
+import {
+  INDUSTRY_DETAILS,
+  type IndustryDetailData,
+  type IndustryChallenge,
+  type IndustrySolutionArea,
+} from './industryDetailData';
 import './industryDetail.css';
 
 export interface IndustryDetailPageProps {
   slug: string;
   onNavigateHome: () => void;
   onSelectIndustry: (slug: string) => void;
-  onOpenAdvisorDrawer: (context: { title: string; category: string; details: string; summaryItems?: { label: string; value: string }[] }) => void;
+  onOpenAdvisorDrawer: (context: {
+    title: string;
+    category: string;
+    details: string;
+    summaryItems?: { label: string; value: string }[];
+  }) => void;
 }
 
 export const IndustryDetailPage: React.FC<IndustryDetailPageProps> = ({
@@ -30,13 +41,14 @@ export const IndustryDetailPage: React.FC<IndustryDetailPageProps> = ({
 }) => {
   const [expandedChallengeId, setExpandedChallengeId] = useState<string | null>(null);
 
-  const industry: IndustryDetailData = INDUSTRY_DETAILS[slug] || INDUSTRY_DETAILS['capital-market'];
+  const industry: IndustryDetailData =
+    INDUSTRY_DETAILS[slug] || INDUSTRY_DETAILS['capital-market'];
 
   // SEO & Scroll Restoration on Mount or Slug Change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // Dynamic SEO Updates
+    // Dynamic SEO Title & Meta Description
     document.title = industry.seo.title;
     let metaDesc = document.querySelector('meta[name="description"]');
     if (!metaDesc) {
@@ -46,7 +58,32 @@ export const IndustryDetailPage: React.FC<IndustryDetailPageProps> = ({
     }
     metaDesc.setAttribute('content', industry.seo.description);
 
-    // Reset expanded card
+    // Open Graph Tags
+    const setMetaTag = (property: string, content: string) => {
+      let tag = document.querySelector(`meta[property="${property}"]`);
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute('property', property);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute('content', content);
+    };
+
+    setMetaTag('og:title', industry.seo.title);
+    setMetaTag('og:description', industry.seo.description);
+    setMetaTag('og:image', industry.imageUrl);
+    setMetaTag('og:url', window.location.href);
+
+    // Canonical link
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', window.location.href);
+
+    // Reset expanded challenge
     if (industry.challenges.length > 0) {
       setExpandedChallengeId(industry.challenges[0].id);
     }
@@ -95,7 +132,11 @@ export const IndustryDetailPage: React.FC<IndustryDetailPageProps> = ({
         </button>
 
         {/* Industry Switcher Pills */}
-        <div className="btm-industry-switcher-wrap" role="navigation" aria-label="Switch industry view">
+        <div
+          className="btm-industry-switcher-wrap"
+          role="navigation"
+          aria-label="Switch industry view"
+        >
           {allSlugs.map((s) => {
             const ind = INDUSTRY_DETAILS[s];
             const isActive = s === slug;
@@ -114,7 +155,7 @@ export const IndustryDetailPage: React.FC<IndustryDetailPageProps> = ({
       </div>
 
       {/* ──────────────────────────────────────────────────────────
-          2. Industry Hero Section
+          1. Industry Hero Section
           ────────────────────────────────────────────────────────── */}
       <section className="btm-industry-hero-section">
         <img
@@ -158,7 +199,7 @@ export const IndustryDetailPage: React.FC<IndustryDetailPageProps> = ({
       </section>
 
       {/* ──────────────────────────────────────────────────────────
-          3. Interactive Challenges: "WHAT ARE YOU TRYING TO SOLVE?"
+          2. Interactive Challenges: "WHAT ARE YOU TRYING TO SOLVE?"
           ────────────────────────────────────────────────────────── */}
       <section className="btm-challenges-section" id="industry-challenges">
         <div className="btm-challenges-container">
@@ -219,21 +260,21 @@ export const IndustryDetailPage: React.FC<IndustryDetailPageProps> = ({
                       >
                         {/* 1. Problem Statement */}
                         <div className="btm-challenge-step-box">
-                          <span className="btm-challenge-step-label">Industry Problem</span>
+                          <span className="btm-challenge-step-label">Problem</span>
                           <p className="btm-challenge-step-val">{challenge.problem}</p>
                         </div>
 
                         {/* 2. Potential BTM Capability */}
                         <div className="btm-challenge-step-box">
                           <span className="btm-challenge-step-label capability">
-                            BTM Engineering Capability
+                            Relevant BTM Capability
                           </span>
                           <p className="btm-challenge-step-val">{challenge.btmCapability}</p>
                         </div>
 
                         {/* 3. Relevant Verified Technology */}
                         <div className="btm-challenge-step-box">
-                          <span className="btm-challenge-step-label tech">Relevant Tech Stack</span>
+                          <span className="btm-challenge-step-label tech">Relevant Technology</span>
                           <div className="btm-challenge-tech-row">
                             {challenge.technology.map((t, tIdx) => (
                               <span key={tIdx} className="btm-challenge-tech-pill">
@@ -252,7 +293,7 @@ export const IndustryDetailPage: React.FC<IndustryDetailPageProps> = ({
                             onClick={() => handleChallengeAction(challenge)}
                             icon={<ArrowRight size={16} />}
                           >
-                            {challenge.actionLabel} →
+                            Explore This Solution →
                           </Button>
                         </div>
                       </motion.div>
@@ -266,12 +307,49 @@ export const IndustryDetailPage: React.FC<IndustryDetailPageProps> = ({
       </section>
 
       {/* ──────────────────────────────────────────────────────────
-          4. Verified Technologies Interactive Section
+          3. BTM Solution Areas
+          ────────────────────────────────────────────────────────── */}
+      <section className="btm-solution-areas-section">
+        <div className="btm-solution-areas-container">
+          <div className="btm-solution-areas-header">
+            <Badge variant="cyan" dot className="mb-2">
+              ENGINEERING PILLARS
+            </Badge>
+            <h2 className="btm-solution-areas-title">
+              BTM Solution Areas in <span style={{ color: '#EC1C24' }}>{industry.name}</span>
+            </h2>
+            <p className="btm-solution-areas-subtitle">
+              How our dedicated engineering pods structure delivery across architecture, data streaming, and governance.
+            </p>
+          </div>
+
+          <div className="btm-solution-areas-grid">
+            {industry.solutionAreas.map((area, idx) => (
+              <div key={idx} className="btm-solution-area-card">
+                <div className="btm-solution-area-num">0{idx + 1}</div>
+                <h3 className="btm-solution-area-card-title">{area.title}</h3>
+                <p className="btm-solution-area-card-desc">{area.desc}</p>
+                <div className="btm-solution-area-highlights">
+                  {area.highlights.map((h, hIdx) => (
+                    <div key={hIdx} className="btm-solution-area-highlight-item">
+                      <Check size={14} className="text-[#00C881]" />
+                      <span>{h}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ──────────────────────────────────────────────────────────
+          4. Relevant Verified Technologies Interactive Section
           ────────────────────────────────────────────────────────── */}
       <section className="btm-industry-tech-section">
         <div className="btm-industry-tech-container">
           <h3 className="btm-industry-tech-title">
-            Verified Technologies for <span style={{ color: '#EC1C24' }}>{industry.name}</span>
+            Relevant Technologies for <span style={{ color: '#EC1C24' }}>{industry.name}</span>
           </h3>
           <p className="btm-industry-tech-subtitle">
             Every technology in our roster is backed by senior engineers with hands-on production delivery.
