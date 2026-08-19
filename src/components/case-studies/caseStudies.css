@@ -69,15 +69,15 @@
 }
 
 /* ==========================================================================
-   8 Case Cards Grid (Consistent 3-Column Size across all filters & sections)
+   8 Case Cards Grid (4 Cards Per Row on Desktop, Compact Square Proportions)
    ========================================================================== */
 .btm-case-cards-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.75rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1180px) {
   .btm-case-cards-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -92,25 +92,27 @@
 .btm-case-card {
   background: #FFFFFF;
   border: 1.5px solid var(--border);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   cursor: pointer;
   box-shadow: var(--shadow-sm);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
-  min-height: 380px;
+  min-height: 310px;
+  height: 100%;
 }
 
 .btm-case-card:hover {
   border-color: var(--brand-navy);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 12px 28px rgba(11, 38, 83, 0.14);
   transform: translateY(-4px);
 }
 
 /* Card Image Box */
 .btm-card-image-box {
-  height: 180px;
+  height: 110px;
   position: relative;
   display: flex;
   align-items: center;
@@ -131,51 +133,80 @@
 }
 
 .btm-case-card:hover .btm-card-icon-float {
-  transform: scale(1.15);
+  transform: scale(1.12);
 }
 
 .btm-card-category-tag {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  top: 0.65rem;
+  left: 0.65rem;
   z-index: 3;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 800;
   color: #FFFFFF;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   background: rgba(11, 38, 83, 0.85);
   backdrop-filter: blur(8px);
-  padding: 0.25rem 0.65rem;
+  -webkit-backdrop-filter: blur(8px);
+  padding: 0.2rem 0.5rem;
   border-radius: var(--radius-full);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Card Details */
 .btm-card-details {
-  padding: 1.5rem;
+  padding: 0.85rem 1rem 1rem 1rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   flex: 1;
 }
 
 .btm-card-project-title {
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: 0.98rem;
+  font-weight: 800;
   color: var(--brand-navy);
   font-family: var(--font-primary);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.3rem;
+  line-height: 1.25;
 }
 
 .btm-card-project-tagline {
-  font-size: var(--fs-body-sm);
+  font-size: 0.76rem;
   color: var(--text-secondary);
-  line-height: 1.45;
-  margin-bottom: 1.25rem;
+  line-height: 1.35;
+  margin-bottom: 0.65rem;
   flex: 1;
 }
 
 .btm-card-tech-row {
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.65rem;
+}
+
+.btm-tech-tag-pill {
+  display: inline-block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.15rem 0.45rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--brand-navy);
+}
+
+.btm-card-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--brand-red);
+  transition: all var(--transition-fast);
+}
+
+.btm-case-card:hover .btm-card-action-link {
+  color: var(--brand-red-hover);
+  transform: translateX(3px);
 }
 
 .btm-card-tech-text {
