@@ -248,6 +248,113 @@
   margin-bottom: 2rem;
 }
 
+/* ──────────────────────────────────────────────────────────
+   Bottom Lead Gen Section (Inline Actionable Plan Form)
+   ────────────────────────────────────────────────────────── */
+.btm-leadgen-section-root {
+  position: relative;
+  background-color: var(--surface);
+  padding: clamp(4rem, 7vw, 6.5rem) 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.btm-leadgen-section-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.btm-leadgen-section-box {
+  max-width: 860px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border: 1.5px solid var(--brand-navy);
+  border-radius: var(--radius-xl);
+  padding: clamp(2rem, 5vw, 3.5rem);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+
+.btm-leadgen-section-header {
+  margin-bottom: 2rem;
+}
+
+.btm-leadgen-section-title {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-hero);
+  color: var(--brand-navy);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.025em;
+  font-family: var(--font-primary);
+}
+
+.btm-leadgen-section-subtitle {
+  font-size: var(--fs-body-lg);
+  color: var(--text-secondary);
+  line-height: var(--lh-normal);
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.btm-leadgen-section-form-wrap {
+  width: 100%;
+}
+
+.btm-section-single-email-form {
+  width: 100%;
+}
+
+.btm-section-email-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 620px;
+  margin: 0 auto 1.25rem auto;
+}
+
+.btm-section-email-input {
+  flex: 1;
+  background: #FFFFFF;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.25rem;
+  font-size: 0.95rem;
+  color: var(--brand-navy);
+  outline: none;
+  transition: all var(--transition-fast);
+  font-weight: 500;
+  min-width: 0;
+}
+
+.btm-section-email-input:focus {
+  border-color: var(--brand-navy);
+  box-shadow: 0 0 0 3px rgba(11, 38, 83, 0.1);
+}
+
+.btm-section-submit-btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding: 0.85rem 1.5rem;
+}
+
+.btm-section-trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.btm-section-expanded-form {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: left;
+}
+
 /* Mobile */
 @media (max-width: 640px) {
   .btm-leadgen-panel {
@@ -262,5 +369,24 @@
     flex-direction: column;
     gap: 0.5rem;
     align-items: flex-start;
+  }
+
+  .btm-section-email-row {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btm-section-email-input {
+    width: 100%;
+  }
+
+  .btm-section-submit-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btm-section-trust-row {
+    flex-direction: column;
+    gap: 0.35rem;
   }
 }
