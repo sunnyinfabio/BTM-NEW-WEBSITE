@@ -201,17 +201,17 @@ function AppContent() {
             style={{ color: 'var(--brand-navy)', cursor: 'pointer', transition: 'color 0.2s ease' }}
             onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-red)')}
             onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--brand-navy)')}
-            onClick={() => handleNavigateSection('tech-universe')}
+            onClick={() => handleNavigateSection('work-showcase')}
           >
-            Technology
+            Work
           </span>
           <span
             style={{ color: 'var(--brand-navy)', cursor: 'pointer', transition: 'color 0.2s ease' }}
             onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-red)')}
             onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--brand-navy)')}
-            onClick={() => handleNavigateSection('work-showcase')}
+            onClick={() => handleNavigateSection('tech-universe')}
           >
-            Work
+            Technology
           </span>
           <span
             style={{ color: 'var(--brand-navy)', cursor: 'pointer', transition: 'color 0.2s ease' }}
@@ -303,15 +303,15 @@ function AppContent() {
               </span>
               <span
                 style={{ color: 'var(--brand-navy)', cursor: 'pointer', padding: '0.5rem 0' }}
-                onClick={() => handleNavigateSection('tech-universe')}
+                onClick={() => handleNavigateSection('work-showcase')}
               >
-                3. Technology Constellation
+                3. Enterprise Work (8 Case Studies)
               </span>
               <span
                 style={{ color: 'var(--brand-navy)', cursor: 'pointer', padding: '0.5rem 0' }}
-                onClick={() => handleNavigateSection('work-showcase')}
+                onClick={() => handleNavigateSection('tech-universe')}
               >
-                4. Enterprise Work (8 Case Studies)
+                4. Technology Constellation
               </span>
               <span
                 style={{ color: 'var(--brand-navy)', cursor: 'pointer', padding: '0.5rem 0' }}
@@ -369,7 +369,7 @@ function AppContent() {
               onActionTrigger={(payload) => handleSolutionFinderAction(payload)}
             />
 
-            {/* 2B. INDUSTRY EXPLORER: "INDUSTRIES WE EMPOWER" (6 Industries) */}
+            {/* 3. INDUSTRIES WE EMPOWER: 6 Sector Practices */}
             <IndustryExplorer
               onNavigateToIndustry={(slug) => navigateTo(`/industries/${slug}`)}
               onConsultIndustryAdvisor={(industryData) =>
@@ -381,27 +381,27 @@ function AppContent() {
               }
             />
 
-            {/* 3. EXPLORE BTM CAPABILITIES: Connected Node Constellation Graph */}
-            <TechUniverseSection
-              onTechExploreClick={(techData) => handleTechExplore(techData)}
-            />
-
-            {/* 4. OUR WORK: Real BTM Case Studies (Click -> Full-Screen Modal) */}
+            {/* 4. WORK / PROOF: Real BTM Case Studies (Click -> Full-Screen Modal) */}
             <CaseStudiesSection
               onDiscussCaseClick={(caseData) => handleDiscussCase(caseData)}
             />
 
-            {/* 5. WHY COMPANIES CHOOSE BTM: Proof • Process • People */}
+            {/* 5. TECHNOLOGY: Connected Node Constellation Graph */}
+            <TechUniverseSection
+              onTechExploreClick={(techData) => handleTechExplore(techData)}
+            />
+
+            {/* 6. ABOUT: Proof • Process • People */}
             <WhyBtmSection
               onLearnMoreClick={(pillarId) => handlePillarInspect(pillarId)}
             />
 
-            {/* 5B. REAL BTM LEADERSHIP: The Technology Advisor Difference */}
+            {/* 6B. LEADERSHIP & TRUST: Wall Street Pedigree & Advisor Difference */}
             <LeadershipTrustSection
               onConsultLeaderClick={(leader) => handleLeaderConsult(leader)}
             />
 
-            {/* 6. NOT SURE WHERE TO START?: Progressive Lead Generation Engine */}
+            {/* 7. FIND MY SOLUTION / FINAL CTA: Progressive Lead Generation Engine */}
             <ProgressiveLeadGenSection
               onLeadSubmit={(lead) => {
                 console.log('Lead submitted:', lead);
