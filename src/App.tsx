@@ -114,10 +114,18 @@ function AppContent() {
           justifyContent: 'space-between',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <span style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.03em', fontFamily: 'var(--font-primary)' }}>
-            BTM <GradientText variant="accent">OUTSOURCING</GradientText>
-          </span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+            <img
+              src="https://btmoutsourcing.com/assets/images/logo/logo-dark.png"
+              alt="BTM Outsourcing Logo"
+              style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
+              onError={(e) => {
+                // Fallback if image blocked
+                (e.target as HTMLElement).style.display = 'none';
+              }}
+            />
+          </a>
           <Badge variant="cyan" dot className="hidden sm:inline-flex">
             Interactive Technology Advisor
           </Badge>
@@ -241,8 +249,15 @@ function AppContent() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '2.5rem', marginBottom: '3rem' }}>
             {/* Col 1: BTM Overview */}
             <div>
-              <div style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.03em', fontFamily: 'var(--font-primary)', marginBottom: '0.75rem' }}>
-                BTM <GradientText variant="accent">OUTSOURCING</GradientText>
+              <div style={{ marginBottom: '1rem' }}>
+                <img
+                  src="https://btmoutsourcing.com/assets/images/logo/logo-dark.png"
+                  alt="BTM Outsourcing Logo"
+                  style={{ height: '38px', width: 'auto', objectFit: 'contain' }}
+                  onError={(e) => {
+                    (e.target as HTMLElement).style.display = 'none';
+                  }}
+                />
               </div>
               <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1rem' }}>
                 Interactive Technology Advisor & elite software engineering partner. Delivering high-throughput platforms, dedicated agile pods, and production AI architectures.
