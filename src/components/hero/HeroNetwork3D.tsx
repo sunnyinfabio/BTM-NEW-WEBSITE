@@ -3,100 +3,82 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 interface TechNode {
   id: string;
   name: string;
+  shortLabel: string;
   category: string;
   description: string;
   x: number; // percentage 0-100
   y: number; // percentage 0-100
   color: string;
-  bgColor: string;
-  iconText: string;
+  accentBg: string;
+  icon: string;
   connections: string[];
 }
 
-const TECH_NODES: TechNode[] = [
-  {
-    id: 'product',
-    name: 'Product Strategy',
-    category: 'Full-Lifecycle',
-    description: 'Autonomous end-to-end product architecture, UI/UX & roadmap execution.',
-    x: 50,
-    y: 50,
-    color: '#EC1C24', // BTM Red (Center Core)
-    bgColor: 'rgba(236, 28, 36, 0.12)',
-    iconText: '★',
-    connections: ['ai', 'cloud', 'data', 'engineering', 'mobile', 'web'],
-  },
+const CORE_NODES: TechNode[] = [
   {
     id: 'ai',
-    name: 'AI & Intelligence',
-    category: 'IDR • LLM • RAG',
-    description: 'Deep learning document parsing, NLP agents & automated OCR pipelines.',
+    name: 'Artificial Intelligence',
+    shortLabel: 'AI',
+    category: 'LLMs • RAG • IDR',
+    description: 'Autonomous document parsing, deep learning OCR & domain AI agents.',
     x: 50,
-    y: 16,
+    y: 18,
     color: '#6F42C1', // Purple
-    bgColor: 'rgba(111, 66, 193, 0.12)',
-    iconText: 'AI',
-    connections: ['product', 'cloud', 'data'],
-  },
-  {
-    id: 'cloud',
-    name: 'Cloud Infrastructure',
-    category: 'AWS • Azure • GCP',
-    description: 'Multi-region VPC microservices, Kubernetes clusters & auto-scaling.',
-    x: 82,
-    y: 28,
-    color: '#00875A', // Emerald Green
-    bgColor: 'rgba(0, 135, 90, 0.12)',
-    iconText: '☁',
-    connections: ['product', 'ai', 'data'],
+    accentBg: 'rgba(111, 66, 193, 0.12)',
+    icon: '✨',
+    connections: ['core', 'data', 'cloud'],
   },
   {
     id: 'data',
     name: 'Data & Analytics',
-    category: 'Big Data • Kafka',
-    description: 'High-throughput real-time stream ingestion and sub-10ms query engines.',
-    x: 82,
-    y: 72,
-    color: '#0B2653', // Navy
-    bgColor: 'rgba(11, 38, 83, 0.1)',
-    iconText: '⚡',
-    connections: ['product', 'cloud', 'engineering'],
+    shortLabel: 'DATA',
+    category: 'Kafka • Real-Time Stream',
+    description: 'High-throughput stream processing, data lakes & low-latency analytics.',
+    x: 20,
+    y: 50,
+    color: '#0284C7', // Electric Blue
+    accentBg: 'rgba(2, 132, 199, 0.12)',
+    icon: '⚡',
+    connections: ['core', 'ai', 'engineering'],
+  },
+  {
+    id: 'core',
+    name: 'BTM Product Nexus',
+    shortLabel: 'PLATFORM',
+    category: 'Full-Lifecycle Architecture',
+    description: 'Enterprise systems engineering, API orchestration & SLA governance.',
+    x: 50,
+    y: 50,
+    color: '#EC1C24', // BTM Brand Red
+    accentBg: 'rgba(236, 28, 36, 0.14)',
+    icon: '❖',
+    connections: ['ai', 'data', 'cloud', 'engineering'],
+  },
+  {
+    id: 'cloud',
+    name: 'Cloud Infrastructure',
+    shortLabel: 'CLOUD',
+    category: 'AWS • Azure • Kubernetes',
+    description: 'Multi-region VPC architectures, microservices & zero-downtime CI/CD.',
+    x: 80,
+    y: 50,
+    color: '#00875A', // Emerald
+    accentBg: 'rgba(0, 135, 90, 0.12)',
+    icon: '☁',
+    connections: ['core', 'ai', 'engineering'],
   },
   {
     id: 'engineering',
     name: 'Senior Engineering',
-    category: 'Top 1% Talent',
-    description: 'Dedicated pods & vetted senior developers ramped up in 48 hours.',
+    shortLabel: 'ENGINEERING',
+    category: 'Top 1% Vetted Pods',
+    description: 'Dedicated agile pods (Java, .NET, Python, React) ramped in 48 hours.',
     x: 50,
-    y: 84,
-    color: '#00C881', // Bright Emerald
-    bgColor: 'rgba(0, 200, 129, 0.12)',
-    iconText: '⚙',
-    connections: ['product', 'data', 'mobile'],
-  },
-  {
-    id: 'mobile',
-    name: 'Mobile Systems',
-    category: 'iOS • Android',
-    description: 'Native Swift/Kotlin and cross-platform React Native / Flutter applications.',
-    x: 18,
-    y: 72,
-    color: '#0B2653', // Navy
-    bgColor: 'rgba(11, 38, 83, 0.1)',
-    iconText: '📱',
-    connections: ['product', 'engineering', 'web'],
-  },
-  {
-    id: 'web',
-    name: 'Modern Web Apps',
-    category: 'React • TypeScript',
-    description: 'Ultra-fast enterprise SaaS portals, Next.js web applications & APIs.',
-    x: 18,
-    y: 28,
-    color: '#0284C7', // Electric Blue
-    bgColor: 'rgba(2, 132, 199, 0.12)',
-    iconText: '🌐',
-    connections: ['product', 'mobile', 'ai'],
+    y: 82,
+    color: '#00C881', // Vibrant Green
+    accentBg: 'rgba(0, 200, 129, 0.12)',
+    icon: '⚙',
+    connections: ['core', 'data', 'cloud'],
   },
 ];
 
@@ -104,11 +86,28 @@ export const HeroNetwork3D: React.FC<{ className?: string }> = ({ className = ''
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [parallaxOffset, setParallaxOffset] = useState({ x: 0, y: 0 });
 
-  const hoveredNode = TECH_NODES.find((n) => n.id === hoveredNodeId) || null;
+  const hoveredNode = CORE_NODES.find((n) => n.id === hoveredNodeId) || null;
 
-  // Real-time interactive canvas animation for flowing data particles & pulsing rings
+  // Mouse Parallax Effect
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const xRatio = (e.clientX - rect.left) / rect.width - 0.5;
+    const yRatio = (e.clientY - rect.top) / rect.height - 0.5;
+    setParallaxOffset({
+      x: xRatio * 14,
+      y: yRatio * 14,
+    });
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setParallaxOffset({ x: 0, y: 0 });
+    setHoveredNodeId(null);
+  }, []);
+
+  // Real-time interactive canvas for flowing energy particles and laser connection tracks
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -118,7 +117,6 @@ export const HeroNetwork3D: React.FC<{ className?: string }> = ({ className = ''
     let animId: number;
     let time = 0;
 
-    // Handle high DPI
     const updateDimensions = () => {
       const parent = canvas.parentElement;
       if (!parent) return;
@@ -132,94 +130,95 @@ export const HeroNetwork3D: React.FC<{ className?: string }> = ({ className = ''
     updateDimensions();
     window.addEventListener('resize', updateDimensions);
 
-    // Particle flow state along connection vectors
-    const particles = Array.from({ length: 28 }, (_, i) => ({
-      pairIndex: i % 12,
+    // Particle flow packets along connection tracks
+    const connectionPairs = [
+      { from: 0, to: 2 }, // AI <-> Core
+      { from: 1, to: 2 }, // DATA <-> Core
+      { from: 3, to: 2 }, // CLOUD <-> Core
+      { from: 4, to: 2 }, // ENG <-> Core
+      { from: 0, to: 1 }, // AI <-> DATA
+      { from: 0, to: 3 }, // AI <-> CLOUD
+      { from: 4, to: 1 }, // ENG <-> DATA
+      { from: 4, to: 3 }, // ENG <-> CLOUD
+    ];
+
+    const particles = Array.from({ length: 24 }, (_, i) => ({
+      pairIndex: i % connectionPairs.length,
       progress: Math.random(),
-      speed: 0.004 + Math.random() * 0.006,
-      size: 2 + Math.random() * 2,
+      speed: 0.005 + Math.random() * 0.007,
+      size: 2.2 + Math.random() * 1.5,
     }));
-
-    // Pre-calculate line connections
-    const linePairs: { from: TechNode; to: TechNode }[] = [];
-    const seen = new Set<string>();
-
-    TECH_NODES.forEach((node) => {
-      node.connections.forEach((targetId) => {
-        const key = [node.id, targetId].sort().join('-');
-        if (!seen.has(key)) {
-          seen.add(key);
-          const target = TECH_NODES.find((n) => n.id === targetId);
-          if (target) {
-            linePairs.push({ from: node, to: target });
-          }
-        }
-      });
-    });
 
     const render = () => {
       time += 0.02;
-      const width = canvas.width / (Math.min(window.devicePixelRatio || 1, 2));
-      const height = canvas.height / (Math.min(window.devicePixelRatio || 1, 2));
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const width = canvas.width / dpr;
+      const height = canvas.height / dpr;
 
       ctx.clearRect(0, 0, width, height);
 
-      // Center coordinates
-      const cx = width / 2;
-      const cy = height / 2;
+      // 1. Subtle Orbital Background Ring behind Core
+      const coreX = (50 / 100) * width;
+      const coreY = (50 / 100) * height;
 
-      // 1. Draw Subtle Concentric Orbital Background Rings
-      [75, 130, 185].forEach((radius, idx) => {
-        ctx.beginPath();
-        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(11, 38, 83, ${0.04 + Math.sin(time + idx) * 0.015})`;
-        ctx.lineWidth = 1;
-        ctx.setLineDash([4, 6]);
-        ctx.stroke();
-        ctx.setLineDash([]);
-      });
+      ctx.beginPath();
+      ctx.arc(coreX, coreY, 90 + Math.sin(time) * 4, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(11, 38, 83, 0.06)';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4, 6]);
+      ctx.stroke();
+      ctx.setLineDash([]);
 
       // 2. Draw Connection Lines
-      linePairs.forEach((pair) => {
-        const x1 = (pair.from.x / 100) * width;
-        const y1 = (pair.from.y / 100) * height;
-        const x2 = (pair.to.x / 100) * width;
-        const y2 = (pair.to.y / 100) * height;
+      connectionPairs.forEach((pair) => {
+        const fromNode = CORE_NODES[pair.from];
+        const toNode = CORE_NODES[pair.to];
 
-        const isHighlight =
-          hoveredNodeId === pair.from.id || hoveredNodeId === pair.to.id;
+        const x1 = (fromNode.x / 100) * width;
+        const y1 = (fromNode.y / 100) * height;
+        const x2 = (toNode.x / 100) * width;
+        const y2 = (toNode.y / 100) * height;
+
+        const isHighlighted =
+          hoveredNodeId &&
+          (hoveredNodeId === fromNode.id || hoveredNodeId === toNode.id);
 
         ctx.beginPath();
         ctx.moveTo(x1, y1);
         ctx.lineTo(x2, y2);
-        ctx.strokeStyle = isHighlight
-          ? 'rgba(236, 28, 36, 0.6)'
-          : 'rgba(11, 38, 83, 0.15)';
-        ctx.lineWidth = isHighlight ? 2 : 1;
+        ctx.strokeStyle = isHighlighted
+          ? 'rgba(0, 200, 129, 0.45)'
+          : 'rgba(11, 38, 83, 0.12)';
+        ctx.lineWidth = isHighlighted ? 2 : 1;
         ctx.stroke();
       });
 
-      // 3. Draw Flowing Energy Packets on Connection Lines
+      // 3. Flowing Data Particles
       particles.forEach((p) => {
-        const pair = linePairs[p.pairIndex % linePairs.length];
-        if (!pair) return;
+        const pair = connectionPairs[p.pairIndex];
+        const fromNode = CORE_NODES[pair.from];
+        const toNode = CORE_NODES[pair.to];
 
         p.progress += p.speed;
         if (p.progress > 1) p.progress = 0;
 
-        const x1 = (pair.from.x / 100) * width;
-        const y1 = (pair.from.y / 100) * height;
-        const x2 = (pair.to.x / 100) * width;
-        const y2 = (pair.to.y / 100) * height;
+        const x1 = (fromNode.x / 100) * width;
+        const y1 = (fromNode.y / 100) * height;
+        const x2 = (toNode.x / 100) * width;
+        const y2 = (toNode.y / 100) * height;
 
-        const px = x1 + (x2 - x1) * p.progress;
-        const py = y1 + (y2 - y1) * p.progress;
+        const curX = x1 + (x2 - x1) * p.progress;
+        const curY = y1 + (y2 - y1) * p.progress;
+
+        const isHoveredTrack =
+          hoveredNodeId &&
+          (hoveredNodeId === fromNode.id || hoveredNodeId === toNode.id);
 
         ctx.beginPath();
-        ctx.arc(px, py, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = hoveredNodeId ? '#EC1C24' : '#00C881';
-        ctx.shadowColor = '#00C881';
-        ctx.shadowBlur = 6;
+        ctx.arc(curX, curY, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = isHoveredTrack ? '#EC1C24' : '#00C881';
+        ctx.shadowColor = isHoveredTrack ? '#EC1C24' : '#00C881';
+        ctx.shadowBlur = isHoveredTrack ? 12 : 8;
         ctx.fill();
         ctx.shadowBlur = 0;
       });
@@ -238,139 +237,103 @@ export const HeroNetwork3D: React.FC<{ className?: string }> = ({ className = ''
   return (
     <div
       ref={containerRef}
-      className={`relative w-full h-full select-none ${className}`}
-      style={{ minHeight: '380px', position: 'relative' }}
-      onMouseMove={(e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        setMousePos({
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top,
-        });
-      }}
+      className={`btm-floating-tech-core-container ${className}`}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
     >
-      {/* Background HTML5 Animated Canvas */}
-      <canvas
-        ref={canvasRef}
+      {/* Canvas Layer for dynamic lines & particles */}
+      <canvas ref={canvasRef} className="btm-core-canvas" />
+
+      {/* Floating Interactive Glowing Nodes with Parallax */}
+      <div
+        className="btm-core-nodes-plane"
         style={{
-          position: 'absolute',
-          inset: 0,
-          width: '100%',
-          height: '100%',
-          pointerEvents: 'none',
+          transform: `translate3d(${parallaxOffset.x}px, ${parallaxOffset.y}px, 0)`,
+          transition: 'transform 0.15s ease-out',
         }}
-      />
+      >
+        {CORE_NODES.map((node) => {
+          const isHovered = hoveredNodeId === node.id;
+          const isNexus = node.id === 'core';
 
-      {/* Interactive HTML Node Elements */}
-      {TECH_NODES.map((node) => {
-        const isHovered = hoveredNodeId === node.id;
-        const isCore = node.id === 'product';
-
-        return (
-          <div
-            key={node.id}
-            onMouseEnter={() => setHoveredNodeId(node.id)}
-            onMouseLeave={() => setHoveredNodeId(null)}
-            style={{
-              position: 'absolute',
-              left: `${node.x}%`,
-              top: `${node.y}%`,
-              transform: 'translate(-50%, -50%)',
-              zIndex: isHovered ? 20 : 10,
-              cursor: 'pointer',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              transition: 'transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)',
-            }}
-          >
-            {/* Outer Pulsing Glow */}
+          return (
             <div
+              key={node.id}
+              className={`btm-tech-node-anchor ${isHovered ? 'hovered' : ''} ${isNexus ? 'nexus' : ''}`}
               style={{
-                width: isCore ? '64px' : '52px',
-                height: isCore ? '64px' : '52px',
-                borderRadius: '50%',
-                backgroundColor: node.bgColor,
-                border: `2px solid ${node.color}`,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: isHovered
-                  ? `0 0 20px ${node.color}66, 0 8px 16px rgba(11,38,83,0.15)`
-                  : '0 4px 12px rgba(11, 38, 83, 0.08)',
-                transform: isHovered ? 'scale(1.15)' : 'scale(1)',
-                transition: 'all 0.25s ease',
-                background: '#FFFFFF',
+                left: `${node.x}%`,
+                top: `${node.y}%`,
               }}
+              onMouseEnter={() => setHoveredNodeId(node.id)}
+              onMouseLeave={() => setHoveredNodeId(null)}
+              tabIndex={0}
+              role="button"
+              aria-label={`${node.name} Technology Node`}
             >
-              <span
+              {/* Outer Glow Halo Ring */}
+              <div
+                className="btm-node-glow-ring"
                 style={{
-                  fontSize: isCore ? '1.15rem' : '0.9rem',
-                  fontWeight: 900,
+                  borderColor: isHovered ? node.color : `${node.color}33`,
+                  boxShadow: isHovered
+                    ? `0 0 28px ${node.color}99, inset 0 0 14px ${node.color}66`
+                    : `0 0 10px ${node.color}22`,
+                }}
+              />
+
+              {/* Node Orb */}
+              <div
+                className="btm-node-orb"
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  borderColor: node.color,
                   color: node.color,
                 }}
               >
-                {node.iconText}
-              </span>
-            </div>
+                <span className="btm-node-icon">{node.icon}</span>
+              </div>
 
-            {/* Label Below Node */}
-            <div
-              style={{
-                marginTop: '6px',
-                background: isHovered ? node.color : '#FFFFFF',
-                color: isHovered ? '#FFFFFF' : '#0B2653',
-                border: `1px solid ${isHovered ? node.color : '#E2E8F0'}`,
-                borderRadius: '20px',
-                padding: '2px 8px',
-                fontSize: '0.7rem',
-                fontWeight: 800,
-                whiteSpace: 'nowrap',
-                boxShadow: '0 2px 6px rgba(11, 38, 83, 0.06)',
-                transition: 'all 0.2s ease',
-              }}
-            >
-              {node.name}
+              {/* Node Floating Pill Label */}
+              <div
+                className="btm-node-label-pill"
+                style={{
+                  color: isHovered ? '#FFFFFF' : 'var(--brand-navy)',
+                  backgroundColor: isHovered ? node.color : '#FFFFFF',
+                  borderColor: isHovered ? node.color : 'var(--border)',
+                  boxShadow: isHovered ? `0 4px 14px ${node.color}55` : 'var(--shadow-sm)',
+                }}
+              >
+                <span>{node.shortLabel}</span>
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
 
-      {/* Floating Hover Tooltip */}
+      {/* Floating Node Context Popover Tooltip */}
       {hoveredNode && (
         <div
+          className="btm-node-tooltip"
           style={{
-            position: 'absolute',
-            left: `${mousePos.x}px`,
-            top: `${mousePos.y - 12}px`,
-            transform: 'translate(-50%, -100%)',
-            pointerEvents: 'none',
-            zIndex: 40,
-            background: '#0B2653',
-            color: '#FFFFFF',
-            borderRadius: '8px',
-            padding: '0.75rem 1rem',
-            maxWidth: '240px',
-            boxShadow: '0 12px 28px rgba(11, 38, 83, 0.3)',
-            border: '1px solid rgba(255, 255, 255, 0.15)',
-            animation: 'fadeIn 0.15s ease-out',
+            borderColor: hoveredNode.color,
           }}
         >
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
-            <span style={{ fontWeight: 800, fontSize: '0.85rem' }}>{hoveredNode.name}</span>
+          <div className="flex items-center gap-1.5 mb-1">
             <span
-              style={{
-                fontSize: '0.6rem',
-                fontWeight: 800,
-                color: '#00C881',
-                background: 'rgba(0, 200, 129, 0.15)',
-                padding: '2px 6px',
-                borderRadius: '4px',
-              }}
+              className="w-2 h-2 rounded-full inline-block"
+              style={{ backgroundColor: hoveredNode.color }}
+            />
+            <span
+              className="text-[10px] font-extrabold uppercase tracking-wider"
+              style={{ color: hoveredNode.color }}
             >
               {hoveredNode.category}
             </span>
           </div>
-          <p style={{ fontSize: '0.75rem', color: '#CAD7E8', margin: 0, lineHeight: 1.4 }}>
+          <h4 className="text-xs font-bold text-[#0B2653] leading-tight mb-0.5">
+            {hoveredNode.name}
+          </h4>
+          <p className="text-[11px] text-[#51668A] leading-snug">
             {hoveredNode.description}
           </p>
         </div>

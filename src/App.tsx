@@ -365,6 +365,10 @@ function AppContent() {
             <HeroSection
               onPrimaryCtaClick={() => handleNavigateSection('solution-finder')}
               onSecondaryCtaClick={() => handleNavigateSection('work-showcase')}
+              onSelectGoal={(goalId) => {
+                setSelectedGoal(goalId as GoalId);
+                handleNavigateSection('solution-finder');
+              }}
             />
 
             {/* 2. SOLUTION FINDER: "WHAT ARE YOU TRYING TO ACHIEVE?" (7 Goals × 6 Industries) */}

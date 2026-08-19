@@ -8,11 +8,13 @@ import './hero.css';
 export interface HeroSectionProps {
   onPrimaryCtaClick?: () => void;
   onSecondaryCtaClick?: () => void;
+  onSelectGoal?: (goalId: string) => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
   onPrimaryCtaClick,
   onSecondaryCtaClick,
+  onSelectGoal,
 }) => {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -86,6 +88,42 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             >
               Explore Our Work
             </Button>
+          </motion.div>
+
+          {/* Quick Interactive Funnel Triggers (Direct in Hero) */}
+          <motion.div variants={itemVariants} className="btm-hero-funnel-trigger-block">
+            <span className="btm-hero-funnel-prompt">Start with what you need</span>
+            <div className="btm-hero-funnel-pills-row" role="group" aria-label="Quick solution triggers">
+              <button
+                type="button"
+                className="btm-hero-funnel-pill"
+                onClick={() => onSelectGoal?.('build-product')}
+              >
+                <span>Build a Product</span>
+              </button>
+              <button
+                type="button"
+                className="btm-hero-funnel-pill"
+                onClick={() => onSelectGoal?.('find-developers')}
+              >
+                <span>Find Developers</span>
+              </button>
+              <button
+                type="button"
+                className="btm-hero-funnel-pill highlight-ai"
+                onClick={() => onSelectGoal?.('add-ai')}
+              >
+                <span className="text-[#00C881]">✨</span>
+                <span>Add AI</span>
+              </button>
+              <button
+                type="button"
+                className="btm-hero-funnel-pill"
+                onClick={() => onSelectGoal?.('modernize-tech')}
+              >
+                <span>Modernize</span>
+              </button>
+            </div>
           </motion.div>
 
           {/* Enterprise Credibility Badges Ribbon */}
